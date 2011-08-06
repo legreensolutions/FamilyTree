@@ -1,5 +1,8 @@
+public/system
+public/resources/*
 config/database.yml
 log/*
 tmp/*
 *~
+.gitignore
 

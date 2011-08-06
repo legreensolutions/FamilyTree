@@ -1,0 +1,9 @@
+<p>
+  <b>Name:</b>
+  <%=h @user.name %>
+</p>
+
+<%= image_tag @user.photo.url(:small) %>
+
+<%= link_to 'Edit', edit_user_path(@user.id) %>
+
