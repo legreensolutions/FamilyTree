@@ -1,4 +1,8 @@
- <table>
+ <br />
+
+<div class="page_container">
+<h3>Members</h3>
+ <table align="center">
     <tr>
       <td><%- form_tag members_path, :method => :get do -%>
         <strong>Search:</strong>
@@ -6,10 +10,9 @@
         <%= submit_tag "Search", :name => 'search' %>
         <% end %></td>
       </tr>
-  </table>
-<h1>Members</h1>
+  </table><br />
 <% unless @members.blank? %>
-<table>
+<table align="center">
   <tr><th>Name</th><th>House</th></tr>
 
 <% @members.each do |member| %>
@@ -27,4 +30,5 @@
 <% else %>
   <p>No Records Found</p>
 <% end %>
+</div>
 

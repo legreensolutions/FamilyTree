@@ -1,16 +1,20 @@
-<h1>Editing family</h1>
+<br />
+
+<div class="page_container">
+<h3>Editing family</h3>
 
 <% form_for(@family) do |f| %>
   <%= f.error_messages %>
 
   <p>
-    <%= f.label :name %><br />
+    <%= f.label :name %>:
     <%= f.text_field :name %>
   </p>
   <p>
     <%= f.submit 'Update' %>
   </p>
 <% end %>
-
+</div>
 <%= link_to 'Show', @family %> |
 <%= link_to 'Back', families_path %>
+

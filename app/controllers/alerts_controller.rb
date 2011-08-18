@@ -44,7 +44,7 @@ class AlertsController < ApplicationController
   # POST /alerts.xml
   def create
     @alert = Alert.new(params[:alert])
-
+    NO_OF_IMAGES.times {@alert.alert_uploads.build}
     respond_to do |format|
       if @alert.save
         format.html { redirect_to(@alert, :notice => 'Alert was successfully created.') }

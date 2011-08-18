@@ -44,7 +44,7 @@ class NewsItemsController < ApplicationController
   # POST /news_items.xml
   def create
     @news_item = NewsItem.new(params[:news_item])
-
+    NO_OF_IMAGES.times {@news_item.news_uploads.build}
     respond_to do |format|
       if @news_item.save
         format.html { redirect_to(@news_item, :notice => 'NewsItem was successfully created.') }

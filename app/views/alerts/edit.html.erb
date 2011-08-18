@@ -1,5 +1,6 @@
-<h1>Editing alert</h1>
-<table>
+<br /><div class="page_container">
+<h3>Editing alert</h3>
+<table align="center">
 <% form_for @alert ,:html=>{:multipart=>true} do |f| %>
   <%= f.error_messages %>
 <tr>
@@ -25,7 +26,7 @@
   </tr>
 <% end %>
 </table>
-
+</div>
 
 <%= link_to 'Show', @alert %> |
 <%= link_to 'Back', alerts_path %>

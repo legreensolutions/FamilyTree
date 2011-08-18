@@ -1,4 +1,5 @@
 class NewsItem < ActiveRecord::Base
+  validates_presence_of :title,:description,:news_date
   has_many :news_uploads,
            :attributes => true,
            :discard_if => proc { |upload| upload.photo_file_size.nil? }

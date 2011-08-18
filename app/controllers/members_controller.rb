@@ -1,5 +1,5 @@
 class MembersController < ApplicationController
-   before_filter :require_user, :only => [:index, :edit, :update,:new,:create]
+ #  before_filter :require_user, :only => [:index, :edit, :update,:new,:create]
   # GET /members
   # GET /members.xml
   def index

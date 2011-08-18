@@ -1,3 +1,5 @@
+  <br /><div class="page_container">
+  <h3> Users</h3>
   <table align="center">
     <tr>
       <td><%- form_tag users_path, :method => :get do -%>
@@ -9,8 +11,8 @@
   </table>
   <% unless @users.blank? %>
 
-  <h1> Users</h1>
-  <table>
+
+  <table align="center">
   <tr><td>Email</td><td>Admin/DE</td></tr>
   <% @users.each do |user| %>
     <tr>
@@ -25,4 +27,5 @@
 <% else %>
   <p>No Records Found</p>
 <% end %>
+</div>
 

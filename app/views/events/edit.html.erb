@@ -1,4 +1,5 @@
-<h1>Editing event</h1>
+&nbsp;<div class="page_container">
+<h3>Editing event</h3>
 <table align="center">
 <% form_for @event, :html => { :multipart => true } do |f| %>
   <%= f.error_messages %>
@@ -26,7 +27,7 @@
   </tr>
 <% end %>
 </table>
-
+</div>
 <%= link_to 'Show', @event %> |
 <%= link_to 'Back', events_path %>
 

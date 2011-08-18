@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   # before_filter :require_no_user, :only => [:new, :create]
  # before_filter :require_user, :only => [:show, :edit, :update,:new,:create]
- before_filter :require_user, :only => [:index, :edit, :update,:new,:create]
+
+# before_filter :require_user, :only => [:index, :edit, :update,:new,:create]
 require 'digest/sha1'
   def index
     if params[:search]

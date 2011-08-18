@@ -1,8 +1,10 @@
-<h1>Register</h1>
+<br /><div class="page_container">
+<h3>Register</h3>
 
 <% form_for @user do |f| %>
   <%= f.error_messages %>
   <%= render :partial => "form", :object => f %>
   <%= f.submit "Register" %>
 <% end %>
+</div>
 
