@@ -35,20 +35,18 @@
       <%= link_to (image_tag "/images/menu/mnu_members.png"),members_path %>
       <%= link_to (image_tag "/images/menu/mnu_login.png"),login_path %>
    </div>
-   <!-- div id="menu_right"></div -->
-        <% flash.each do |key,value| %>
-                     <div  id="flash" class="flash_<%= key %>" >
-                        <p style="color: green"><%= value %></p>
-                        <br><br>
-                     </div><!-- end  flash   -->
-        <% end -%>
-<div style="clear:both;"></div>
+<div id="content_border">
+                <% flash.each do |key,value| %>
+                             <div  id="flash" class="flash_<%= key %>" >
+                                <p style="color: green"><%= value %></p>
+                                <br><br>
+                             </div><!-- end  flash   -->
+                <% end -%>
+        <div style="clear:both;"></div>
 
-<div id="content_body">
-         <%= yield :layout %>
-
-
-
+        <div id="content_body">
+                 <%= yield :layout %>
+        </div>
 
 </div>
 

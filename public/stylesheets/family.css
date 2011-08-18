@@ -119,10 +119,23 @@ p {
     /*float:left;*/
 }
 
+#content_border {
+    border-width:0px;
+    padding:0px;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:center;
+    border-right-width:1px;
+    border-left-width:1px;
+    border-color:white;
+    border-style:solid;
+}
+
+
 #content_body {
     background-image:url('../images/content_bg.png');
     background-repeat:repeat-y;
-    width:800px;
+    width:798px;
 
 }
 #footer {
@@ -133,7 +146,7 @@ p {
 
 #home_image {
     background-image:url('../images/home_image.png');
-    width:800px;
+    width:798px;
     height:266px;
     background-repeat:none;
     float:left;
