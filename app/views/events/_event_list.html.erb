@@ -1,0 +1,13 @@
+<% @events = Event.find(:all,:order=>'event_date desc',:limit=>5)%>
+<h2>Events</h2>
+
+<table align="center">
+
+<% @events.each do |event| %>
+  <tr>
+    <td><%= event.title %></td>
+
+  </tr>
+<% end %>
+</table>
+

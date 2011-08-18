@@ -1,0 +1,11 @@
+<% @families = Family.find(:all,:order=>'id desc',:limit=>5) %>
+<h2>Families</h2>
+<table align="center">
+
+<% @families.each do |family| %>
+  <tr>
+    <td><%=h family.name %></td>
+  </tr>
+<% end %>
+</table>
+
