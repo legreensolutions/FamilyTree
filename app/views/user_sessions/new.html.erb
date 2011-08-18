@@ -1,15 +1,26 @@
-<h1>Login</h1>
+&nbsp;<div class="page_container">
+<h3>Login</h3>
 
 <% form_for @user_session, :url => user_session_path do |f| %>
-  <%= f.error_messages %>
-  <%= f.label :email %><br />
-  <%= f.text_field :email %><br />
-  <br />
-  <%= f.label :password %><br />
-  <%= f.password_field :password %><br />
 
-  <br />
-  <%= f.submit "Login" %>
+  <%= f.error_messages %>
+  <table align="center">
+      <tr>
+          <td><%= f.label :email %></td>
+          <td><%= f.text_field :email %></td>
+      </tr>
+      <tr>
+          <td><%= f.label :password %></td>
+          <td><%= f.password_field :password %></td>
+      </tr>
+      <tr>
+      <td colspan="2"><%= f.submit "Login" %>&nbsp;&nbsp;<%= link_to 'Forgot Password?',:controller=>'password_resets',:action=>'new'%></td>
+      </tr>
+  </table>
+
 <% end %>
-<%= link_to 'Forgot Password?',:controller=>'password_resets',:action=>'new'%>
+
+</div>
+
+<br />
 

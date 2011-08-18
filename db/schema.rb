@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(:version => 20110812054811) do
     t.string   "pet_name"
     t.integer  "phone"
     t.integer  "mobile"
-    t.integer  "family_name_id"
+    t.integer  "family_id"
     t.string   "house_name"
     t.string   "house_number"
     t.string   "street"

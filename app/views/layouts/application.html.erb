@@ -22,8 +22,9 @@
   <div id = "right_top1"></div>
   <div style="clear:both;"></div>
 
-
+  <div id="menu_left"></div>
    <div id="menu">
+
       <%= link_to (image_tag "/images/menu/mnu_home_.png"),root_url %>
       <%= link_to (image_tag "/images/menu/mnu_families.png") ,families_path %>
       <%= link_to (image_tag "/images/menu/mnu_gallery.png"),'#'%>
@@ -34,20 +35,21 @@
       <%= link_to (image_tag "/images/menu/mnu_members.png"),members_path %>
       <%= link_to (image_tag "/images/menu/mnu_login.png"),login_path %>
    </div>
-
+   <!-- div id="menu_right"></div -->
+        <% flash.each do |key,value| %>
+                     <div  id="flash" class="flash_<%= key %>" >
+                        <p style="color: green"><%= value %></p>
+                        <br><br>
+                     </div><!-- end  flash   -->
+        <% end -%>
 <div style="clear:both;"></div>
 
-
 <div id="content_body">
-
-<% flash.each do |key,value| %>
-             <div  id="flash" class="flash_<%= key %>" >
-                <p style="color: green"><%= value %></p>
-                <br><br>
-             </div><!-- end  flash   -->
-         <% end -%>
-
          <%= yield :layout %>
+
+
+
+
 </div>
 
 <div style="clear:both;"></div>
