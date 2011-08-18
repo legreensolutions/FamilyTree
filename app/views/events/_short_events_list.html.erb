@@ -1,0 +1,6 @@
+<%@events  = Event.find(:all,:order=>'created_at DESC',:limit=>LIMIT) %>
+<% @events.each do |event| %>
+<p><%= link_to event.title,alert_path(event)%></p>
+<% end %>
+<p><%= link_to 'more',events_path %></p>
+

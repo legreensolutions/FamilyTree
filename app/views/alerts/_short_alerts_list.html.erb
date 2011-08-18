@@ -1,0 +1,6 @@
+<%@alerts  = Alert.find(:all,:order=>'created_at DESC',:limit=>LIMIT) %>
+<% @alerts.each do |alert| %>
+<p><%= link_to alert.title,alert_path(alert)%></p>
+<% end %>
+<p><%= link_to 'more',alerts_path %></p>
+

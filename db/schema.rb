@@ -9,7 +9,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110805125543) do
+ActiveRecord::Schema.define(:version => 20110812054811) do
+
+  create_table "alert_uploads", :force => true do |t|
+    t.integer  "alert_id"
+    t.string   "photo_file_name"
+    t.integer  "photo_file_size"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "alerts", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.date     "alert_date"
+    t.boolean  "obsolete",    :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "countries", :force => true do |t|
     t.string   "name"
@@ -23,15 +40,32 @@ ActiveRecord::Schema.define(:version => 20110805125543) do
     t.datetime "updated_at"
   end
 
-  create_table "states", :force => true do |t|
+  create_table "event_uploads", :force => true do |t|
+    t.integer  "event_id"
+    t.string   "photo_file_name"
+    t.integer  "photo_file_size"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "events", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.date     "event_date"
+    t.boolean  "obsolete",    :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "families", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "users", :force => true do |t|
-    t.string   "name",                                   :null => false
-    t.string   "email",                                  :null => false
+  create_table "members", :force => true do |t|
+    t.string   "name",                                  :null => false
+    t.string   "email",                                 :null => false
     t.string   "pet_name"
     t.integer  "phone"
     t.integer  "mobile"
@@ -44,18 +78,50 @@ ActiveRecord::Schema.define(:version => 20110805125543) do
     t.integer  "district_id"
     t.integer  "state_id"
     t.integer  "country_id"
-    t.boolean  "demoted",             :default => false
-    t.boolean  "lock",                :default => false
+    t.boolean  "demoted",            :default => false
+    t.boolean  "lock",               :default => false
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
-    t.string   "crypted_password",                       :null => false
-    t.string   "password_salt",                          :null => false
-    t.string   "persistence_token",                      :null => false
-    t.string   "single_access_token",                    :null => false
-    t.string   "perishable_token",                       :null => false
+    t.integer  "created_by",         :default => 1
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "news_items", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.date     "news_date"
+    t.boolean  "obsolete",    :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "news_uploads", :force => true do |t|
+    t.integer  "news_item_id"
+    t.string   "photo_file_name"
+    t.integer  "photo_file_size"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "states", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "email",                              :null => false
+    t.string   "crypted_password",                   :null => false
+    t.string   "password_salt",                      :null => false
+    t.string   "persistence_token",                  :null => false
+    t.string   "single_access_token",                :null => false
+    t.string   "perishable_token",                   :null => false
     t.integer  "active",              :default => 0
-    t.boolean  "is_admin",            :default => false
+    t.integer  "is_admin",            :default => 2
+    t.integer  "created_by"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

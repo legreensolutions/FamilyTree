@@ -1,0 +1,10 @@
+<p>Title:<%= @news_item.title %></p>
+<p>Description<%= @news_item.description %></p>
+<p>Date:<%= @news_item.news_date %>
+<% @upload = @news_item.news_uploads.first %>
+<%unless @upload.nil? %>
+<p><%= image_tag @upload.photo.url(:thumb) %></p>
+<% end %>
+<%= link_to 'Edit', edit_news_item_path(@news_item) %> |
+<%= link_to 'Back', news_items_path %>
+

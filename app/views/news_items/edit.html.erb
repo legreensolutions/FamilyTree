@@ -1,0 +1,31 @@
+<h1>Editing news_item</h1>
+<table align="center">
+<% form_for @news_item ,:html=>{:multipart=>true} do |f| %>
+  <%= f.error_messages %>
+<tr>
+    <td>Title</td>
+    <td><%= f.text_field :title %></td>
+  </tr>
+  <tr>
+    <td>Description</td>
+    <td><%= f.text_field :description %></td>
+  </tr>
+  <tr>
+    <td>Date</td>
+    <td><%= f.date_select(:news_date, :order => [:month, :day,:year]) %></td>
+   </tr>
+  <% f.fields_for :news_uploads do |photo_form| %>
+  <tr>
+    <td>Upload photo</td>
+    <td><%= photo_form.file_field :photo %></td>
+  </tr>
+  <% end %>
+  <tr>
+    <td colspan="2"><%= f.submit 'Update' %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Show', @news_item %> |
+<%= link_to 'Back', news_items_path %>
+

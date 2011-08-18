@@ -1,0 +1,8 @@
+<p>Title:<%= @alert.title %></p>
+<p>Description<%= @alert.description %></p>
+<p>Date:<%= @alert.alert_date %>
+<% @upload = @alert.alert_uploads.first %>
+<%unless @upload.nil? %><p><%= image_tag @upload.photo.url(:thumb) %></p><% end %>
+<%= link_to 'Edit', edit_alert_path(@alert) %> |
+<%= link_to 'Back', alerts_path %>
+

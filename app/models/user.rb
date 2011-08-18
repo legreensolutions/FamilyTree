@@ -1,15 +1,12 @@
 class User < ActiveRecord::Base
   ACTIVE = 1
 
+
   #authlogic validations
   acts_as_authentic do |c|
-    c.validates_presence_of :name
+    validates_presence_of :email
   end
-#paperclip image upload
-  has_attached_file :photo,
-    :styles => {
-      :thumb=> "100x100#",
-      :small  => "150x150>" }
+
 
  # Authlogic automatically executes the following methods, if present, upon user action: active?
   def active?
@@ -46,6 +43,11 @@ class User < ActiveRecord::Base
     Notifier.deliver_activation_confirmation(self)
   end
 
+  def is_admin?
+    if self.is_admin ==  ADMIN
+      true
+    end
+  end
 
 end
 

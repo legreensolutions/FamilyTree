@@ -1,63 +1,14 @@
-<table>
-<tr>
-  <td><%= form.label :name %></td>
-  <td><%= form.text_field :name %></td>
-</tr>
+<table align="center">
 <tr>
   <td><%= form.label :email %></td>
   <td><%= form.text_field :email %></td>
 </tr>
-<tr>
-  <td><%= form.label 'Family' %></td>
-  <td><%= form.text_field :family_name_id %></td>
-</tr>
-<tr>
-  <td><%= form.label :house_name %></td>
-  <td><%= form.text_field :house_name %></td>
-</tr>
-<tr>
-  <td><%= form.label :house_number %></td>
-  <td><%= form.text_field :house_number %></td>
-</tr>
-<tr>
-  <td><%= form.label :street %></td>
-  <td><%= form.text_field :street %></td>
-</tr>
-<tr>
-  <td><%= form.label :place %></td>
-  <td><%= form.text_field :place %></td>
-</tr>
-<tr>
-  <td><%= form.label :pin %></td>
-  <td><%= form.text_field :pin %></td>
-</tr>
-<tr>
-  <td><%= form.label :phone %></td>
-  <td><%= form.text_field :phone %></td>
-</tr>
-<tr>
-  <td><%= form.label :mobile %></td>
-  <td><%= form.text_field :mobile %></td>
-</tr>
-<tr>
-  <td><%= form.label 'District' %></td>
-  <td><%= form.select("district_id", District.all.collect {|p| [ p.name, p.id ] }, {:include_blank => 'Select...'})%></td>
-</tr>
-<tr>
-  <td><%= form.label 'State' %></td>
-  <td><%= form.select("state_id", State.all.collect {|p| [ p.name, p.id ] }, {:include_blank => 'Select...'})%></td>
-  <tr>
-  <td><%= form.label 'Country' %></td>
-  <td><%= form.select("country_id", Country.all.collect {|p| [ p.name, p.id ] }, {:include_blank => 'Select...'})%></td>
-</tr>
-<tr>
-  <td><%= form.label 'Upload Photo' %></td>
-  <td>  <%= form.file_field :photo%>
- </td>
-</tr>
+
 <tr>
   <td><%= form.label :is_admin %></td>
-  <td><%= form.check_box :is_admin %></td>
+  <td><%= form.check_box :is_admin%>
+  <%= form.hidden_field :created_by,:value=>current_user.id %>
+  </td>
 </tr>
 </table>
 

@@ -1,0 +1,18 @@
+<h1>Editing event</h1>
+
+<% form_for @event, :html => { :multipart => true } do |f| %>
+  <%= f.error_messages %>
+
+  <p>Description<%= f.text_field :description %></p>
+   <div id='event_uploads' style='border: 1px solid silver'>
+    <%= f.render_associated_form(@event.event_uploads) %>
+  </div>
+   <%= f.add_associated_link('Add another photo', @event.event_uploads.build) %>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @event %> |
+<%= link_to 'Back', events_path %>
+

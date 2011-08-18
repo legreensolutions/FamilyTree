@@ -1,0 +1,14 @@
+<h1>Editing member</h1>
+
+<% form_for @member, :html => { :multipart => true } do |f| %>
+  <%= f.error_messages %>
+  <%= error_messages_for 'user'%>
+<%= render :partial => "form", :object => f %>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @member %> |
+<%= link_to 'Back', members_path %>
+

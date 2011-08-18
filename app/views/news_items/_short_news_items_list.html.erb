@@ -1,0 +1,6 @@
+<%@news_items  = NewsItem.find(:all,:order=>'created_at DESC',:limit=>LIMIT) %>
+<% @news_items.each do |news| %>
+<p><%= link_to news.title,alert_path(news)%></p>
+<% end %>
+<p><%= link_to 'more',news_items_path %></p>
+

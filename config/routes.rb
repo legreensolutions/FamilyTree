@@ -1,4 +1,14 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :families
+
+  map.resources :alerts
+
+  map.resources :news_items,:as=>'news'
+
+  map.resources :events
+
+  map.resources :members
+
   map.resources :districts
 
   map.resources :states
@@ -12,7 +22,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :countries
 
   map.resource :user_session
-  map.root :controller => "user_sessions", :action => "new"
+ # map.root :controller => "user_sessions", :action => "new"
+ map.root :controller=>'home',:action=>'index'
   map.resources :users
   map.resource :account, :controller => "users"
 

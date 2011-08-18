@@ -1,0 +1,31 @@
+<h1>New event</h1>
+<table align="center">
+<% form_for @event, :html => { :multipart => true }  do |f| %>
+  <%= f.error_messages %>
+
+ <tr>
+    <td>Title</td>
+    <td><%= f.text_field :title %></td>
+  </tr>
+  <tr>
+    <td>Description</td>
+    <td><%= f.text_field :description %></td>
+  </tr>
+  <tr>
+    <td>Event Date</td>
+    <td><%= f.date_select(:event_date, :order => [:month, :day,:year]) %></td>
+   </tr>
+  <% f.fields_for :event_uploads do |photo_form| %>
+  <tr>
+    <td>Image1</td>
+    <td><%= photo_form.file_field :photo %></td>
+  </tr>
+  <% end %>
+  <tr>
+    <td colspan="2"><%= f.submit 'Create' %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Back', events_path %>
+

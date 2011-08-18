@@ -1,0 +1,30 @@
+ <table>
+    <tr>
+      <td><%- form_tag members_path, :method => :get do -%>
+        <strong>Search:</strong>
+        <%= text_field_tag :search_text,'',:value=>params[:search_text] %>
+        <%= submit_tag "Search", :name => 'search' %>
+        <% end %></td>
+      </tr>
+  </table>
+<h1>Members</h1>
+<% unless @members.blank? %>
+<table>
+  <tr><th>Name</th><th>House</th></tr>
+
+<% @members.each do |member| %>
+  <tr>
+
+    <td><%= member.name %></td>
+    <td><%#= member.user.email unless member.user.nil? %><%= member.house_name %></td>
+    <td><%#= image_tag member.photo.url(:small)%></td>
+    <td><%= link_to 'Show', member %></td>
+    <td><%= link_to 'Edit', edit_member_path(member) %></td>
+    <td><%= link_to 'Destroy', member, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+<% else %>
+  <p>No Records Found</p>
+<% end %>
+

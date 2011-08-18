@@ -1,0 +1,28 @@
+  <table align="center">
+    <tr>
+      <td><%- form_tag users_path, :method => :get do -%>
+        <strong>Search:</strong>
+        <%= text_field_tag :search_text,'',:value=>params[:search_text] %>
+        <%= submit_tag "Search", :name => 'search' %>
+        <% end %></td>
+      </tr>
+  </table>
+  <% unless @users.blank? %>
+
+  <h1> Users</h1>
+  <table>
+  <tr><td>Email</td><td>Admin/DE</td></tr>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.email %></td>
+      <td><%= user.is_admin? ? 'Admin':'Data Entry Operator'%>
+      <td><%= link_to 'Show', user %></td>
+    <td><%= link_to 'Edit', edit_user_path(user) %></td>
+    <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+  </table>
+<% else %>
+  <p>No Records Found</p>
+<% end %>
+
