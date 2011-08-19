@@ -1,8 +1,12 @@
 <p>
   <b>Name:</b>
   <%=h @family.name %>
+  <% unless  @family.photo_file_name.nil? %>
+  <%= image_tag @family.photo.url(:thumb) %>
+  <% end %>
 </p>
 
 
 <%= link_to 'Edit', edit_family_path(@family) %> |
 <%= link_to 'Back', families_path %>
+

@@ -24,26 +24,8 @@
 
   <div id="menu_left"></div>
    <div id="menu">
-      <%= link_to (image_tag "/images/menu/mnu_home_.png"),root_url %>
-      <%# if current_user %>
+    <%= render :partial=>'home/menu' %>
 
-
-      <%= link_to (image_tag "/images/menu/mnu_families.png") ,families_path %>
-      <%= link_to (image_tag "/images/menu/mnu_gallery.png"),'#'%>
-      <%= link_to (image_tag "/images/menu/mnu_events.png"),events_path %>
-      <%= link_to (image_tag "/images/menu/mnu_directory.png"),members_path %>
-      <%= link_to (image_tag "/images/menu/mnu_search.png"),'#'%>
-      <%# unless Member.find(:first,:conditions=>['user_id = ?',current_user.id]).nil? %>
-        <%#= link_to (image_tag "/images/menu/mnu_profile.png"),edit_member_path(Member.find(:first,:conditions=>['user_id = ?',current_user.id]).id) %>
-      <%# else %>
-        <%#= link_to (image_tag "/images/menu/mnu_profile.png"),edit_user_path(current_user) %>
-      <%# end %>
-      <%= link_to (image_tag "/images/menu/mnu_members.png"),members_path %>
-      <%= link_to (image_tag "/images/menu/mnu_logout.png"),logout_path %>
-     <%# else %>
-
-					<%= link_to (image_tag "/images/menu/mnu_login.png"),login_path %>
-			<%# end%>
    </div>
 <div id="content_border">
                 <% flash.each do |key,value| %>

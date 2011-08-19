@@ -1,4 +1,5 @@
-<h1>New news_item</h1>
+<br /><div class="page_container">
+<h3>News</h3>
 <table align="center">
 <% form_for @news_item ,:html=>{:multipart=>true} do |f| %>
   <%= f.error_messages %>
@@ -16,7 +17,7 @@
    </tr>
   <% f.fields_for :news_uploads do |photo_form| %>
   <tr>
-    <td>Image1</td>
+    <td>Image</td>
     <td><%= photo_form.file_field :photo %></td>
   </tr>
   <% end %>
@@ -25,5 +26,6 @@
   </tr>
 <% end %>
 </table>
+</div>
 <%= link_to 'Back', news_items_path %>
 

@@ -2,18 +2,30 @@
 
 <div class="page_container">
 <h3>Editing family</h3>
-
-<% form_for(@family) do |f| %>
+<table align="center">
+<% form_for @family, :html => { :multipart => true } do |f| %>
   <%= f.error_messages %>
 
-  <p>
-    <%= f.label :name %>:
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
+  <tr>
+    <td><%= f.label :name %>:</td>
+    <td><%= f.text_field :name %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :short_description %>:</td>
+    <td><%= f.text_field :short_description %></td>
+  </tr>
+  <tr>
+    <td><%= f.label :long_description %>:</td>
+    <td><%= f.text_area :long_description,:size=>'34x5' %></td>
+  </tr>
+  <tr>
+    <td><%= f.label 'Upload Photo' %></td>
+    <td>  <%= f.file_field :photo%>
+ </td>
+</tr>
+ <tr><td colspan="2"><%= f.submit 'Update' %></td></tr>
 <% end %>
+</table>
 </div>
 <%= link_to 'Show', @family %> |
 <%= link_to 'Back', families_path %>

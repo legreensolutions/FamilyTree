@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password, :password_confirmation
   helper_method :current_user_session, :current_user
 
-
+before_filter  :instantiate_controller_and_action_names
 
   private
     def current_user_session
@@ -50,6 +50,12 @@ class ApplicationController < ActionController::Base
       session[:return_to] = nil
     end
 
+
+   def instantiate_controller_and_action_names
+    @current_action = action_name
+    @current_controller = controller_name
+    @page_id = "#{@current_controller}_#{@current_action}"
+  end
 
 
 end
