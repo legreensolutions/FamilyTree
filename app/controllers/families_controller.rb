@@ -44,7 +44,7 @@ class FamiliesController < ApplicationController
 
     respond_to do |format|
       if @family.save
-        format.html { redirect_to(@family, :notice => 'Family was successfully created.') }
+        format.html { redirect_to(families_path, :notice => 'Family was successfully created.') }
         format.xml  { render :xml => @family, :status => :created, :location => @family }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class FamiliesController < ApplicationController
 
     respond_to do |format|
       if @family.update_attributes(params[:family])
-        format.html { redirect_to(@family, :notice => 'Family was successfully updated.') }
+        format.html { redirect_to(families_path, :notice => 'Family was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -81,3 +81,4 @@ class FamiliesController < ApplicationController
     end
   end
 end
+

@@ -44,7 +44,7 @@ class DistrictsController < ApplicationController
 
     respond_to do |format|
       if @district.save
-        format.html { redirect_to(@district, :notice => 'District was successfully created.') }
+        format.html { redirect_to(districts_path, :notice => 'District was successfully created.') }
         format.xml  { render :xml => @district, :status => :created, :location => @district }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class DistrictsController < ApplicationController
 
     respond_to do |format|
       if @district.update_attributes(params[:district])
-        format.html { redirect_to(@district, :notice => 'District was successfully updated.') }
+        format.html { redirect_to(districts_path, :notice => 'District was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -81,3 +81,4 @@ class DistrictsController < ApplicationController
     end
   end
 end
+

@@ -47,7 +47,7 @@ class AlertsController < ApplicationController
     NO_OF_IMAGES.times {@alert.alert_uploads.build}
     respond_to do |format|
       if @alert.save
-        format.html { redirect_to(@alert, :notice => 'Alert was successfully created.') }
+        format.html { redirect_to(alerts_path, :notice => 'Alert was successfully created.') }
         format.xml  { render :xml => @alert, :status => :created, :location => @alert }
       else
         format.html { render :action => "new" }
@@ -63,7 +63,7 @@ class AlertsController < ApplicationController
 
     respond_to do |format|
       if @alert.update_attributes(params[:alert])
-        format.html { redirect_to(@alert, :notice => 'Alert was successfully updated.') }
+        format.html { redirect_to(alerts_path, :notice => 'Alert was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

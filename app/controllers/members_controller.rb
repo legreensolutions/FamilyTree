@@ -59,14 +59,14 @@ class MembersController < ApplicationController
             @user.deliver_activation_instructions!
             @member.update_attribute('user_id',@user.id)
 
-             format.html { redirect_to(@member, :notice => 'Your account has been created. Please check your e-mail for your account  activation instructions!.') }
+             format.html { redirect_to(members_path, :notice => 'Your account has been created. Please check your e-mail for your account  activation instructions!.') }
             else
               flash[:notice] = "Please enter email"
               format.html { render :action => "edit" }
             end
           end
           # end of enable signning of a member by saving to users table also
-          format.html { redirect_to(@member, :notice => 'Member was successfully created.') }
+          format.html { redirect_to(members_path, :notice => 'Member was successfully created.') }
           format.xml  { render :xml => @member, :status => :created, :location => @member }
 
       else
@@ -101,7 +101,7 @@ class MembersController < ApplicationController
 
 
       if @member.update_attributes(params[:member])
-        format.html { redirect_to(@member, :notice => 'Member was successfully updated.') }
+        format.html { redirect_to(members_path, :notice => 'Member was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
