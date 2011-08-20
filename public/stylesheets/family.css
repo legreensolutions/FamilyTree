@@ -49,6 +49,12 @@ p {
     align:center;
     width:800px;
 }
+#container div#menu a img {
+padding:0px;
+margin:0px;
+align:left;
+float:left;
+}
 
 #left_top, #right_top, #left_top1, #right_top1 {
     float:left;
@@ -106,17 +112,15 @@ p {
 
 
 #menu {
-    background-image:url('../images/menu_bg.png');
-    background-repeat:repeat-x;
-    height:29px;
-    width:798px;
-    border-width:0px;
-    border-style:solid;
-    border-right-width:1px;
-    border-left-width:1px;
-    border-color:#fff;
-
-    /*float:left;*/
+background-image:url('../images/menu/menu_bg.png');
+background-repeat:none;
+height:29px;
+width:798px;
+border-width:0px;
+border-style:solid;
+border-right-width:1px;
+border-left-width:1px;
+border-color:#fff;
 }
 
 #content_border {

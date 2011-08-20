@@ -1,0 +1,44 @@
+  <%= link_to (image_tag "/images/menu/mnu_home" + ((@current_controller=='home') ? "_" : "") + ".png", :mouseover => "/images/menu/mnu_home_.png"),root_url %>
+       <%= link_to (image_tag "/images/menu/mnu_families" + ((@current_controller=='families') ? "_" : "") + ".png", :mouseover => "/images/menu/mnu_families_.png"),families_path %>
+
+       <%= link_to (image_tag "/images/menu/mnu_gallery" + ((@current_controller=='galleries') ? "_" : "") + ".png", :mouseover => "/images/menu/mnu_gallery_.png"),"#" %>
+       <%= link_to (image_tag "/images/menu/mnu_events" + ((@current_controller=='events') ? "_" : "") + ".png", :mouseover => "/images/menu/mnu_events_.png"),events_path %>
+       <%= link_to (image_tag "/images/menu/mnu_directory" + ((@current_controller=='directories') ? "_" : "") + ".png", :mouseover => "/images/menu/mnu_directory_.png"),members_path %>
+       <%= link_to (image_tag "/images/menu/mnu_search" + ((@current_controller =='search') ? "_" : "") + ".png", :mouseover => "/images/menu/mnu_search_.png"),"#" %>
+       <%= link_to (image_tag "/images/menu/mnu_members" + ((@current_controller=='members') ? "_" : "") + ".png", :mouseover => "/images/menu/mnu_members_.png"),members_path %>
+
+    <% if current_user %>
+      <% unless Member.find(:first,:conditions=>['user_id = ?',current_user.id]).nil? %>
+
+      <%= link_to (image_tag "/images/menu/mnu_profile" + ((@current_controller=='members') ? "_" : "") + ".png", :mouseover => "/images/menu/mnu_profile_.png"),edit_member_path(Member.find(:first,:conditions=>['user_id = ?',current_user.id]).id) %>
+      <% else %>
+      <%= link_to (image_tag "/images/menu/mnu_profile" + ((@current_controller=='users') ? "_" : "") + ".png", :mouseover => "/images/menu/mnu_profile_.png"),edit_user_path(current_user) %>
+      <% end %>
+     <%= link_to (image_tag "/images/menu/mnu_logout" + ((@current_controller=='user_sessions') ? "_" : "") + ".png", :mouseover => "/images/menu/mnu_logout_.png"),logout_path%>
+     <% else %>
+      <%= link_to (image_tag "/images/menu/mnu_login" + ((@current_controller=='user_sessions') ? "_" : "") + ".png", :mouseover => "/images/menu/mnu_login_.png"),login_path%>
+    <% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%= link_to (image_tag "/images/menu/mnu_families0.png", :mouseover => "/images/menu/mnu_families.png") ,families_path %>
+<%= link_to (image_tag "/images/menu/mnu_gallery0.png", :mouseover => "/images/menu/mnu_gallery.png") ,families_path %>
+<%= link_to (image_tag "/images/menu/mnu_events0.png", :mouseover => "/images/menu/mnu_events.png") ,families_path %>
+<%= link_to (image_tag "/images/menu/mnu_directory0.png", :mouseover => "/images/menu/mnu_directory.png") ,families_path %>
+<%= link_to (image_tag "/images/menu/mnu_search0.png", :mouseover => "/images/menu/mnu_search.png") ,families_path %>
+<%= link_to (image_tag "/images/menu/mnu_profile0.png", :mouseover => "/images/menu/mnu_profile.png") ,families_path %>
+<%= link_to (image_tag "/images/menu/mnu_members0.png", :mouseover => "/images/menu/mnu_members.png") ,families_path %>
+<%= link_to (image_tag "/images/menu/mnu_login0.png", :mouseover => "/images/menu/mnu_login.png") ,families_path %>
+
