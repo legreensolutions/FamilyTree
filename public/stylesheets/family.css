@@ -16,6 +16,11 @@ body a {
 body a:hover {
     text-decoration:underline;
 }
+#home_page_content a:hover {
+    background-color:none;
+    background-image:none;
+}
+
 h1 {
     font-family:Serif, Arial;
     font-size:22px;
@@ -149,7 +154,7 @@ border-color:#fff;
 }
 
 #home_image {
-    background-image:url('../images/home_image.png');
+    background-image:url('../images/home_image_new.png');
     width:798px;
     height:266px;
     background-repeat:none;
@@ -161,6 +166,7 @@ border-color:#fff;
     padding-left:200px;
     padding-top:100px;
     width:400px;
+    text-align:justify;
 }
 
 #home_page_quote {
@@ -191,7 +197,7 @@ border-color:#fff;
 
 #family_container {
     position:relative;
-    top:-200px;
+    top:-100px;
     left:440px;
     width:140px;
     height:200px;
@@ -235,8 +241,40 @@ input {
     border-width:0px;
 
 }
+.left, .right, .user1, .user2, .connect {
+    float:left;
+    width:75px;
+    height:75px;
+    overflow:hidden;
+}
+.user1, .user2 {
+    border:1px solid white;
 
- .siblings {
+}
+.left, .right {
+    background-image:url('../images/sibling_bg.png')
+
+}
+.connect {
+    background-image:url('../images/connect.png');
+    background-repeat:no-repeat;
+    float:left;
+    width:45px;
+    border:0px;
+}
+.left, .right {
+    width:35%;
+}
+.left1 {
+    width:25%;
+    float:left;
+}
+
+.left2 {
+    width:40%;
+    float:left;
+}
+.siblings {
     float:left;
     width:215px;
     height:50px;
@@ -253,13 +291,5 @@ input {
 
 .space {
     width:60px;
-}
-
-.connect {
-    background-image:url('../images/connect.png');
-    background-repeat:no-repeat;
-    float:left;
-    width:45px;
-    border:0px;
 }
 

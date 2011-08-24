@@ -3,8 +3,8 @@
  <%= link_to (image_tag "/images/menu/mnu_home" + ((@current_controller=='home') ? "0" : "") + ".png", :mouseover => "/images/menu/mnu_home0.png"),root_url %>
        <%= link_to (image_tag "/images/menu/mnu_families" + ((@current_controller=='families') ? "0" : "") + ".png", :mouseover => "/images/menu/mnu_families0.png"),families_path %>
 <div id="gallery">
-       <%= link_to (image_tag "/images/menu/mnu_gallery" + ((@current_controller=='galleries') ? "0" : "") + ".png", :mouseover => "/images/menu/mnu_gallery0.png"),Gallery.find(:first,:conditions=>['public=?',true]).photo.url(:thumb) %>
-    <%= render :partial=>'galleries/list_of_images',:locals => {:id => Gallery.find(:first,:conditions=>['public=?',true]).id }%>
+       <%#= link_to (image_tag "/images/menu/mnu_gallery" + ((@current_controller=='galleries') ? "0" : "") + ".png", :mouseover => "/images/menu/mnu_gallery0.png"),Gallery.find(:first,:conditions=>['public=?',true]).photo.url(:thumb) %>
+    <%#= render :partial=>'galleries/list_of_images',:locals => {:id => Gallery.find(:first,:conditions=>['public=?',true]).id }%>
 
   </div>
 

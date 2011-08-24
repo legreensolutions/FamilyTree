@@ -148,6 +148,14 @@ class MembersController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def tree
+  end
+
+  def family_tree
+  end
+
+
 end
 #li #link-to-food ul li a
 

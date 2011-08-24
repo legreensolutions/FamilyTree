@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.tree 'tree', :controller => 'members', :action => 'tree'
+  map.tree 'family_tree', :controller => 'members', :action => 'family_tree'
   map.resources :relations, :collection => {:add_relation=>:post,:find=>:get}
   map.resources :galleries
 
