@@ -1,0 +1,50 @@
+<!-- PARENTS -->
+  <div style="width:100%;text-align:center;margin:auto;">
+    <div style="text-align:center;margin:auto;height:85px;width:300px;">
+        <div class="father">
+        <% if @related_member = @member.find_relation(FATHER) %>
+          <%= link_to @related_member.name,:controller=>'relations',:action=>'index',:id=>@related_member.id %>
+        <% else %>
+        <%form_tag "relations/add_relation" ,:method=>'post'  do %>
+          <%= submit_tag 'Father' %>
+          <%= hidden_field_tag 'member',@member.id %>
+          <%= hidden_field_tag 'relation',FATHER %>
+          <%= hidden_field_tag 'relation_name',"Father" %>
+        <% end %>
+        <% end %>
+        </div>
+        <div class="connect">&nbsp;</div>
+        <div class="mother">&nbsp;</div>
+        <div class="space">&nbsp;</div>
+    </div>
+  </div>
+<div style="clear:both;"></div>
+<!-- SELF -->
+
+  <div style="width:100%;text-align:center;margin:auto;">
+    <div style="text-align:center;margin:auto;height:85px;width:625px;">
+        <div class="siblings">&nbsp;</div>
+        <div class="self"><%= link_to @member.name,edit_member_path(@member) %>&nbsp;</div>
+        <div class="connect">&nbsp;</div>
+        <div class="spouse">&nbsp;</div>
+        <div class="siblings">&nbsp;</div>
+    </div>
+  </div>
+<div style="clear:both;"></div>
+<!-- CHILDREN -->
+
+  <div style="width:100%;text-align:center;margin:auto;">
+    <div style="text-align:center;margin:auto;height:85px;width:625px;border:1px solid white;">
+
+    </div>
+  </div>
+
+
+</div>
+
+
+
+
+
+<br /><br /><br /><br /><br /><br /><br /><br /><br />
+

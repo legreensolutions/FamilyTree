@@ -236,3 +236,30 @@ input {
 
 }
 
+ .siblings {
+    float:left;
+    width:215px;
+    height:50px;
+    border:1px solid white;
+    margin:2px;
+}
+.father, .mother, .self, .spouse {
+    border:1px solid white;
+    float:left;
+    height:80px;
+    width:60px;
+    margin:2px;
+}
+
+.space {
+    width:60px;
+}
+
+.connect {
+    background-image:url('../images/connect.png');
+    background-repeat:no-repeat;
+    float:left;
+    width:45px;
+    border:0px;
+}
+

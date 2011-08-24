@@ -1,0 +1,24 @@
+<table align="center">
+<tr>
+  <td><%= form.label :title %></td>
+  <td><%= form.text_field :title %>
+  <%= form.hidden_field :user_id,:value=>current_user.id %>
+  </td>
+</tr>
+<tr>
+  <td><%= form.label :description %></td>
+  <td><%= form.text_area :description,:size=>'34x5' %>
+  </td>
+</tr>
+<tr>
+  <td><%= form.label 'Upload Image' %></td>
+  <td>  <%= form.file_field :photo%>
+ </td>
+</tr>
+<tr>
+  <td><%= form.label :public %></td>
+  <td><%= form.check_box :public%>
+  </td>
+</tr>
+</table>
+

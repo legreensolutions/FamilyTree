@@ -14,6 +14,7 @@ class MembersController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @members }
     end
+    session[:return_url] = ""
   end
 
   # GET /members/1
@@ -41,16 +42,25 @@ class MembersController < ApplicationController
   # GET /members/1/edit
   def edit
     @member = Member.find(params[:id])
+
   end
 
   # POST /members
   # POST /members.xml
   def create
+
     @member = Member.new(params[:member])
     respond_to do |format|
 
      if @member.save
-         #enable signning of a member by saving to users table also
+       #relation ship saving
+
+         unless params[:relation].nil?
+      Relation.create(:user_id=>params[:relation][:user_id],:related_user_id=>@member.id,:relation_id=>FATHER)
+
+    end
+
+        #enable signning of a member by saving to users table also
         unless params[:enable_sign_in].blank?
          @user = User.new(params[:user])
          @user.password = Digest::SHA1.hexdigest(Time.now.to_s.split(//).sort_by{rand}.join)[0..10]
@@ -58,16 +68,25 @@ class MembersController < ApplicationController
            if @user.save_without_session_maintenance
             @user.deliver_activation_instructions!
             @member.update_attribute('user_id',@user.id)
-
-             format.html { redirect_to(members_path, :notice => 'Your account has been created. Please check your e-mail for your account  activation instructions!.') }
+            unless params[:relation].nil?
+              flash[:notice] = 'Relation added successfully.'
+             format.html { redirect_to(:controller=>'relations',:action=>'index',:id=>params[:relation][:user_id] ) }
+            else
+              format.html { redirect_to(members_path, :notice => 'Your account has been created. Please check your e-mail for your account  activation instructions!.') }
+            end
             else
               flash[:notice] = "Please enter email"
               format.html { render :action => "edit" }
             end
           end
           # end of enable signning of a member by saving to users table also
+          unless params[:relation].nil?
+            flash[:notice] = 'Relation added successfully.'
+            format.html { redirect_to(:controller=>'relations',:action=>'index',:id=>params[:relation][:user_id]) }
+          else
           format.html { redirect_to(members_path, :notice => 'Member was successfully created.') }
           format.xml  { render :xml => @member, :status => :created, :location => @member }
+          end
 
       else
         format.html { render :action => "new" }
@@ -101,8 +120,13 @@ class MembersController < ApplicationController
 
 
       if @member.update_attributes(params[:member])
-        format.html { redirect_to(members_path, :notice => 'Member was successfully updated.') }
-        format.xml  { head :ok }
+          unless session[:return_url].blank?
+            format.html { redirect_to(session[:return_url], :notice => 'Member was successfully updated.') }
+          else
+          format.html { redirect_to(members_path, :notice => 'Member was successfully updated.') }
+          format.xml  { head :ok }
+          end
+
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @member.errors, :status => :unprocessable_entity }

@@ -1,4 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :relations, :collection => {:add_relation=>:post,:find=>:get}
+  map.resources :galleries
+
   map.resources :families
 
   map.resources :alerts

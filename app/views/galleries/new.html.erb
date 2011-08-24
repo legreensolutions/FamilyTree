@@ -1,0 +1,15 @@
+<br />
+
+<div class="page_container">
+<h3>New gallery</h3>
+
+<% form_for @gallery, :html => { :multipart => true } do |f| %>
+  <%= f.error_messages %>
+<%= render :partial => "form", :object => f %>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+</div>
+<%#= link_to 'Back', galleries_path %>
+

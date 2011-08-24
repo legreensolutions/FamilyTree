@@ -10,6 +10,19 @@
 <%= javascript_include_tag :defaults %>
 
 
+    <!-- Arquivos utilizados pelo jQuery lightBox plugin -->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.lightbox-0.5.js"></script>
+    <%= stylesheet_link_tag "jquery.lightbox-0.5"%>
+    <!-- / fim dos arquivos utilizados pelo jQuery lightBox plugin -->
+
+    <!-- Ativando o jQuery lightBox plugin -->
+    <script type="text/javascript">
+    $(function() {
+        $('#gallery a').lightBox();
+    });
+    </script>
+
 </head>
 <body>
 
@@ -25,7 +38,6 @@
   <div id="menu_left"></div>
    <div id="menu">
     <%= render :partial=>'home/menu' %>
-
    </div>
 <div id="content_border">
                 <% flash.each do |key,value| %>

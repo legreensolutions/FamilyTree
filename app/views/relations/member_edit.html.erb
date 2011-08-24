@@ -1,5 +1,3 @@
-<br /><div class="page_container">
-<h3>Editing member</h3>
 
 <% form_for @member, :html => { :multipart => true } do |f| %>
   <%= f.error_messages %>
@@ -9,7 +7,4 @@
     <%= f.submit 'Update' %>
   </p>
 <% end %>
-</div>
-<%= link_to 'Show', @member %> |
-<%= link_to 'Back', members_path %>
 

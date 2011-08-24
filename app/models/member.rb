@@ -11,5 +11,13 @@ class Member < ActiveRecord::Base
     :styles => {
       :thumb=> "100x100#",
       :small  => "150x150>" }
+
+
+   def find_relation(relation)
+    @relation = Relation.find(:first,:conditions=>['user_id = ? and relation_id = ?',self.id,relation])
+    @member = Member.find_by_id(@relation.related_user_id) unless @relation.nil?
+    return @member unless @member.nil?
+    return nil
+  end
 end
 

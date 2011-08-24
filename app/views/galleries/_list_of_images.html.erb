@@ -1,0 +1,9 @@
+<% @galleries = Gallery.find(:all,:conditions=>['public = ? and id != ?',true,id])%>
+<ul>
+<% @galleries.each do |g|%>
+   <li style="display:none">
+        <%= link_to 'img',g.photo.url(:small) %>
+        </li>
+<% end %>
+</ul>
+

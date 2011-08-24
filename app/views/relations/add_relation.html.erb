@@ -1,0 +1,30 @@
+<br />
+<% @members = Member.all %>
+<%= select_tag(:search, "<option value='0'>-Select a Member</option>" + options_from_collection_for_select(@members, :id, :name)) %>
+
+
+        <%= observe_field 'search',
+        :update => 'div_to_be_updated',
+        :url => {:controller => 'relations', :action=> 'find' },
+        :with => "'member_id=' + escape(value)" %>
+
+<div class="page_container" >
+<h3>Add <%= params[:relation_name]%> of <%= Member.find_by_id(params[:member]).name %> </h3>
+<div id="div_to_be_updated">
+<% form_for @member, :html => { :multipart => true } do |f| %>
+  <%= f.error_messages %>
+  <%= error_messages_for 'user'%>
+
+<%= render :partial => "members/form", :object => f %>
+</div>
+<% fields_for :relation do |rf| %>
+<%= rf.hidden_field :user_id,:value=>params[:member]%>
+<%= rf.hidden_field :relation_id,:value=>params[:relation]%>
+<% end %>
+<p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+</div>
+

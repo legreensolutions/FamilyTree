@@ -22,6 +22,7 @@
     <td><%#= member.user.email unless member.user.nil? %><%= member.house_name %></td>
     <td><%#= image_tag member.photo.url(:small)%></td>
     <td><%= link_to 'Show', member %></td>
+    <td><%= link_to 'Add Relations', :controller=>'relations',:action=>'index',:id=>member.id %></td>
     <td><%= link_to 'Edit', edit_member_path(member) %></td>
     <td><%= link_to 'Destroy', member, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
@@ -31,4 +32,5 @@
   <p>No Records Found</p>
 <% end %>
 </div>
+<%= link_to 'New Member',new_member_path %>
 
