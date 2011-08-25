@@ -1,7 +1,5 @@
 body {
-    background-color:#1674b7;
-    /*min-height:600px;
-    min-width:800px;*/
+    background-color:#000;
     background-image:url('../images/bg.png');
     background-repeat:repeat-x;
     color:#b9daf1;
@@ -10,27 +8,9 @@ body {
 }
 body a {
     color:white;
-
 }
-
 body a:hover {
     text-decoration:underline;
-}
-#home_page_content a:hover {
-    background-color:none;
-    background-image:none;
-}
-
-h1 {
-    font-family:Serif, Arial;
-    font-size:22px;
-    font-weight:bold;
-    background-color:#256390;
-    color:#7790a2;
-    padding:0px;
-    margin:0px;
-    text-align:center;
-    margin:auto;
 }
 h2 {
     font-family:Serif, Arial;
@@ -40,27 +20,21 @@ h2 {
     margin:0px;
     text-align:center;
     margin:auto;
+}
+h2.box {
     color:white;
     background-color:#4587ba;
 }
 
-p {
-    margin-top:5px;
-    margin-bottom:5px;
-}
-
 #container {
+    background-image:url('../images/container_bg.png');
+    background-color:#000;
     margin:auto;
-    align:center;
+    text-align:center;
     width:800px;
+    border:1px solid white;
+    margin:auto;
 }
-#container div#menu a img {
-padding:0px;
-margin:0px;
-align:left;
-float:left;
-}
-
 #left_top, #right_top, #left_top1, #right_top1 {
     float:left;
     align:left;
@@ -69,212 +43,101 @@ float:left;
 
 #left_top {
     background-image:url('../images/1.1.png');
-    width:415px;
-    height:101px;
+    width:414px;
+    height:100px;
 }
 
 #right_top {
     background-image:url('../images/1.2.png');
-    width:385px;
-    height:101px;
+    width:384px;
+    height:100px;
     color:#3a8ac4;
 }
 
 #left_top1 {
     background-image:url('../images/2.1.png');
-    width:415px;
-    height:170px;
+    width:414px;
+    height:169px;
 }
 
 #right_top1 {
     background-image:url('../images/2.2.png');
-    width:385px;
-    height:170px;
+    width:384px;
+    height:169px;
 }
-
-#menu_left {
-    background-image:url('../images/menu_border.png');
-    background-repeat:none;
-    height:25px;
-    width:1px;
-    margin:0px;
-    padding:0px;
-    float:left;
-    text-align:left;
-}
-
-#menu_right {
-/*    background-image:url('../images/menu_border.png');
-    background-repeat:none;
-    height:29px;
-    width:1px;
-    margin:auto;
-    padding:0px;
-    margin-right:0px;*/
-    /*float:right;
-    text-align:left;*/
-}
-
-
 #menu {
 background-image:url('../images/menu/menu_bg.png');
 background-repeat:none;
 height:29px;
 width:798px;
-border-width:0px;
-border-style:solid;
-border-right-width:1px;
-border-left-width:1px;
-border-color:#fff;
-}
-
-#content_border {
-    border-width:0px;
-    padding:0px;
-    margin-left:auto;
-    margin-right:auto;
-    text-align:center;
-    border-right-width:1px;
-    border-left-width:1px;
-    border-color:white;
-    border-style:solid;
-}
-
-
-#content_body {
-    background-image:url('../images/content_bg.png');
-    background-repeat:repeat-y;
-    width:798px;
-
-}
-#footer {
-    background-image:url('../images/bottom_bg.png');
-    height:34px;
-    width:800px;
-}
-
-#home_image {
-    background-image:url('../images/home_image_new.png');
-    width:798px;
-    height:266px;
-    background-repeat:none;
-    float:left;
-}
-
-
-#home_page_content {
-    padding-left:200px;
-    padding-top:100px;
-    width:400px;
-    text-align:justify;
-}
-
-#home_page_quote {
-    position:relative;
-    top:100px;
-    left:200px;
-    width:400px;
-    height:400px;
-    text-align:justify;
-    vertical-align:bottom;
-    margin-top:auto;
-    margin-bottom:auto;
-}
-
-
-#home_page_text {
-    position:relative;
-/*    top:125px;*/
-    top:125px;
-    left:170px;
-    width:425px;
-    height:400px;
-    text-align:justify;
-    vertical-align:bottom;
-    margin-top:auto;
-    margin-bottom:auto;
-}
-
-#family_container {
-    position:relative;
-    top:-100px;
-    left:440px;
-    width:140px;
-    height:200px;
-    border-style:solid;
-    border-width:1px;
-    border-color:#4587ba;
-    float:left;
-    padding:5px;
-}
-
-
-#events_container {
-    position:relative;
-    top:10px;
-    left:10px;
-    width:140px;
-    height:200px;
-    border-style:solid;
-    border-width:1px;
-    border-color:#4587ba;
-    float:left;
-    padding:5px;
+border:none;
+margin:0px;
+padding:0px;
 }
 
 #menu a img{
     border:none;
 }
+#container div#menu a img {
+    padding:0px;
+    margin:0px;
+    border:none;
+    text-align:left;
+    float:left;
+    color:
+}
+#footer {
 
-.page_container {
-    text-align:center;
-    margin:auto;
+    color:blue;
+    background-color:#fff;
+
 }
 
-.page_container table {
+#home_page_content {
+    background-image:url('../images/home_image_new.png');
+    background-repeat:no-repeat;
+    margin-top:0px;
+    height:600px;
+    background-color:#021c2e;
+}
+#family_container {
+    width:140px;
+    height:200px;
+    border-style:solid;
+    border-width:1px;
+    border-color:#4587ba;
+    float:left;
+    padding:5px;
+    margin-left:37px;
     text-align:left;
 }
 
 
-input {
-    border:none;
-    border-width:0px;
-
-}
-.left, .right, .user1, .user2, .connect {
+#events_container {
+    /*position:relative;*/
+    margin-top:240px;
+    margin-left:10px;
+    width:140px;
+    height:200px;
+    border-style:solid;
+    border-width:1px;
+    border-color:#4587ba;
     float:left;
-    width:75px;
-    height:75px;
-    overflow:hidden;
+    padding:5px;
+    text-align:left;
 }
-.user1, .user2 {
-    border:1px solid white;
-
-}
-.left, .right {
-    background-image:url('../images/sibling_bg.png')
-
-}
-.connect {
-    background-image:url('../images/connect.png');
-    background-repeat:no-repeat;
+#home_page_description {
     float:left;
-    width:45px;
-    border:0px;
+    text-align:justify;
+    width:410px;
+    margin-left:30px;
+    margin-top:100px;
 }
-.left, .right {
-    width:35%;
-}
-.left1 {
-    width:25%;
-    float:left;
+#home_page_description p{
+    text-indent:50px;
 }
 
-.left2 {
-    width:40%;
-    float:left;
-}
-.siblings {
+ .siblings {
     float:left;
     width:215px;
     height:50px;
@@ -291,5 +154,26 @@ input {
 
 .space {
     width:60px;
+}
+
+.connect {
+    background-image:url('../images/connect.png');
+    background-repeat:no-repeat;
+    float:left;
+    width:45px;
+    border:0px;
+}
+
+tr .odd {
+
+}
+tr .even {
+
+}
+td {
+    text-align:left;
+}
+input, textarea {
+ border:none;
 }
 
