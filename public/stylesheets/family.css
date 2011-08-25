@@ -177,3 +177,7 @@ input, textarea {
  border:none;
 }
 
+#tree {
+    background-image:url('../images/tree.png');
+}
+
