@@ -11,6 +11,10 @@
   <p>
     <%= f.submit 'Create' %>
   </p>
+<% fields_for :relation do |rf| %>
+<%= rf.hidden_field :user_id,:value=>session[:member_id]%>
+<%= rf.hidden_field :relation_id,:value=>session[:relation_id]%>
+<% end %>
 <% end %>
 </div>
 <%= link_to 'Back', members_path %>

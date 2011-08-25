@@ -74,19 +74,14 @@ class MembersController < ApplicationController
             end
             else
 
-            unless params[:relation].nil?
-             format.html { redirect_to(:controller=>'relations',:action=>'add_relation',:user_id=>params[:relation][:user_id],:relation_id=>params[:relation][:relation_id]) }
-          else
+
              flash[:notice] = "Please enter email"
               format.html { render :action => "edit" }
-          end
 
-
-
-            end
+         end
           end
           # end of enable signning of a member by saving to users table also
-          unless params[:relation].nil?
+          unless params[:relation][:user_id].blank?
             format.html { redirect_to(:controller=>'relations',:action=>'index',:id=>params[:relation][:user_id]) }
           else
           format.html { redirect_to(members_path, :notice => 'Member was successfully created.') }
@@ -94,13 +89,10 @@ class MembersController < ApplicationController
           end
 
       else
-         unless params[:relation].nil?
-            format.html { redirect_to(:controller=>'relations',:action=>'add_relation',:user_id=>params[:relation][:user_id],:relation_id=>params[:relation][:relation_id]) }
-            else
 
           format.html { render :action => "new" }
           format.xml  { render :xml => @member.errors, :status => :unprocessable_entity }
-        end
+
       end
     end
   end
@@ -149,12 +141,10 @@ class MembersController < ApplicationController
           end
 
       else
-       unless params[:relation].nil?
-            format.html { redirect_to(:controller=>'relations',:action=>'add_relation',:user_id=>params[:relation][:user_id],:relation_id=>params[:relation][:relation_id]) }
-      else
+
         format.html { render :action => "edit" }
         format.xml  { render :xml => @member.errors, :status => :unprocessable_entity }
-      end
+
       end
     end
   end
