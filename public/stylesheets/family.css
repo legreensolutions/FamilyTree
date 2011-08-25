@@ -179,5 +179,17 @@ input, textarea {
 
 #tree {
     background-image:url('../images/tree.png');
+    background-repeat:no-repeat;
+    padding-top:350px;
+}
+
+.LongDescription {
+    text-align:left;
+    margin:30px;
+    text-justify:justify;
+}
+.LongDescription h2 {
+    padding-top:30px;
+    text-align:left;
 }
 
