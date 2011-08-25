@@ -48,17 +48,14 @@ class MembersController < ApplicationController
   # POST /members
   # POST /members.xml
   def create
-
     @member = Member.new(params[:member])
     respond_to do |format|
 
      if @member.save
        #relation ship saving
-
          unless params[:relation].nil?
-      Relation.create(:user_id=>params[:relation][:user_id],:related_user_id=>@member.id,:relation_id=>FATHER)
-
-    end
+          Relation.create(:user_id=>params[:relation][:user_id],:related_user_id=>@member.id,:relation_id=>params[:relation][:relation_id])
+        end
 
         #enable signning of a member by saving to users table also
         unless params[:enable_sign_in].blank?
@@ -72,16 +69,24 @@ class MembersController < ApplicationController
               flash[:notice] = 'Relation added successfully.'
              format.html { redirect_to(:controller=>'relations',:action=>'index',:id=>params[:relation][:user_id] ) }
             else
+
               format.html { redirect_to(members_path, :notice => 'Your account has been created. Please check your e-mail for your account  activation instructions!.') }
             end
             else
-              flash[:notice] = "Please enter email"
+
+            unless params[:relation].nil?
+             format.html { redirect_to(:controller=>'relations',:action=>'add_relation',:user_id=>params[:relation][:user_id],:relation_id=>params[:relation][:relation_id]) }
+          else
+             flash[:notice] = "Please enter email"
               format.html { render :action => "edit" }
+          end
+
+
+
             end
           end
           # end of enable signning of a member by saving to users table also
           unless params[:relation].nil?
-            flash[:notice] = 'Relation added successfully.'
             format.html { redirect_to(:controller=>'relations',:action=>'index',:id=>params[:relation][:user_id]) }
           else
           format.html { redirect_to(members_path, :notice => 'Member was successfully created.') }
@@ -89,8 +94,13 @@ class MembersController < ApplicationController
           end
 
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @member.errors, :status => :unprocessable_entity }
+         unless params[:relation].nil?
+            format.html { redirect_to(:controller=>'relations',:action=>'add_relation',:user_id=>params[:relation][:user_id],:relation_id=>params[:relation][:relation_id]) }
+            else
+
+          format.html { render :action => "new" }
+          format.xml  { render :xml => @member.errors, :status => :unprocessable_entity }
+        end
       end
     end
   end
@@ -112,14 +122,25 @@ class MembersController < ApplicationController
             @member.update_attribute('user_id',@user.id)
             flash[:notice] = "Your account has been created. Please check your e-mail for your account  activation instructions!"
             else
-             # flash[:notice] = "Please enter email"
+               unless params[:relation].nil?
+            format.html { redirect_to(:controller=>'relations',:action=>'add_relation',:user_id=>params[:relation][:user_id],:relation_id=>params[:relation][:relation_id],:notice=>@user.errors) }
+              else
+
+              flash[:notice] = "Please enter email"
               format.html { render :action => "edit" }
+              end
             end
+
         end
       end
 
 
       if @member.update_attributes(params[:member])
+        unless params[:relation].nil?
+
+          Relation.create(:user_id=>params[:relation][:user_id],:related_user_id=>@member.id,:relation_id=>params[:relation][:relation_id]) if Relation.find_by_user_id_and_relation_id(params[:relation][:user_id],params[:relation][:relation_id]).blank?
+
+      end
           unless session[:return_url].blank?
             format.html { redirect_to(session[:return_url], :notice => 'Member was successfully updated.') }
           else
@@ -128,8 +149,12 @@ class MembersController < ApplicationController
           end
 
       else
+       unless params[:relation].nil?
+            format.html { redirect_to(:controller=>'relations',:action=>'add_relation',:user_id=>params[:relation][:user_id],:relation_id=>params[:relation][:relation_id]) }
+      else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @member.errors, :status => :unprocessable_entity }
+      end
       end
     end
   end
@@ -155,7 +180,5 @@ class MembersController < ApplicationController
   def family_tree
   end
 
-
 end
-#li #link-to-food ul li a
 

@@ -2,11 +2,14 @@ class RelationsController < ApplicationController
   def index
     session[:return_url] = request.request_uri
     @member = Member.find(params[:id])
+    session[:relation_id] = ""
+  session[:member_id] = ""
   end
 
   def add_relation
 
     @member = Member.new
+
   end
 
 

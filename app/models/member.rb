@@ -14,9 +14,11 @@ class Member < ActiveRecord::Base
 
 
    def find_relation(relation)
+     @relation = ""
+     @member = ""
     @relation = Relation.find(:first,:conditions=>['user_id = ? and relation_id = ?',self.id,relation])
     @member = Member.find_by_id(@relation.related_user_id) unless @relation.nil?
-    return @member unless @member.nil?
+    return @member unless @member.blank?
     return nil
   end
 end

@@ -3,8 +3,13 @@
   <%= f.error_messages %>
   <%= error_messages_for 'user'%>
 <%= render :partial => "members/form", :object => f %>
-  <p>
+
+  <% fields_for :relation do |rf| %>
+<%= rf.hidden_field :user_id,:value=>session[:member_id]%>
+<%= rf.hidden_field :relation_id,:value=>session[:relation_id]%>
+ <p>
     <%= f.submit 'Update' %>
   </p>
+<% end %>
 <% end %>
 
