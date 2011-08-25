@@ -12,7 +12,6 @@
   <%= link_to (image_tag "/images/menu/mnu_gallery" + ((@current_controller=='galleries') ? "0" : "") + ".png", :mouseover => "/images/menu/mnu_gallery0.png"),galleries_path %>
   <% end %>
 
-
        <%= link_to (image_tag "/images/menu/mnu_events" + ((@current_controller=='events') ? "0" : "") + ".png", :mouseover => "/images/menu/mnu_events0.png"),events_path %>
        <%= link_to (image_tag "/images/menu/mnu_directory" + ((@current_controller=='directories') ? "0" : "") + ".png", :mouseover => "/images/menu/mnu_directory0.png"),members_path %>
        <%= link_to (image_tag "/images/menu/mnu_search" + ((@current_controller =='search') ? "0" : "") + ".png", :mouseover => "/images/menu/mnu_search0.png"),"#" %>

@@ -6,7 +6,7 @@
         <% if @related_member = @member.find_relation(FATHER) %>
           <%= link_to @related_member.name,:controller=>'relations',:action=>'index',:id=>@related_member.id %>
         <% else %>
-        <% form_tag "relations/add_relation" ,:method=>'post'  do  %>
+        <% form_tag "relations/add_relation" ,:method=>'get'  do  %>
           <%= hidden_field_tag 'user_id',@member.id %>
           <%= hidden_field_tag 'relation_id',FATHER %>
           <%= hidden_field_tag 'relation_name',"Father" %>
@@ -17,7 +17,7 @@
         </div>
         <div class="connect">&nbsp;</div>
          <div class="mother">
-        <% if @related_member = @member.find_relation(20) %>
+        <% if @related_member = @member.find_relation(MOTHER) %>
 
           <%= link_to @related_member.name,:controller=>'relations',:action=>'index',:id=>@related_member.id %>
            <% else %>
@@ -44,7 +44,7 @@
 
           <%= link_to @related_member.name,:controller=>'relations',:action=>'index',:id=>@related_member.id %>
            <% else %>
-        <% form_tag "relations/add_relation" ,:method=>'post'  do %>
+        <% form_tag "relations/add_relation" ,:method=>'get'  do %>
           <%= hidden_field_tag 'user_id',@member.id %>
           <%= hidden_field_tag 'relation_id',SIBLINGS %>
           <%= hidden_field_tag 'relation_name',"Sibling" %>
@@ -60,7 +60,7 @@
 
           <%= link_to @related_member.name,:controller=>'relations',:action=>'index',:id=>@related_member.id %>
            <% else %>
-        <% form_tag "relations/add_relation" ,:method=>'post'  do %>
+        <% form_tag "relations/add_relation" ,:method=>'get'  do %>
           <%= hidden_field_tag 'user_id',@member.id %>
           <%= hidden_field_tag 'relation_id',SPOUSE %>
           <%= hidden_field_tag 'relation_name',"Spouse" %>
@@ -82,7 +82,7 @@
 
           <%= link_to @related_member.name,:controller=>'relations',:action=>'index',:id=>@related_member.id %>
            <% else %>
-        <% form_tag "relations/add_relation" ,:method=>'post'  do %>
+        <% form_tag "relations/add_relation" ,:method=>'get'  do %>
           <%= hidden_field_tag 'user_id',@member.id %>
           <%= hidden_field_tag 'relation_id',CHILDREN %>
           <%= hidden_field_tag 'relation_name',"Children" %>
