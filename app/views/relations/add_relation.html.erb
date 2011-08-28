@@ -1,5 +1,6 @@
 <br /><% session[:relation_id] = params[:relation_id]
-session[:member_id] = params[:user_id] %>
+session[:member_id] = params[:user_id]
+session[:relation_name] = params[:relation_name]%>
 <% @members = Member.all %>
 <%= select_tag(:search, "<option value='0'>-Select a Member</option>" + options_from_collection_for_select(@members, :id, :name)) %>
 
@@ -10,7 +11,7 @@ session[:member_id] = params[:user_id] %>
         :with => "'member_id=' + escape(value)" %>
 
 <div class="page_container" >
-<h3>Add <%= params[:relation_name]%> of <%#= Member.find_by_id(params[:member]).name %> </h3>
+<h3>Add <%= params[:relation_name]%> of <%= Member.find_by_id(session[:member_id]).name %> </h3>
 <div id="div_to_be_updated">
 <% form_for @member, :html => { :multipart => true } do |f| %>
   <%= f.error_messages %>
@@ -21,6 +22,7 @@ session[:member_id] = params[:user_id] %>
 <% fields_for :relation do |rf| %>
 <%= rf.hidden_field :user_id,:value=>session[:member_id]%>
 <%= rf.hidden_field :relation_id,:value=>session[:relation_id]%>
+<%= hidden_field_tag 'relation_name',session[:relation_name]%>
 <% end %>
 
 <p>

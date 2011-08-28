@@ -1,7 +1,25 @@
 <br />
-
 <div class="page_container">
+<% if params[:relation].blank? %>
 <h3>New member</h3>
+<% else %>
+  <% case params[:relation_name].upcase
+  when 'FATHER'
+     relation = 'Father'
+  when 'MOTHER'
+    relation = 'Mother'
+  when 'SIBLING'
+    relation = 'Sibling'
+  when 'CHILDREN'
+    relation = 'Children'
+  when 'SPOUSE'
+    relation = 'Spouse'
+
+  end %>
+<% @members = Member.all %>
+<%= select_tag(:search, "<option value='0'>-Select a Member</option>" + options_from_collection_for_select(@members, :id, :name)) %>
+<h3>Add Relative <%= "#{relation}" %> </h3>
+<% end %>
 
 <% form_for @member, :html => { :multipart => true } do |f| %>
   <%= f.error_messages %>
@@ -14,6 +32,7 @@
 <% fields_for :relation do |rf| %>
 <%= rf.hidden_field :user_id,:value=>session[:member_id]%>
 <%= rf.hidden_field :relation_id,:value=>session[:relation_id]%>
+<%= hidden_field_tag 'relation_name',session[:relation_name]%>
 <% end %>
 <% end %>
 </div>

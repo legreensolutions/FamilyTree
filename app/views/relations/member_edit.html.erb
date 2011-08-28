@@ -7,6 +7,7 @@
   <% fields_for :relation do |rf| %>
 <%= rf.hidden_field :user_id,:value=>session[:member_id]%>
 <%= rf.hidden_field :relation_id,:value=>session[:relation_id]%>
+<%= hidden_field_tag 'relation_name',session[:relation_name]%>
  <p>
     <%= f.submit 'Update' %>
   </p>
