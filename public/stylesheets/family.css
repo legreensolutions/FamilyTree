@@ -112,6 +112,20 @@ padding:0px;
     margin-left:37px;
     text-align:left;
 }
+#family_container h2.box a img{
+    padding:0px;
+    margin:0px;
+    border:none;
+    text-decoration:none;
+}
+
+#family_container h2.box, #family_container h2.box a {
+    text-decoration:none;
+    padding:0px;
+    margin:0px;
+    border:none;
+}
+
 
 
 #events_container {
