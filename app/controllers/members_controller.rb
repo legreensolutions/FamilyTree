@@ -53,7 +53,7 @@ class MembersController < ApplicationController
 
      if @member.save
        #relation ship saving
-         unless params[:relation].nil?
+         unless params[:relation][:user_id].blank?
           Relation.create(:user_id=>params[:relation][:user_id],:related_user_id=>@member.id,:relation_id=>params[:relation][:relation_id])
         end
 
@@ -67,7 +67,8 @@ class MembersController < ApplicationController
             @member.update_attribute('user_id',@user.id)
             unless params[:relation].nil?
               flash[:notice] = 'Relation added successfully.'
-             format.html { redirect_to(:controller=>'relations',:action=>'index',:id=>params[:relation][:user_id] ) }
+            # format.html { redirect_to(:controller=>'relations',:action=>'index',:id=>params[:relation][:user_id] ) }
+            format.html{redirect_to(member_path(@member.id), :notice => 'Relation created.')}
             else
 
               format.html { redirect_to(members_path, :notice => 'Your account has been created. Please check your e-mail for your account  activation instructions!.') }
@@ -82,9 +83,11 @@ class MembersController < ApplicationController
           end
           # end of enable signning of a member by saving to users table also
           unless params[:relation][:user_id].blank?
-            format.html { redirect_to(:controller=>'relations',:action=>'index',:id=>params[:relation][:user_id]) }
+          # format.html { redirect_to(:controller=>'relations',:action=>'index',:id=>params[:relation][:user_id]) }
+
+          format.html{redirect_to(member_path(params[:relation][:user_id]), :notice => 'Relation created.')}
           else
-          format.html { redirect_to(members_path, :notice => 'Member was successfully created.') }
+          format.html { redirect_to(member_path(@member.id), :notice => 'Member was successfully created.') }
           format.xml  { render :xml => @member, :status => :created, :location => @member }
           end
 
@@ -95,6 +98,9 @@ class MembersController < ApplicationController
 
       end
     end
+    session[:relation_id] = params[:relation_id]
+session[:member_id] = params[:user_id]
+session[:relation_name] = params[:relation_name]
   end
 
   # PUT /members/1
@@ -114,8 +120,9 @@ class MembersController < ApplicationController
             @member.update_attribute('user_id',@user.id)
             flash[:notice] = "Your account has been created. Please check your e-mail for your account  activation instructions!"
             else
-               unless params[:relation].nil?
-            format.html { redirect_to(:controller=>'relations',:action=>'add_relation',:user_id=>params[:relation][:user_id],:relation_id=>params[:relation][:relation_id],:notice=>@user.errors) }
+               unless params[:relation][:user_id].blank?
+                 format.html{redirect_to(member_path(params[:relation][:user_id]))}
+           # format.html { redirect_to(:controller=>'relations',:action=>'add_relation',:user_id=>params[:relation][:user_id],:relation_id=>params[:relation][:relation_id],:notice=>@user.errors) }
               else
 
               flash[:notice] = "Please enter email"
@@ -128,13 +135,14 @@ class MembersController < ApplicationController
 
 
       if @member.update_attributes(params[:member])
-        unless params[:relation].nil?
+        unless params[:relation][:user_id].blank?
 
           Relation.create(:user_id=>params[:relation][:user_id],:related_user_id=>@member.id,:relation_id=>params[:relation][:relation_id]) if Relation.find_by_user_id_and_relation_id(params[:relation][:user_id],params[:relation][:relation_id]).blank?
 
       end
-          unless session[:return_url].blank?
-            format.html { redirect_to(session[:return_url], :notice => 'Member was successfully updated.') }
+           unless params[:relation][:user_id].blank?
+          #  format.html { redirect_to(session[:return_url], :notice => 'Member was successfully updated.') }
+          format.html{redirect_to(member_path(params[:relation][:user_id]), :notice => 'Relation created.')}
           else
           format.html { redirect_to(members_path, :notice => 'Member was successfully updated.') }
           format.xml  { head :ok }
@@ -147,6 +155,9 @@ class MembersController < ApplicationController
 
       end
     end
+    session[:relation_id] = params[:relation_id]
+session[:member_id] = params[:user_id]
+session[:relation_name] = params[:relation_name]
   end
 
   # DELETE /members/1

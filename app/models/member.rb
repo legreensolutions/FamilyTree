@@ -21,5 +21,14 @@ class Member < ActiveRecord::Base
     return @member unless @member.blank?
     return nil
   end
+
+
+  def find_siblings_or_childerens(relation)
+    @relation = ""
+    @member = ""
+    @relation = Relation.find(:all,:conditions=>['user_id = ? and relation_id = ?',self.id,relation])
+    return @relation unless @relation.blank?
+    return nil
+  end
 end
 

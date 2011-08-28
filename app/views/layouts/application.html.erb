@@ -36,7 +36,11 @@
   <div id="menu">
     <%= render :partial=>'home/menu' %>
   </div>
-
+    <% flash.each do |key,value| %>
+                             <div  id="flash" class="flash_<%= key %>" >
+                                <p><%= value %></p>
+                              </div><!-- end  flash   -->
+                <% end -%>
   <%= yield :layout %>
 
 
