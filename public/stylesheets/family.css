@@ -35,6 +35,7 @@ h2.box {
     border:1px solid white;
     margin:auto;
 }
+
 #left_top, #right_top, #left_top1, #right_top1 {
     float:left;
     align:left;
@@ -196,5 +197,12 @@ h2.box a {
     padding:0px;
     margin:0px;
     color:white;
+}
+.footer_spacing {
+    background-color:#021c2e;
+    height:100px;
+    width:100%;
+    margin:0px;
+    padding:0px;
 }
 
