@@ -165,6 +165,7 @@ padding:0px;
     height:80px;
     width:60px;
     margin:2px;
+
 }
 
 .space {
@@ -218,5 +219,12 @@ h2.box a {
     width:100%;
     margin:0px;
     padding:0px;
+}
+.father img {
+ /*   position:relative;
+    top:0px;
+    left:0px;
+    heigth:20px;
+    width:10px;*/
 }
 

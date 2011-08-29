@@ -3,7 +3,7 @@
     <div style="text-align:center;margin:auto;height:85px;width:300px;">
         <div class="father">
         <% if @related_member = @member.find_relation(FATHER) %>
-          <%= link_to @related_member.name,member_path(@related_member.id) %>
+          <%=link_to image_tag (@related_member.photo(:small), :size => "50x70", :crop => true, :title => @related_member.name ), member_path(@related_member.id) %>
         <% else %>
         <% form_tag "/relations/add_relation" ,:method=>'post'  do  %>
           <%= hidden_field_tag 'user_id',@member.id %>
@@ -18,7 +18,8 @@
          <div class="mother">
         <% if @related_member = @member.find_relation(MOTHER) %>
 
-           <%= link_to @related_member.name,member_path(@related_member.id) %>
+           <%#= link_to @related_member.name,member_path(@related_member.id) %>
+           <%=link_to image_tag (@related_member.photo(:small), :size => "50x70", :crop => true,  :title => @related_member.name ), member_path(@related_member.id) %>
            <% else %>
         <% form_tag "/relations/add_relation" ,:method=>'post'  do %>
           <%= hidden_field_tag 'user_id',@member.id %>
@@ -43,7 +44,8 @@
             <% unless @related_members.blank? %>
              <% @related_members.each do |related_member| %>
               <% @member_rel = Member.find_by_id(related_member.related_user_id)  %>
-              <%= link_to @member_rel.name,member_path(@member_rel.id) %><br />
+              <%#= link_to @member_rel.name,member_path(@member_rel.id) %>
+                  <%=link_to image_tag (@member_rel.photo(:small), :size => "50x70", :crop => true,  :title => @member_rel.name ), member_path(@member_rel.id) %>
              <% end %>
            <%#= link_to @related_member.name,member_path(@related_member.id) %>
            <%# else %>
@@ -57,12 +59,13 @@
         <%# end %>
         <% end %>
         </div>
-        <div class="self"><%= link_to @member.name,edit_member_path(@member) %>&nbsp;</div>
+        <div class="self"><%=link_to image_tag (@member.photo(:small), :size => "50x70", :crop => true, :title => @member.name ), member_path(@member) %>&nbsp;</div>
         <div class="connect">&nbsp;</div>
         <div class="spouse">
           <% if @related_member = @member.find_relation(SPOUSE) %>
 
-           <%= link_to @related_member.name,member_path(@related_member.id) %>
+           <%#= link_to @related_member.name,member_path(@related_member.id) %>
+           <%=link_to image_tag (@related_member.photo(:small), :size => "50x70", :crop => true,  :title => @related_member.name ), member_path(@related_member.id) %>
            <% else %>
         <% form_tag "/relations/add_relation" ,:method=>'post'  do %>
           <%= hidden_field_tag 'user_id',@member.id %>
@@ -87,7 +90,8 @@
            <% unless @related_members.blank? %>
              <% @related_members.each do |related_member|  %>
               <% @member_rel = Member.find_by_id(related_member.related_user_id) unless @related_members.blank? %>
-              <%= link_to @member_rel.name,member_path(@member_rel.id) %><br />
+              <%#= link_to @member_rel.name,member_path(@member_rel.id) %><br />
+              <%=link_to image_tag (@member_rel.photo(:small), :size => "50x70", :crop => true,  :title => @member_rel.name ), member_path(@member_rel.id) %>
              <% end %>
             <% end %>
            <%#= link_to @related_member.name,member_path(@related_member.id) %>
