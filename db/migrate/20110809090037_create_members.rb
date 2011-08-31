@@ -1,8 +1,8 @@
 class CreateMembers < ActiveRecord::Migration
   def self.up
     create_table :members do |t|
-      t.string    :name,               :null => false
-      t.string    :email,               :null => false
+      t.string    :name,  :null => false
+      t.string    :email
       t.string    :pet_name
       t.integer   :phone
       t.integer   :mobile

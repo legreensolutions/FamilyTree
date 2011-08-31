@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110823095720) do
+ActiveRecord::Schema.define(:version => 20110830050346) do
 
   create_table "alert_uploads", :force => true do |t|
     t.integer  "alert_id"
@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(:version => 20110823095720) do
 
   create_table "members", :force => true do |t|
     t.string   "name",                                  :null => false
-    t.string   "email",                                 :null => false
+    t.string   "email"
     t.string   "pet_name"
     t.integer  "phone"
     t.integer  "mobile"
@@ -104,6 +104,7 @@ ActiveRecord::Schema.define(:version => 20110823095720) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "gender_id"
   end
 
   create_table "news_items", :force => true do |t|

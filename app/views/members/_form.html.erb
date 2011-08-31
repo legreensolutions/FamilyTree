@@ -10,6 +10,26 @@
   <td><%= form.text_field :email %></td>
 </tr>
 <tr>
+  <td><%= form.label :gender_id %></td>
+  <% unless session[:relation_name].blank?
+  checked_m = false
+  checked_f = false%>
+  <% if  session[:relation_name] == 'Father' or session[:relation_name] == 'Brothers' or session[:relation_name] == 'Sons'
+    checked_m = true
+   elsif session[:relation_name] == 'Mother' or session[:relation_name] == 'Daughters' or session[:relation_name] == 'Sisters'
+     checked_f = true
+   end %>
+  <td><%= form.radio_button :gender_id,MALE,:checked=>checked_m %>Male
+
+  <%= form.radio_button :gender_id,FEMALE,:checked=>checked_f %>Female
+  <% else %>
+    <td><%= form.radio_button :gender_id,MALE %>Male
+
+  <%= form.radio_button :gender_id,FEMALE %>Female
+  <% end %>
+  </td>
+</tr>
+<tr>
   <td><%= form.label 'Family' %></td>
   <td><%= form.select("family_id", Family.all.collect {|family| [ family.name, family.id ] }, {:include_blank => 'Select...'})%></td>
 </tr>

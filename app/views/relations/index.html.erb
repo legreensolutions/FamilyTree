@@ -3,7 +3,7 @@
   <div style="width:100%;text-align:center;margin:auto;">
     <div style="text-align:center;margin:auto;height:85px;width:300px;">
         <div class="father">
-        <% if @related_member = @member.find_relation(FATHER) %>
+        <% if @related_member = @member.find_father %>
           <%= link_to @related_member.name,:controller=>'relations',:action=>'index',:id=>@related_member.id %>
         <% else %>
         <% form_tag "relations/add_relation" ,:method=>'post'  do  %>

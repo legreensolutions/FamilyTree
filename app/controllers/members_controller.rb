@@ -15,6 +15,7 @@ class MembersController < ApplicationController
       format.xml  { render :xml => @members }
     end
     session[:return_url] = ""
+
   end
 
   # GET /members/1
@@ -54,7 +55,8 @@ class MembersController < ApplicationController
      if @member.save
        #relation ship saving
          unless params[:relation][:user_id].blank?
-          Relation.create(:user_id=>params[:relation][:user_id],:related_user_id=>@member.id,:relation_id=>params[:relation][:relation_id])
+        #  Relation.create(:user_id=>params[:relation][:user_id],:related_user_id=>@member.id,:relation_id=>params[:relation][:relation_id])
+           create_relation(params[:relation][:user_id],@member.id)
         end
 
         #enable signning of a member by saving to users table also
@@ -98,9 +100,9 @@ class MembersController < ApplicationController
 
       end
     end
-    session[:relation_id] = params[:relation_id]
-session[:member_id] = params[:user_id]
-session[:relation_name] = params[:relation_name]
+    session[:relation_id] = ""
+    session[:member_id] = ""
+    session[:relation_name] = ""
   end
 
   # PUT /members/1
@@ -136,9 +138,8 @@ session[:relation_name] = params[:relation_name]
 
       if @member.update_attributes(params[:member])
         unless params[:relation][:user_id].blank?
-
-          Relation.create(:user_id=>params[:relation][:user_id],:related_user_id=>@member.id,:relation_id=>params[:relation][:relation_id]) if Relation.find_by_user_id_and_relation_id(params[:relation][:user_id],params[:relation][:relation_id]).blank?
-
+          create_relation(params[:relation][:user_id],@member.id)
+#Relation.create(:user_id=>params[:relation][:user_id],:related_user_id=>@member.id,:relation_id=>params[:relation][:relation_id]) if Relation.find_by_user_id_and_relation_id(params[:relation][:user_id],params[:relation][:relation_id]).blank?
       end
            unless params[:relation][:user_id].blank?
           #  format.html { redirect_to(session[:return_url], :notice => 'Member was successfully updated.') }
@@ -155,9 +156,9 @@ session[:relation_name] = params[:relation_name]
 
       end
     end
-    session[:relation_id] = params[:relation_id]
-session[:member_id] = params[:user_id]
-session[:relation_name] = params[:relation_name]
+    session[:relation_id] = ""
+    session[:member_id] = ""
+    session[:relation_name] = ""
   end
 
   # DELETE /members/1
@@ -181,5 +182,82 @@ session[:relation_name] = params[:relation_name]
   def family_tree
   end
 
+
+private
+#related_user_id => new member_id
+#user_id => my id
+  def create_relation(user_id,related_user_id)
+    @me = Member.find_by_id(user_id)
+
+    #add relationship parent
+    if (session[:relation_name] == 'Father' || session[:relation_name] == 'Mother')
+      Relation.create(:user_id=>user_id,:related_user_id=>related_user_id,:relation_id=>PARENT) if Relation.find_by_user_id_and_relation_id(related_user_id,PARENT).blank?
+
+    #my_parents
+   #@relations = Relation.find(:all,:conditions=>['user_id = ? and relation_id = ?',user_id,PARENT])
+   @relations = @me.child_member_relations.find(:all,:conditions=>['relation_id = ?',PARENT])
+
+
+    my_parents = []
+    my_siblings = []
+    unless @relations.blank?
+      @relations.each do |relation|
+        my_parents << relation.related_user_id
+         #my_siblings
+       @my_siblings = Relation.find(:all,:conditions=>['related_user_id = ? and relation_id = ? and user_id != ?',relation.related_user_id,PARENT,user_id]) unless relation.blank?
+         unless @my_siblings.blank?
+            @my_siblings.each do |sibling|
+              my_siblings << sibling.user_id
+            end
+          end
+      end
+    end
+
+# add my parents as my sibling's parent also
+  my_parents.each do |parent|
+    my_siblings.each do |sibling|
+      Relation.create(:user_id=>sibling,:related_user_id=>parent,:relation_id=>PARENT) if
+      Relation.find_by_user_id_and_related_user_id_and_relation_id(sibling,parent,PARENT).blank?
+    end
+  end
+
+end
+
+  #add relationship children
+     if (session[:relation_name] == 'Sons' || session[:relation_name] == 'Daughters')
+      Relation.create(:user_id=>related_user_id,:related_user_id=>user_id,:relation_id=>PARENT) if Relation.find_by_user_id_and_relation_id(related_user_id,PARENT).blank?
+      @relation = Relation.find_by_related_user_id_and_relation_id(user_id,SPOUSE)
+      if @relation
+         Relation.create(:user_id=>related_user_id,:related_user_id=>@relation.user_id,:relation_id=>PARENT) if Relation.find_by_user_id_and_relation_id_and_related_user_id(user_id,PARENT,@relation.user_id).blank?
+      end
+     end
+
+
+
+    #add relationship siblings
+     if (session[:relation_name] == 'Brothers' || session[:relation_name] == "Sisters")
+      @my_parents = @me.child_member_relations.find(:all,:conditions=>['relation_id = ?',PARENT])
+      unless @my_parents.blank?
+        @my_parents.each do |parent|
+        Relation.create(:user_id=>@member.id,:related_user_id=>parent.related_user_id,:relation_id=>PARENT) if Relation.find_by_user_id_and_relation_id_and_related_user_id(@member.id,PARENT,parent.related_user_id).blank?
+        end
+      end
+    end
+
+    # Add spouse
+    if session[:relation_name] == 'Spouse'
+      Relation.create(:user_id=>related_user_id,:related_user_id=>user_id,:relation_id=>SPOUSE) if Relation.find_by_user_id_and_relation_id_and_related_user_id(related_user_id,SPOUSE,user_id).blank?
+     #my_children
+     @my_children = @me.parent_member_relations.find(:all,:conditions=>['relation_id = ?',PARENT])
+     unless @my_children.blank?
+       @my_children.each do |children|
+         Relation.create(:user_id=>children.user_id,:related_user_id=>related_user_id,:relation_id=>PARENT) if
+         Relation.find_by_user_id_and_related_user_id_and_relation_id(children.user_id,related_user_id,PARENT).blank?
+       end
+     end
+      Relation.create(:user_id=>user_id,:related_user_id=>related_user_id,:relation_id=>SPOUSE) if Relation.find_by_user_id_and_relation_id_and_related_user_id(user_id,SPOUSE,related_user_id).blank?
+    end
+
+end
 end
 

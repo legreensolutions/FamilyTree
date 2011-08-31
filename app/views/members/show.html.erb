@@ -2,12 +2,16 @@
   <div style="width:100%;text-align:center;margin:auto;">
     <div style="text-align:center;margin:auto;height:85px;width:300px;">
         <div class="father">
-        <% if @related_member = @member.find_relation(FATHER) %>
-          <%=link_to image_tag (@related_member.photo(:small), :size => "50x70", :crop => true, :title => @related_member.name ), member_path(@related_member.id) %>
+        <% if @related_member = @member.father %>
+          <% unless @related_member.photo_file_name.nil? %>
+            <%=link_to image_tag (@related_member.photo(:small), :size => "50x70", :crop => true, :title => @related_member.name ), member_path(@related_member.id) %>
+          <% else %>
+            <%=link_to @related_member.name, member_path(@related_member.id) %>
+          <% end %>
         <% else %>
         <% form_tag "/relations/add_relation" ,:method=>'post'  do  %>
           <%= hidden_field_tag 'user_id',@member.id %>
-          <%= hidden_field_tag 'relation_id',FATHER %>
+          <%= hidden_field_tag 'relation_id',PARENT%>
           <%= hidden_field_tag 'relation_name',"Father" %>
           <%= submit_tag 'Father' %>
 
@@ -16,14 +20,16 @@
         </div>
         <div class="connect">&nbsp;</div>
          <div class="mother">
-        <% if @related_member = @member.find_relation(MOTHER) %>
-
-           <%#= link_to @related_member.name,member_path(@related_member.id) %>
-           <%=link_to image_tag (@related_member.photo(:small), :size => "50x70", :crop => true,  :title => @related_member.name ), member_path(@related_member.id) %>
-           <% else %>
+        <% if @related_member = @member.mother %>
+            <% unless @related_member.photo_file_name.nil? %>
+              <%=link_to image_tag (@related_member.photo(:small), :size => "50x70", :crop => true,  :title => @related_member.name ), member_path(@related_member.id) %>
+            <% else %>
+              <%= link_to @related_member.name,member_path(@related_member.id) %>
+            <% end %>
+        <% else %>
         <% form_tag "/relations/add_relation" ,:method=>'post'  do %>
           <%= hidden_field_tag 'user_id',@member.id %>
-          <%= hidden_field_tag 'relation_id',MOTHER %>
+          <%= hidden_field_tag 'relation_id',PARENT %>
           <%= hidden_field_tag 'relation_name',"Mother" %>
           <%= submit_tag 'Mother' %>
 
@@ -40,32 +46,46 @@
   <div style="width:100%;text-align:center;margin:auto;">
     <div style="text-align:center;margin:auto;height:85px;width:625px;">
         <div class="siblings">
-          <%  @related_members = @member.find_siblings_or_childerens(SIBLINGS) %>
+        <% if @member.father or @member.mother %>
+          <%  @related_members = @member.find_brothers_or_sisters %>
             <% unless @related_members.blank? %>
              <% @related_members.each do |related_member| %>
-              <% @member_rel = Member.find_by_id(related_member.related_user_id)  %>
-              <%#= link_to @member_rel.name,member_path(@member_rel.id) %>
+              <% @member_rel = Member.find_by_id_and_gender_id(related_member.user_id,MALE)  %>
+                <% if @member_rel %>
+                  <% if @member_rel.photo_file_name %>
                   <%=link_to image_tag (@member_rel.photo(:small), :size => "50x70", :crop => true,  :title => @member_rel.name ), member_path(@member_rel.id) %>
+                  <% else %>
+                   <%= link_to @member_rel.name,member_path(@member_rel.id) if @member_rel %>
+                  <% end %>
+                <% end %>
              <% end %>
-           <%#= link_to @related_member.name,member_path(@related_member.id) %>
-           <%# else %>
+
+
           <% end %>
         <% form_tag "/relations/add_relation" ,:method=>'post'  do %>
           <%= hidden_field_tag 'user_id',@member.id %>
-          <%= hidden_field_tag 'relation_id',SIBLINGS %>
-          <%= hidden_field_tag 'relation_name',"Sibling" %>
-          <%= submit_tag 'Siblings' %>
-
-        <%# end %>
+          <%= hidden_field_tag 'relation_id',PARENT %>
+          <%= hidden_field_tag 'relation_name',"Brothers" %>
+          <%= submit_tag 'Brothers' %>
+        <% end %>
+        <% else %>
+          Not able to add Brothers now
         <% end %>
         </div>
-        <div class="self"><%=link_to image_tag (@member.photo(:small), :size => "50x70", :crop => true, :title => @member.name ), member_path(@member) %>&nbsp;</div>
+        <div class="self">
+        <%if @member.photo_file_name %>
+        <%=link_to image_tag (@member.photo(:small), :size => "50x70", :crop => true, :title => @member.name ), edit_member_path(@member) %>&nbsp;
+        <% else %>
+        <%=link_to @member.name,edit_member_path(@member) ,:title => @member.name%>
+        <% end %>
+
+        </div>
         <div class="connect">&nbsp;</div>
         <div class="spouse">
-          <% if @related_member = @member.find_relation(SPOUSE) %>
+          <% if @related_member = @member.find_spouse %>
 
-           <%#= link_to @related_member.name,member_path(@related_member.id) %>
-           <%=link_to image_tag (@related_member.photo(:small), :size => "50x70", :crop => true,  :title => @related_member.name ), member_path(@related_member.id) %>
+           <%= link_to @related_member.name,member_path(@related_member.id) %>
+           <%#=link_to image_tag (@related_member.photo(:small), :size => "50x70", :crop => true,  :title => @related_member.name ), member_path(@related_member.id) %>
            <% else %>
         <% form_tag "/relations/add_relation" ,:method=>'post'  do %>
           <%= hidden_field_tag 'user_id',@member.id %>
@@ -77,32 +97,91 @@
         <% end %>
 
         </div>
-        <div class="siblings">&nbsp;</div>
+        <div class="siblings">
+        <%#  @related_members = @member.find_brothers_or_sisters %>
+        <% if @member.father or @member.mother %>
+            <% unless @related_members.blank? %>
+             <% @related_members.each do |related_member| %>
+              <% @member_rel = Member.find_by_id_and_gender_id(related_member.user_id,FEMALE)  %>
+                 <% if @member_rel %>
+                  <% if @member_rel.photo_file_name %>
+                  <%=link_to image_tag (@member_rel.photo(:small), :size => "50x70", :crop => true,  :title => @member_rel.name ), member_path(@member_rel.id) %>
+                  <% else %>
+                   <%= link_to @member_rel.name,member_path(@member_rel.id) if @member_rel %>
+                  <% end %>
+                <% end %>
+
+             <% end %>
+
+
+          <% end %>
+        <% form_tag "/relations/add_relation" ,:method=>'post'  do %>
+          <%= hidden_field_tag 'user_id',@member.id %>
+          <%= hidden_field_tag 'relation_id',PARENT %>
+          <%= hidden_field_tag 'relation_name',"Sisters" %>
+          <%= submit_tag 'Sisters' %>
+        <% end %>
+        <% else %>
+        Not able to add sisters now
+        <% end %>
+
+
+
+        </div>
     </div>
   </div>
 <div style="clear:both;"></div>
 <!-- CHILDREN -->
 
-  <div style="width:100%;text-align:center;margin:auto;">
+  <div style="width:100%;text-align:center;margin:auto;float:right">
     <div style="text-align:center;margin:auto;height:85px;width:625px;border:1px solid white;">
 
-      <%  @related_members = @member.find_siblings_or_childerens(CHILDREN) %>
+      <%  @related_members = @member.sons %>
            <% unless @related_members.blank? %>
-             <% @related_members.each do |related_member|  %>
-              <% @member_rel = Member.find_by_id(related_member.related_user_id) unless @related_members.blank? %>
-              <%#= link_to @member_rel.name,member_path(@member_rel.id) %><br />
-              <%=link_to image_tag (@member_rel.photo(:small), :size => "50x70", :crop => true,  :title => @member_rel.name ), member_path(@member_rel.id) %>
-             <% end %>
+            <% @related_members.each do |member_rel| %>
+              <% unless member_rel.photo_file_name.nil? %>
+
+              <%=link_to image_tag (member_rel.photo(:small), :size => "50x70", :crop => true,  :title => @member_rel.name ), member_path(member_rel.id) %>
+              <% else %>
+                 <%= link_to member_rel.name,member_path(member_rel.id) %><br />
+              <% end %>
             <% end %>
-           <%#= link_to @related_member.name,member_path(@related_member.id) %>
-           <%# else %>
+            <% end %>
+
         <% form_tag "/relations/add_relation" ,:method=>'post'  do %>
           <%= hidden_field_tag 'user_id',@member.id %>
-          <%= hidden_field_tag 'relation_id',CHILDREN %>
-          <%= hidden_field_tag 'relation_name',"Children" %>
-          <%= submit_tag 'Children' %>
+          <%= hidden_field_tag 'relation_id',PARENT %>
+          <%= hidden_field_tag 'relation_name',"Sons" %>
+          <%= submit_tag 'Sons' %>
         <% end %>
-        <%# end %>
+
+
+    </div>
+  </div>
+
+  <div style="width:100%;text-align:center;margin:auto;float:right">
+    <div style="text-align:center;margin:auto;height:85px;width:625px;border:1px solid white;">
+
+      <%  @related_members = @member.daughters %>
+           <% unless @related_members.blank? %>
+             <% @related_members.each do |related_member|  %>
+
+              <% unless related_member.photo_file_name.nil? %>
+
+              <%=link_to image_tag (related_member.photo(:small), :size => "50x70", :crop => true,  :title => @member_rel.name ), member_path(related_member.id) %>
+              <% else %>
+                 <%= link_to related_member.name,member_path(related_member.id) %><br />
+              <% end %>
+             <% end %>
+            <% end %>
+
+        <% form_tag "/relations/add_relation" ,:method=>'post'  do %>
+          <%= hidden_field_tag 'user_id',@member.id %>
+          <%= hidden_field_tag 'relation_id',PARENT %>
+          <%= hidden_field_tag 'relation_name',"Daughters" %>
+          <%= submit_tag 'Daughters' %>
+        <% end %>
+
 
     </div>
   </div>
