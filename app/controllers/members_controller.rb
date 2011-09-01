@@ -163,16 +163,29 @@ class MembersController < ApplicationController
   # DELETE /members/1.xml
   def destroy
     @member = Member.find(params[:id])
-    unless @member.user.nil?
-      @member.user.destroy
-    end
-    @member.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(members_url) }
-      format.xml  { head :ok }
-    end
+    if @member.parent_member_relations.find(:all,:conditions=>['relation_id = ?',PARENT]).blank?
+      unless @member.user.nil?
+        @member.user.destroy
+      end
+      #delelete parent and spouse relation
+      @relations = @member.child_member_relations
+      unless @relations.nil?
+        @relations.each do |relation|
+            relation.destroy
+        end
+      end
+      @relation = Relation.find_by_related_user_id_and_relation_id(@member.id,SPOUSE)
+      @relation.destroy unless @relation.blank?
+      @member.destroy
+      respond_to do |format|
+        format.html { redirect_to(members_url) }
+        format.xml  { head :ok }
+      end
+  else
+    flash[:notice] = "You cannot delete this member without deleting this member's children"
+    redirect_to(members_url)
   end
+end
 
   def tree
   end
