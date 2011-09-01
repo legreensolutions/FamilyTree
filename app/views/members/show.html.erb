@@ -83,8 +83,11 @@
         <div class="connect">&nbsp;</div>
         <div class="spouse">
           <% if @related_member = @member.find_spouse %>
-
-           <%= link_to @related_member.name,member_path(@related_member.id) %>
+            <% if @related_member.photo_file_name %>
+               <%=link_to image_tag (@related_member.photo(:small), :size => "50x70", :crop => true,  :title => @related_member.name ), member_path(@related_member.id) %>
+            <% else %>
+              <%= link_to @related_member.name,member_path(@related_member.id) %>
+           <% end %>
            <%#=link_to image_tag (@related_member.photo(:small), :size => "50x70", :crop => true,  :title => @related_member.name ), member_path(@related_member.id) %>
            <% else %>
         <% form_tag "/relations/add_relation" ,:method=>'post'  do %>
@@ -168,7 +171,7 @@
 
               <% unless related_member.photo_file_name.nil? %>
 
-              <%=link_to image_tag (related_member.photo(:small), :size => "50x70", :crop => true,  :title => @member_rel.name ), member_path(related_member.id) %>
+              <%=link_to image_tag (related_member.photo(:small), :size => "50x70", :crop => true,  :title => related_member.name ), member_path(related_member.id) %>
               <% else %>
                  <%= link_to related_member.name,member_path(related_member.id) %><br />
               <% end %>
