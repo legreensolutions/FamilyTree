@@ -141,7 +141,7 @@
             <% @related_members.each do |member_rel| %>
               <% unless member_rel.photo_file_name.nil? %>
 
-              <%=link_to image_tag (member_rel.photo(:small), :size => "50x70", :crop => true,  :title => @member_rel.name ), member_path(member_rel.id) %>
+              <%=link_to image_tag (member_rel.photo(:small), :size => "50x70", :crop => true,  :title => member_rel.name ), member_path(member_rel.id) %>
               <% else %>
                  <%= link_to member_rel.name,member_path(member_rel.id) %><br />
               <% end %>
