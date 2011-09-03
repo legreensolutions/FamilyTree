@@ -2,6 +2,8 @@ class MembersController < ApplicationController
  #  before_filter :require_user, :only => [:index, :edit, :update,:new,:create]
   # GET /members
   # GET /members.xml
+  layout 'application_alternate', :only => [:show]
+
   def index
 
      if params[:search]
@@ -21,6 +23,7 @@ class MembersController < ApplicationController
   # GET /members/1
   # GET /members/1.xml
   def show
+
     @member = Member.find(params[:id])
 
     respond_to do |format|

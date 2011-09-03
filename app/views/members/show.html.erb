@@ -1,10 +1,10 @@
 <!-- PARENTS -->
-  <div style="width:100%;text-align:center;margin:auto;">
-    <div style="text-align:center;margin:auto;height:85px;width:300px;">
+  <div class="full_width_div">
+    <div id = "parents_inner_div">    <!-- parents inner div -->
         <div class="father">
         <% if @related_member = @member.father %>
           <% unless @related_member.photo_file_name.nil? %>
-            <%=link_to image_tag (@related_member.photo(:small), :size => "50x70", :crop => true, :title => @related_member.name ), member_path(@related_member.id) %>
+            <%=link_to image_tag (@related_member.photo(:small), :height => "50", :title => @related_member.name ), member_path(@related_member.id) %>
           <% else %>
             <%=link_to @related_member.name, member_path(@related_member.id) %>
           <% end %>
@@ -17,12 +17,12 @@
 
         <% end %>
         <% end %>
-        </div>
+        </div>    <!-- class father end -->
         <div class="connect">&nbsp;</div>
          <div class="mother">
         <% if @related_member = @member.mother %>
             <% unless @related_member.photo_file_name.nil? %>
-              <%=link_to image_tag (@related_member.photo(:small), :size => "50x70", :crop => true,  :title => @related_member.name ), member_path(@related_member.id) %>
+              <%=link_to image_tag (@related_member.photo(:small), :height => "50", :crop => true,  :title => @related_member.name ), member_path(@related_member.id) %>
             <% else %>
               <%= link_to @related_member.name,member_path(@related_member.id) %>
             <% end %>
@@ -36,14 +36,14 @@
         <% end %>
         <% end %>
 
-        </div>
+        </div>    <!-- class mother end -->
         <div class="space">&nbsp;</div>
     </div>
   </div>
 <div style="clear:both;"></div>
 <!-- SELF -->
 
-  <div style="width:100%;text-align:center;margin:auto;">
+  <div class="full_width_div">
     <div style="text-align:center;margin:auto;height:85px;width:625px;">
         <div class="siblings">
         <% if @member.father or @member.mother %>
@@ -53,7 +53,7 @@
               <% @member_rel = Member.find_by_id_and_gender_id(related_member.user_id,MALE)  %>
                 <% if @member_rel %>
                   <% if @member_rel.photo_file_name %>
-                  <%=link_to image_tag (@member_rel.photo(:small), :size => "50x70", :crop => true,  :title => @member_rel.name ), member_path(@member_rel.id) %>
+                  <%=link_to image_tag (@member_rel.photo(:small), :height => "50", :crop => true,  :title => @member_rel.name ), member_path(@member_rel.id) %>
                   <% else %>
                    <%= link_to @member_rel.name,member_path(@member_rel.id) if @member_rel %>
                   <% end %>
@@ -74,7 +74,7 @@
         </div>
         <div class="self">
         <%if @member.photo_file_name %>
-        <%=link_to image_tag (@member.photo(:small), :size => "50x70", :crop => true, :title => @member.name ), edit_member_path(@member) %>&nbsp;
+        <%=link_to image_tag (@member.photo(:small), :height => "70", :crop => true, :title => @member.name ), edit_member_path(@member) %>&nbsp;
         <% else %>
         <%=link_to @member.name,edit_member_path(@member) ,:title => @member.name%>
         <% end %>
@@ -84,7 +84,7 @@
         <div class="spouse">
           <% if @related_member = @member.find_spouse %>
             <% if @related_member.photo_file_name %>
-               <%=link_to image_tag (@related_member.photo(:small), :size => "50x70", :crop => true,  :title => @related_member.name ), member_path(@related_member.id) %>
+               <%=link_to image_tag (@related_member.photo(:small), :height => "70", :crop => true,  :title => @related_member.name ), member_path(@related_member.id) %>
             <% else %>
               <%= link_to @related_member.name,member_path(@related_member.id) %>
            <% end %>
@@ -108,7 +108,7 @@
               <% @member_rel = Member.find_by_id_and_gender_id(related_member.user_id,FEMALE)  %>
                  <% if @member_rel %>
                   <% if @member_rel.photo_file_name %>
-                  <%=link_to image_tag (@member_rel.photo(:small), :size => "50x70", :crop => true,  :title => @member_rel.name ), member_path(@member_rel.id) %>
+                  <%=link_to image_tag (@member_rel.photo(:small), :height => "50", :crop => true,  :title => @member_rel.name ), member_path(@member_rel.id) %>
                   <% else %>
                    <%= link_to @member_rel.name,member_path(@member_rel.id) if @member_rel %>
                   <% end %>
@@ -134,44 +134,19 @@
     </div>
   </div>
 <div style="clear:both;"></div>
+
 <!-- CHILDREN -->
+  <div class="full_width_div"> <!-- START CHILDREN OUTER DIV-->
+    <div style="text-align:center;margin-left:400px;height:85px;width:400px;"> <!-- START CHILDREN INNER DIV-->
 
-  <div style="width:100%;text-align:center;margin:auto;float:right">
-    <div style="text-align:center;margin:auto;height:85px;width:625px;border:1px solid white;">
-
-      <%  @related_members = @member.sons %>
-           <% unless @related_members.blank? %>
-            <% @related_members.each do |member_rel| %>
-              <% unless member_rel.photo_file_name.nil? %>
-
-              <%=link_to image_tag (member_rel.photo(:small), :size => "50x70", :crop => true,  :title => member_rel.name ), member_path(member_rel.id) %>
-              <% else %>
-                 <%= link_to member_rel.name,member_path(member_rel.id) %><br />
-              <% end %>
-            <% end %>
-            <% end %>
-
-        <% form_tag "/relations/add_relation" ,:method=>'post'  do %>
-          <%= hidden_field_tag 'user_id',@member.id %>
-          <%= hidden_field_tag 'relation_id',PARENT %>
-          <%= hidden_field_tag 'relation_name',"Sons" %>
-          <%= submit_tag 'Sons' %>
-        <% end %>
-
-
-    </div>
-  </div>
-
-  <div style="width:100%;text-align:center;margin:auto;float:right">
-    <div style="text-align:center;margin:auto;height:85px;width:625px;border:1px solid white;">
-
+    <div style="float:left;height:80px;">   <!-- START DAUGHTER'S DIV-->
       <%  @related_members = @member.daughters %>
            <% unless @related_members.blank? %>
              <% @related_members.each do |related_member|  %>
 
               <% unless related_member.photo_file_name.nil? %>
 
-              <%=link_to image_tag (related_member.photo(:small), :size => "50x70", :crop => true,  :title => related_member.name ), member_path(related_member.id) %>
+              <%=link_to image_tag (related_member.photo(:small), :height => "50", :crop => true,  :title => related_member.name, :class=>"children" ), member_path(related_member.id) %>
               <% else %>
                  <%= link_to related_member.name,member_path(related_member.id) %><br />
               <% end %>
@@ -184,12 +159,36 @@
           <%= hidden_field_tag 'relation_name',"Daughters" %>
           <%= submit_tag 'Daughters' %>
         <% end %>
+    </div>                                  <!-- END DAUGHTER'S DIV-->
+
+    <div style="float:left;height:80px;">   <!-- START SON'S DIV-->
+
+     <%  @related_members = @member.sons %>
+           <% unless @related_members.blank? %>
+            <% @related_members.each do |member_rel| %>
+              <% unless member_rel.photo_file_name.nil? %>
+
+              <%=link_to image_tag (member_rel.photo(:small), :height => "50", :crop => true,  :title => member_rel.name ), member_path(member_rel.id) %>
+              <% else %>
+                 <%= link_to member_rel.name,member_path(member_rel.id) %><br />
+              <% end %>
+            <% end %>
+            <% end %>
+
+        <% form_tag "/relations/add_relation" ,:method=>'post'  do %>
+          <%= hidden_field_tag 'user_id',@member.id %>
+          <%= hidden_field_tag 'relation_id',PARENT %>
+          <%= hidden_field_tag 'relation_name',"Sons" %>
+          <%= submit_tag 'Sons' %>
+        <% end %>
+      </div>  <!-- END SON'S DIV-->
 
 
-    </div>
-  </div>
 
 
+  </div>  <!-- END CHILDREN INNER DIV-->
+
+</div> <!-- END CHILDREN OUTER DIV-->
 </div>
 
 
