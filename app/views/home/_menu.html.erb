@@ -7,7 +7,7 @@
 
            <% unless Gallery.find(:first,:conditions=>['public=?',true]).nil? %>
               <div id="gallery">
-              <%= link_to (image_tag "/images/menu/mnu_gallery" + (uri=="/galleries" ? '.png' : '0.png'), :mouseover => "/images/menu/mnu_gallery.png"),Gallery.find(:first,:conditions=>['public=?',true]).photo.url(:thumb) %>
+              <%= link_to (image_tag "/images/menu/mnu_gallery" + (uri=="/galleries" ? '.png' : '0.png'), :mouseover => "/images/menu/mnu_gallery.png"),Gallery.find(:first,:conditions=>['public=?',true]).photo.url(:medium) %>
               <%= render :partial=>'galleries/list_of_images',:locals => {:id => Gallery.find(:first,:conditions=>['public=?',true]).id }%>
               </div>
           <% else %>
@@ -18,7 +18,11 @@
 
 <% if current_user %>
   <%= link_to (image_tag "/images/menu/mnu_members" + (uri=="/members" ? '.png' : '0.png'), :mouseover => "/images/menu/mnu_members.png"),members_path %>
-  <%= link_to (image_tag "/images/menu/mnu_profile" + (uri=="/profile" ? '.png' : '0.png'), :mouseover => "/images/menu/mnu_profile.png"),"#"%>
+  <% if current_user.member %>
+  <%= link_to (image_tag "/images/menu/mnu_profile" + (uri=="/profile" ? '.png' : '0.png'), :mouseover => "/images/menu/mnu_profile.png"),edit_member_path(current_user.member.id)%>
+  <% else %>
+   <%= link_to (image_tag "/images/menu/mnu_profile" + (uri=="/profile" ? '.png' : '0.png'), :mouseover => "/images/menu/mnu_profile.png"),edit_user_path(current_user)%>
+   <% end %>
   <%= link_to (image_tag "/images/menu/mnu_logout" + (uri=="/logout" ? '.png' : '0.png'), :mouseover => "/images/menu/mnu_logout.png"),logout_path %>
   <% else %>
 <%= link_to (image_tag "/images/menu/mnu_login" + (uri=="/galleries" ? '.png' : '0.png'), :mouseover => "/images/menu/mnu_login.png"),login_path %>

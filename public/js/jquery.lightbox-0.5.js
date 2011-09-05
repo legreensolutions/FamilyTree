@@ -23,15 +23,15 @@
 		settings = jQuery.extend({
 			// Configuration related to overlay
 			overlayBgColor: 		'#000',		// (string) Background color to overlay; inform a hexadecimal value like: #RRGGBB. Where RR, GG, and BB are the hexadecimal values for the red, green, and blue values of the color.
-			overlayOpacity:			0.8,		// (integer) Opacity value to overlay; inform: 0.X. Where X are number from 0 to 9
+			overlayOpacity:			0.5,		// (integer) Opacity value to overlay; inform: 0.X. Where X are number from 0 to 9
 			// Configuration related to navigation
 			fixedNavigation:		false,		// (boolean) Boolean that informs if the navigation (next and prev button) will be fixed or not in the interface.
 			// Configuration related to images
-			imageLoading:			'images/lightbox-ico-loading.gif',		// (string) Path and the name of the loading icon
-			imageBtnPrev:			'images/lightbox-btn-prev.gif',			// (string) Path and the name of the prev button image
-			imageBtnNext:			'images/lightbox-btn-next.gif',			// (string) Path and the name of the next button image
-			imageBtnClose:			'images/lightbox-btn-close.gif',		// (string) Path and the name of the close btn
-			imageBlank:				'images/lightbox-blank.gif',			// (string) Path and the name of a blank image (one pixel)
+			imageLoading:			'/images/lightbox-ico-loading.gif',		// (string) Path and the name of the loading icon
+			imageBtnPrev:			'/images/lightbox-btn-prev.gif',			// (string) Path and the name of the prev button image
+			imageBtnNext:			'/images/lightbox-btn-next.gif',			// (string) Path and the name of the next button image
+			imageBtnClose:			'/images/lightbox-btn-close.gif',		// (string) Path and the name of the close btn
+			imageBlank:				'/images/lightbox-blank.gif',			// (string) Path and the name of a blank image (one pixel)
 			// Configuration related to container image box
 			containerBorderSize:	10,			// (integer) If you adjust the padding in the CSS for the container, #lightbox-container-image-box, you will need to update this value
 			containerResizeSpeed:	400,		// (integer) Specify the resize duration of container image. These number are miliseconds. 400 is default.
@@ -154,6 +154,7 @@
 			// If window was resized, calculate the new overlay dimensions
 			$(window).resize(function() {
 				// Get page sizes
+
 				var arrPageSizes = ___getPageSize();
 				// Style overlay and show it
 				$('#jquery-overlay').css({
@@ -215,9 +216,9 @@
 				if ( $.browser.msie ) {
 					___pause(250);
 				} else {
+				} else {
 					___pause(100);	
 				}
-			} 
 			$('#lightbox-container-image-data-box').css({ width: intImageWidth });
 			$('#lightbox-nav-btnPrev,#lightbox-nav-btnNext').css({ height: intImageHeight + (settings.containerBorderSize * 2) });
 		};
@@ -246,7 +247,7 @@
 			// If we have a image set, display 'Image X of X'
 			if ( settings.imageArray.length > 1 ) {
 				$('#lightbox-image-details-currentNumber').html(settings.txtImage + ' ' + ( settings.activeImage + 1 ) + ' ' + settings.txtOf + ' ' + settings.imageArray.length).show();
-			}		
+			}
 		}
 		/**
 		 * Display the button navigations
@@ -257,6 +258,7 @@
 
 			// Instead to define this configuration in CSS file, we define here. And it´s need to IE. Just.
 			$('#lightbox-nav-btnPrev,#lightbox-nav-btnNext').css({ 'background' : 'transparent url(' + settings.imageBlank + ') no-repeat' });
+
 			
 			// Show the prev button, if not the first image in set
 			if ( settings.activeImage != 0 ) {
@@ -281,7 +283,7 @@
 					});
 				}
 			}
-			
+
 			// Show the next button, if not the last image in set
 			if ( settings.activeImage != ( settings.imageArray.length -1 ) ) {
 				if ( settings.fixedNavigation ) {
@@ -395,7 +397,7 @@
 		 */
 		function ___getPageSize() {
 			var xScroll, yScroll;
-			if (window.innerHeight && window.scrollMaxY) {	
+			if (window.innerHeight && window.scrollMaxY) {
 				xScroll = window.innerWidth + window.scrollMaxX;
 				yScroll = window.innerHeight + window.scrollMaxY;
 			} else if (document.body.scrollHeight > document.body.offsetHeight){ // all but Explorer Mac
@@ -408,7 +410,7 @@
 			var windowWidth, windowHeight;
 			if (self.innerHeight) {	// all except Explorer
 				if(document.documentElement.clientWidth){
-					windowWidth = document.documentElement.clientWidth; 
+					windowWidth = document.documentElement.clientWidth;
 				} else {
 					windowWidth = self.innerWidth;
 				}
@@ -419,16 +421,16 @@
 			} else if (document.body) { // other Explorers
 				windowWidth = document.body.clientWidth;
 				windowHeight = document.body.clientHeight;
-			}	
+			}
 			// for small pages with total height less then height of the viewport
 			if(yScroll < windowHeight){
 				pageHeight = windowHeight;
-			} else { 
+			} else {
 				pageHeight = yScroll;
 			}
 			// for small pages with total width less then width of the viewport
-			if(xScroll < windowWidth){	
-				pageWidth = xScroll;		
+			if(xScroll < windowWidth){
+				pageWidth = xScroll;
 			} else {
 				pageWidth = windowWidth;
 			}
@@ -451,7 +453,7 @@
 				xScroll = document.documentElement.scrollLeft;
 			} else if (document.body) {// all other Explorers
 				yScroll = document.body.scrollTop;
-				xScroll = document.body.scrollLeft;	
+				xScroll = document.body.scrollLeft;
 			}
 			arrayPageScroll = new Array(xScroll,yScroll);
 			return arrayPageScroll;
@@ -461,7 +463,7 @@
 		  *
 		  */
 		 function ___pause(ms) {
-			var date = new Date(); 
+			var date = new Date();
 			curDate = null;
 			do { var curDate = new Date(); }
 			while ( curDate - date < ms);
@@ -470,3 +472,4 @@
 		return this.unbind('click').click(_initialize);
 	};
 })(jQuery); // Call and execute the function immediately passing the jQuery object
+

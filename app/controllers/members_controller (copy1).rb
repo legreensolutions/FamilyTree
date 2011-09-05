@@ -2,10 +2,6 @@ class MembersController < ApplicationController
  #  before_filter :require_user, :only => [:index, :edit, :update,:new,:create]
   # GET /members
   # GET /members.xml
-
-layout :resolve_layout
-
-
   def index
 
      if params[:search]
@@ -25,16 +21,12 @@ layout :resolve_layout
   # GET /members/1
   # GET /members/1.xml
   def show
-
     @member = Member.find(params[:id])
 
     respond_to do |format|
-
       format.html # show.html.erb
-
       format.xml  { render :xml => @member }
     end
-
   end
 
   # GET /members/new
@@ -63,7 +55,8 @@ layout :resolve_layout
      if @member.save
        #relation ship saving
          unless params[:relation][:user_id].blank?
-             create_relation(params[:relation][:user_id],@member.id)
+        #  Relation.create(:user_id=>params[:relation][:user_id],:related_user_id=>@member.id,:relation_id=>params[:relation][:relation_id])
+           create_relation(params[:relation][:user_id],@member.id)
         end
 
         #enable signning of a member by saving to users table also
@@ -107,13 +100,17 @@ layout :resolve_layout
 
       end
     end
-
+    session[:relation_id] = ""
+    session[:member_id] = ""
+    session[:relation_name] = ""
   end
 
   # PUT /members/1
   # PUT /members/1.xml
   def update
     @member = Member.find(params[:id])
+
+
     respond_to do |format|
        unless params[:enable_sign_in].blank?
          if @member.user_id.blank?
@@ -142,15 +139,14 @@ layout :resolve_layout
       if @member.update_attributes(params[:member])
         unless params[:relation][:user_id].blank?
           create_relation(params[:relation][:user_id],@member.id)
-        end
+#Relation.create(:user_id=>params[:relation][:user_id],:related_user_id=>@member.id,:relation_id=>params[:relation][:relation_id]) if Relation.find_by_user_id_and_relation_id(params[:relation][:user_id],params[:relation][:relation_id]).blank?
+      end
            unless params[:relation][:user_id].blank?
           #  format.html { redirect_to(session[:return_url], :notice => 'Member was successfully updated.') }
           format.html{redirect_to(member_path(params[:relation][:user_id]), :notice => 'Relation created.')}
-
           else
           format.html { redirect_to(members_path, :notice => 'Member was successfully updated.') }
           format.xml  { head :ok }
-
           end
 
       else
@@ -160,36 +156,25 @@ layout :resolve_layout
 
       end
     end
-
+    session[:relation_id] = ""
+    session[:member_id] = ""
+    session[:relation_name] = ""
   end
 
   # DELETE /members/1
   # DELETE /members/1.xml
   def destroy
     @member = Member.find(params[:id])
-    if @member.parent_member_relations.find(:all,:conditions=>['relation_id = ?',PARENT]).blank?
-      unless @member.user.nil?
-        @member.user.destroy
-      end
-      #delelete parent and spouse relation
-      @relations = @member.child_member_relations
-      unless @relations.nil?
-        @relations.each do |relation|
-            relation.destroy
-        end
-      end
-      @relation = Relation.find_by_related_user_id_and_relation_id(@member.id,SPOUSE)
-      @relation.destroy unless @relation.blank?
-      @member.destroy
-      respond_to do |format|
-        format.html { redirect_to(members_url) }
-        format.xml  { head :ok }
-      end
-  else
-    flash[:notice] = "You cannot delete this member without deleting this member's children"
-    redirect_to(members_url)
+    unless @member.user.nil?
+      @member.user.destroy
+    end
+    @member.destroy
+
+    respond_to do |format|
+      format.html { redirect_to(members_url) }
+      format.xml  { head :ok }
+    end
   end
-end
 
   def tree
   end
@@ -197,64 +182,55 @@ end
   def family_tree
   end
 
-  def assign_post
-     if  params[:post_id]
-       @member = Member.find(params[:member_id])
-       @posts = Post.all
-      if params[:post_id].to_i == 0
-        flash[:notice] = 'Please select  post'
-
-      else
-        @member.update_attribute('post_id',params[:post_id])
-        flash[:notice] = 'Success'
-        redirect_to members_path
-      end
-    else
-      @member = Member.find(params[:id])
-      @posts = Post.all
-  end
-
-  end
 
 private
-#related_user_id => new member_id
-#user_id => my id
   def create_relation(user_id,related_user_id)
-    @me = Member.find_by_id(user_id)
-
     #add relationship parent
     if (session[:relation_name] == 'Father' || session[:relation_name] == 'Mother')
-       Relation.add_parent_relationship(@me,user_id,related_user_id)
+      Relation.create(:user_id=>user_id,:related_user_id=>related_user_id,:relation_id=>PARENT) if Relation.find_by_user_id_and_relation_id(related_user_id,PARENT).blank?
+
+    #my_parents
+    @relations = Relation.find(:all,:conditions=>['user_id = ? and relation_id = ?',user_id,PARENT])
+
+    my_parents = []
+    my_siblings = []
+    unless @relations.blank?
+      @relations.each do |relation|
+        my_parents << relation.related_user_id
+         #my_siblings
+    @my_siblings = Relation.find(:all,:conditions=>['related_user_id = ? and relation_id = ? and user_id != ?',relation.related_user_id,PARENT,user_id]) unless relation.blank?
+         unless @my_siblings.blank?
+            @my_siblings.each do |sibling|
+              my_siblings << sibling.user_id
+            end
+          end
+      end
     end
 
-  #add relationship children
-     if (session[:relation_name] == 'Sons' || session[:relation_name] == 'Daughters')
-      Relation.add_children_relationship(user_id,related_user_id)
-     end
 
-
-    #add relationship siblings
-     if (session[:relation_name] == 'Brothers' || session[:relation_name] == "Sisters")
-        Relation.add_sibling_relationship(@me,user_id,related_user_id)
-     end
-
-    # Add spouse
-    if session[:relation_name] == 'Spouse'
-       Relation.add_spouse_relationship(@me,user_id,related_user_id)
+  my_parents.each do |parent|
+    my_siblings.each do |sibling|
+      Relation.create(:user_id=>sibling,:related_user_id=>parent,:relation_id=>PARENT) if
+      Relation.find_by_user_id_and_related_user_id_and_relation_id(sibling,parent,PARENT).blank?
     end
-    session[:relation_id] = ""
-    session[:member_id] = ""
-    session[:relation_name] = ""
   end
 
-   def resolve_layout
-    case action_name
-    when "show"
-      "application_alternate"
-    else
-      "application"
+end
+
+  #add relationship children
+     if session[:relation_name] == 'Children'
+      Relation.create(:user_id=>related_user_id,:related_user_id=>user_id,:relation_id=>PARENT) if Relation.find_by_user_id_and_relation_id(related_user_id,PARENT).blank?
     end
 
+    #add relationship siblings
+     if session[:relation_name] == 'Sibling'
+      @relation = Relation.find(:first,:conditions=>['user_id = ? and relation_id = ?',user_id,PARENT])
+      Relation.create(:user_id=>@member.id,:related_user_id=>@relation.related_user_id,:relation_id=>PARENT) if Relation.find_by_user_id_and_relation_id(related_user_id,PARENT).blank?
+      @another_parent_relation = Relation.find(:first,:conditions=>['user_id = ? and relation_id = ? and related_user_id != ?',user_id,PARENT,@relation.related_user_id])
+      if @another_parent_relation
+        Relation.create(:user_id=>@member.id,:related_user_id=>@another_parent_relation.related_user_id,:relation_id=>PARENT) if Relation.find_by_user_id_and_relation_id_and_related_user_id(related_user_id,PARENT,@another_parent_relation.related_user_id).blank?
+      end
+    end
   end
 
 end

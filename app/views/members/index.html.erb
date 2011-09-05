@@ -21,8 +21,10 @@
     <td><%= link_to member.name ,member_path(member.id) %></td>
     <td><%#= member.user.email unless member.user.nil? %><%= member.house_name %></td>
     <td><%#= image_tag member.photo.url(:small)%></td>
-    <td><%#= link_to 'Show', member %></td>
-    <td><%#= link_to 'Add Relations', :controller=>'relations',:action=>'index',:id=>member.id %></td>
+    <% if current_user.is_admin? %>
+    <td><%= link_to 'Post', :controller=>'members',:action=>'assign_post',:id=>member.id %></td>
+    <% end %>
+    <td><%= member.post ? member.post.name: 'Ordinary member' %></td>
     <td><%= link_to 'Edit', edit_member_path(member) %></td>
     <td><%= link_to 'Destroy', member, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>

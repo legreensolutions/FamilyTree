@@ -1,7 +1,7 @@
 <br /><% session[:relation_id] = params[:relation_id]
 session[:member_id] = params[:user_id]
 session[:relation_name] = params[:relation_name]%>
-<% @members = Member.all %>
+<% @members = Member.find(:all,:conditions=>['id != ?',session[:member_id]],:order=>'name ASC') %>
 <%= select_tag(:search, "<option value='0'>-Select a Member</option>" + options_from_collection_for_select(@members, :id, :name)) %>
 
 
@@ -20,7 +20,7 @@ session[:relation_name] = params[:relation_name]%>
 <%= render :partial => "members/form", :object => f %>
 
 <% fields_for :relation do |rf| %>
-<%= rf.hidden_field :user_id,:value=>session[:member_id]%>
+<%= rf.hidden_field :user_id,:value=>session[:member_id] %>
 <%= rf.hidden_field :relation_id,:value=>session[:relation_id]%>
 <%= hidden_field_tag 'relation_name',session[:relation_name]%>
 <% end %>

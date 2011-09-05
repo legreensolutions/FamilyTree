@@ -2,7 +2,7 @@
 <ul>
 <% @galleries.each do |g|%>
    <li style="display:none">
-        <%= link_to 'img',g.photo.url(:small) %>
+        <%= link_to 'img',g.photo.url(:medium) %>
         </li>
 <% end %>
 </ul>

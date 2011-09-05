@@ -6,7 +6,7 @@ class Member < ActiveRecord::Base
   belongs_to :district
   validates_presence_of :name
   validates_presence_of :gender_id
-
+  belongs_to :post
 
 
   has_many :child_member_relations, :class_name => "Relation", :foreign_key => "user_id"

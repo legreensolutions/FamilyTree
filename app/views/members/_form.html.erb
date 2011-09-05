@@ -18,16 +18,23 @@
     checked_m = true
    elsif session[:relation_name] == 'Mother' or session[:relation_name] == 'Daughters' or session[:relation_name] == 'Sisters'
      checked_f = true
+     else
+      if Member.find_by_id(session[:member_id]).gender_id == MALE
+        checked_f = true
+      else
+        checked_m = true
+      end
    end %>
   <td><%= form.radio_button :gender_id,MALE,:checked=>checked_m %>Male
-
   <%= form.radio_button :gender_id,FEMALE,:checked=>checked_f %>Female
-  <% else %>
-    <td><%= form.radio_button :gender_id,MALE %>Male
-
-  <%= form.radio_button :gender_id,FEMALE %>Female
-  <% end %>
   </td>
+  <% else %>
+    <td>
+    <%= form.radio_button :gender_id,MALE %>Male
+    <%= form.radio_button :gender_id,FEMALE %>Female
+  </td>
+  <% end %>
+
 </tr>
 <tr>
   <td><%= form.label 'Family' %></td>

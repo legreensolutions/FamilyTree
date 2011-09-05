@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   ACTIVE = 1
-
+  has_one :member,:dependent=>:destroy
 
   #authlogic validations
   acts_as_authentic do |c|

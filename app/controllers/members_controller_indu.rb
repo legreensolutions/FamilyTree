@@ -1,11 +1,8 @@
 class MembersController < ApplicationController
  #  before_filter :require_user, :only => [:index, :edit, :update,:new,:create]
+
   # GET /members
   # GET /members.xml
-
-layout :resolve_layout
-
-
   def index
 
      if params[:search]
@@ -25,13 +22,10 @@ layout :resolve_layout
   # GET /members/1
   # GET /members/1.xml
   def show
-
     @member = Member.find(params[:id])
 
     respond_to do |format|
-
       format.html # show.html.erb
-
       format.xml  { render :xml => @member }
     end
 
@@ -246,16 +240,5 @@ private
     session[:member_id] = ""
     session[:relation_name] = ""
   end
-
-   def resolve_layout
-    case action_name
-    when "show"
-      "application_alternate"
-    else
-      "application"
-    end
-
-  end
-
 end
 

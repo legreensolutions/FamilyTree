@@ -1,0 +1,14 @@
+<br />
+
+<div class="page_container">
+<%= @member.name %><br />
+<% unless @member.photo_file_name.nil? %>
+  <%= link_to image_tag(@member.photo.url(:thumb)),member_path(@member.id)%>
+<% end %>
+</div>
+<% form_tag '/members/assign_post',:method=>'post' do %>
+<%= select_tag('post_id', "<option value='0'>-Select .....</option>" + options_from_collection_for_select(@posts, :id, :name,@member.post_id)) %><br /> <br />
+<%= hidden_field_tag 'member_id',@member.id %>
+<%= submit_tag 'Assign',:name=>'assign' %>
+<% end %>
+

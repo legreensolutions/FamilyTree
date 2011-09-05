@@ -1,5 +1,11 @@
-<br /><div class="page_container"><%= session[:user_id] %>
-<% if params[:relation].blank? %>
+<br />
+<% if @member.user_id == current_user.id %>
+  <div align="right">
+    <%= link_to 'Change password',:controller=>'password_resets',:action=>'change_password' %>
+  </div>
+<% end %>
+<div class="page_container">
+<% if session[:relation_name].blank? %>
 <h3>Editing member</h3>
 <% else %>
   <% case params[:relation_name].upcase
