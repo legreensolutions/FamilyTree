@@ -4,12 +4,9 @@
  <%= link_to (image_tag "/images/menu/mnu_events" + (uri=="/events" ? '.png' : '0.png'), :mouseover => "/images/menu/mnu_events.png"),events_path -%>
 
 
-           <%- unless Gallery.find(:first,:conditions=>['public=?',true]).nil? -%>
-              <%= link_to (image_tag "/images/menu/mnu_gallery" + (uri=="/galleries" ? '.png' : '0.png'), :mouseover => "/images/menu/mnu_gallery.png"),Gallery.find(:first,:conditions=>['public=?',true]).photo.url(:original) -%>
-              <%= render :partial=>'galleries/list_of_images',:locals => {:id => Gallery.find(:first,:conditions=>['public=?',true]).id } -%>
-          <% else -%>
+
               <%= link_to (image_tag "/images/menu/mnu_gallery" + (uri=="/galleries" ? '.png' : '0.png'), :mouseover => "/images/menu/mnu_gallery.png"),galleries_path -%>
-          <%- end -%> <!-- GALLERY MENU  -->
+ <!-- GALLERY MENU  -->
 
 
 

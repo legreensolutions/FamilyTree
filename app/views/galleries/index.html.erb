@@ -2,21 +2,14 @@
 
 <div class="page_container">
 <h3>Listing galleries</h3>
-
-<table align="center">
-  <tr>
-  </tr>
-
+<div id="gallery">
 <% @galleries.each do |gallery| %>
-  <tr>
-    <td><%= gallery.title %></td>
-    <td><%= image_tag gallery.photo.url(:thumb)%></td>
-    <td><%= link_to 'Show', gallery %></td>
-    <td><%= link_to 'Edit', edit_gallery_path(gallery) %></td>
-    <td><%= link_to 'Destroy', gallery, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+ <ul style="list-style-type: none;">
+
+    <li><%= link_to image_tag(gallery.photo.url(:thumb)),gallery.photo.url(:medium),:title=>gallery.title %></li>
+    </ul>
 <% end %>
-</table>
+</div>
 </div>
 <br />
 
