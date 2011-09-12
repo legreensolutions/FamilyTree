@@ -27,14 +27,11 @@
 
   <div id = "left_top"></div>
   <div id = "right_top">mannekattil.com</div>
-
   <div id = "left_top1"></div>
   <div id = "right_top1"><br /><br /><%=image_tag "../images/quote.png"%></div>
-  <div style="clear:both;"></div>
-
-  <div id="menu_left"></div>
+  <div style="clear:both;height:0px;width:0px;overflow:hidden;"></div>
   <div id="menu">
-    <%= render :partial=>'home/menu' %>
+    <%= render :partial=>'home/menu' -%>
   </div>
 
     <% flash.each do |key,value| %>
@@ -44,8 +41,8 @@
                 <% end -%>
 
   <%= yield :layout %>
-  <div class="footer_spacing"></div>
-  <div style="clear:both;"></div>
+  <div class="footer_spacing">XXXXX</div>
+  <div style="clear:both;">YYYY</div>
   <div id="footer">&copy;Mannekattil.com</div>
 
 </div>
