@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :posts
-
+  map.connect 'members/committee_members', :controller => :members, :action => :committee_members
   map.tree 'tree', :controller => 'members', :action => 'tree'
   map.family_tree 'family_tree', :controller => 'members', :action => 'family_tree'
   map.resources :relations, :collection => {:add_relation=>:get,:find=>:get}

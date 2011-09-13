@@ -1,5 +1,5 @@
 <% @families = Family.find(:all,:order=>'id desc',:limit=>5) %>
-<h2 class="box"><%= link_to "Families &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +  image_tag ("../images/right_arrow.png"), "famil_tree" %></h2>
+<h2 class="box"><%= link_to "Families &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +  image_tag ("../images/right_arrow.png"), "family_tree" %></h2>
 <table align="center">
 
 <% @families.each do |family| %>

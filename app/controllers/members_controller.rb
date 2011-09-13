@@ -213,8 +213,11 @@ end
       @member = Member.find(params[:id])
       @posts = Post.all
   end
+ end
 
-  end
+ def committee_members
+   @members = Member.find(:all,:include=>'post',:conditions=>['post_id != ?',""],:order=>'posts.level')
+ end
 
 private
 #related_user_id => new member_id
