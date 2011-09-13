@@ -257,4 +257,7 @@ div a img.children {
     height:147px;
     width:798px;
 }
+#gallery ul li {
+ float:left;
+}
 

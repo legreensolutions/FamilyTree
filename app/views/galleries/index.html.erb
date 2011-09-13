@@ -1,7 +1,8 @@
 <br />
 
 <div class="page_container">
-<h3>Listing galleries</h3>
+<h3>Gallery</h3>
+<%= link_to '(Add new image)', new_gallery_path if current_user %>
 <div id="gallery">
 <% @galleries.each do |gallery| %>
  <ul style="list-style-type: none;">
@@ -12,6 +13,4 @@
 </div>
 </div>
 <br />
-
-<%= link_to 'New gallery', new_gallery_path %>
 
