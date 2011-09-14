@@ -1,0 +1,21 @@
+<br /><div class="page_container">
+<h3>Listing</h3>
+
+<table align="center">
+  <tr>
+  </tr>
+
+<% @content_managements.each do |content_management| %>
+  <tr>
+    <td><%= content_management.page%></td>
+     <td><%= link_to 'Show', content_management %></td>
+    <td><%= link_to 'Edit', edit_content_management_path(content_management) %></td>
+    <td><%= link_to 'Destroy', content_management, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+</div>
+<br />
+
+<%= link_to 'New content_management', new_content_management_path %>
+

@@ -1,0 +1,14 @@
+<br /><div class="page_container">
+<h3>Edit</h3>
+
+<% form_for(@content_management) do |f| %>
+  <%= f.error_messages %>
+   <%= render :partial => "form", :object => f %>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+</div>
+<%= link_to 'Show', @content_management %> |
+<%= link_to 'Back', content_managements_path %>
+

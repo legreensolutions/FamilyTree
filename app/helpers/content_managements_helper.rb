@@ -1,0 +1,2 @@
+module ContentManagementsHelper
+end

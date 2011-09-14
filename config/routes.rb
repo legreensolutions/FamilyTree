@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :content_managements
+
   map.resources :posts
   map.connect 'members/committee_members', :controller => :members, :action => :committee_members
   map.tree 'tree', :controller => 'members', :action => 'tree'

@@ -13,18 +13,21 @@
   </table><br />
 <% unless @members.blank? %>
 <table align="center">
-  <tr><th>Name</th><th>House</th></tr>
+  <tr><th>Name</th><th>House</th><th>Post</th></tr>
 
 <% @members.each do |member| %>
   <tr>
   <%# ,:controller=>'relations',:action=>'index',:id=>member.id%>
     <td><%= link_to member.name ,member_path(member.id) %></td>
     <td><%#= member.user.email unless member.user.nil? %><%= member.house_name %></td>
-    <td><%#= image_tag member.photo.url(:small)%></td>
+   <!-- <td><%#= image_tag member.photo.url(:small)%></td> -->
     <% if current_user.is_admin? %>
-    <td><%= link_to 'Post', :controller=>'members',:action=>'assign_post',:id=>member.id %></td>
-    <% end %>
+    <!--<td><%#= link_to 'Post', :controller=>'members',:action=>'assign_post',:id=>member.id %></td> -->
+
+    <td><%= link_to member.post ? member.post.name: 'Ordinary member', :controller=>'members',:action=>'assign_post',:id=>member.id  %></td>
+    <% else %>
     <td><%= member.post ? member.post.name: 'Ordinary member' %></td>
+    <% end %>
     <td><%= link_to 'Edit', edit_member_path(member) %></td>
     <td><%= link_to 'Destroy', member, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>

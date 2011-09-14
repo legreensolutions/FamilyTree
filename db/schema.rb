@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110902061923) do
+ActiveRecord::Schema.define(:version => 20110914094150) do
 
   create_table "alert_uploads", :force => true do |t|
     t.integer  "alert_id"
@@ -24,6 +24,15 @@ ActiveRecord::Schema.define(:version => 20110902061923) do
     t.text     "description"
     t.date     "alert_date"
     t.boolean  "obsolete",    :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "content_managements", :force => true do |t|
+    t.string   "page",           :null => false
+    t.string   "identification", :null => false
+    t.integer  "no_of_chars",    :null => false
+    t.string   "description",    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -127,6 +136,7 @@ ActiveRecord::Schema.define(:version => 20110902061923) do
 
   create_table "posts", :force => true do |t|
     t.string   "name"
+    t.integer  "level",      :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
