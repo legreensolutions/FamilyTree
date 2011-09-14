@@ -1,5 +1,21 @@
 <div class="page_container">
 <h3>Committee Members</h3>
+
+<div align="center">
+<% @members.each do |member| %>
+<div>
+  <%= image_tag member.photo.url(:thumb) %>
+  <%= member.name %>
+  <%= member.post.name %>
+</div>
+<% end %>
+</div>
+</div>
+
+
+
+
+
 <table align="center">
 <% @members.each do |member| %>
 <tr>

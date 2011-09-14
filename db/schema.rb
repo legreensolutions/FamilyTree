@@ -136,9 +136,9 @@ ActiveRecord::Schema.define(:version => 20110914094150) do
 
   create_table "posts", :force => true do |t|
     t.string   "name"
-    t.integer  "level",      :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "level"
   end
 
   create_table "relations", :force => true do |t|
