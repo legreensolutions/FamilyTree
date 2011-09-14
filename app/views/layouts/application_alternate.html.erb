@@ -16,8 +16,10 @@
 
     <!-- Ativando o jQuery lightBox plugin -->
     <script type="text/javascript">
-    $(function() {
-        $('#gallery a').lightBox();
+    $.noConflict();
+
+    jQuery(function() {
+        jQuery('#gallery a').lightBox();
     });
     </script>
 
