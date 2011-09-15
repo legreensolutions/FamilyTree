@@ -18,9 +18,8 @@
     <tr>
       <td><%= user.email %></td>
       <td><%= user.is_admin? ? 'Admin':'Data Entry Operator'%>
-      <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to image_tag('edit.png'), edit_user_path(user) %></td>
+    <td><%= link_to image_tag('delete.png'), user, :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
   <% end %>
   </table>

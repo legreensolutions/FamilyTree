@@ -1,4 +1,4 @@
-<h1>Editing news_item</h1>
+<h3>Editing news_item</h3>
 <table align="center">
 <% form_for @news_item ,:html=>{:multipart=>true} do |f| %>
   <%= f.error_messages %>
@@ -25,7 +25,4 @@
   </tr>
 <% end %>
 </table>
-
-<%= link_to 'Show', @news_item %> |
-<%= link_to 'Back', news_items_path %>
 

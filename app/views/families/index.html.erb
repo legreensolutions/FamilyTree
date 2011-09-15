@@ -7,8 +7,8 @@
   <tr>
     <td><%=link_to h(family.name) ,family_path(family)%></td>
     <% if current_user and current_user.is_admin %>
-    <td><%= link_to 'Edit', edit_family_path(family) %></td>
-    <td><%= link_to 'Destroy', family, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to image_tag('edit.png'), edit_family_path(family) %></td>
+    <td><%= link_to image_tag('delete.png'), family, :confirm => 'Are you sure?', :method => :delete %></td>
     <% end %>
   </tr>
 <% end %>

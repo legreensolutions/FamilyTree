@@ -8,9 +8,8 @@
 <% @districts.each do |district| %>
   <tr>
     <td><%=h district.name %></td>
-    <td><%= link_to 'Show', district %></td>
-    <td><%= link_to 'Edit', edit_district_path(district) %></td>
-    <td><%= link_to 'Destroy', district, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to image_tag('edit.png'), edit_district_path(district) %></td>
+    <td><%= link_to image_tag('delete.png'), district, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

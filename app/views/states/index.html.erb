@@ -8,9 +8,8 @@
 <% @states.each do |state| %>
   <tr>
     <td><%=h state.name %></td>
-    <td><%= link_to 'Show', state %></td>
-    <td><%= link_to 'Edit', edit_state_path(state) %></td>
-    <td><%= link_to 'Destroy', state, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to image_tag('edit.png'), edit_state_path(state) %></td>
+    <td><%= link_to image_tag('delete.png'), state, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

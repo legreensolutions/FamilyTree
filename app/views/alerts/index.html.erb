@@ -18,9 +18,8 @@
          'No Image'
          <% end %>
     </td>
-    <td><%= link_to 'Show', alert %></td>
-    <td><%= link_to 'Edit', edit_alert_path(alert) %></td>
-    <td><%= link_to 'Destroy', alert, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to image_tag('edit.png'), edit_alert_path(alert) %></td>
+    <td><%= link_to image_tag('delete.png'), alert, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

@@ -8,9 +8,8 @@
 <% @countries.each do |country| %>
   <tr>
     <td><%=h country.name %></td>
-    <td><%= link_to 'Show', country %></td>
-    <td><%= link_to 'Edit', edit_country_path(country) %></td>
-    <td><%= link_to 'Destroy', country, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to image_tag('edit.png'), edit_country_path(country) %></td>
+    <td><%= link_to image_tag('delete.png'), country, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
