@@ -3,6 +3,6 @@
 <p>Date:<%= @event.event_date %>
 <% @upload = @event.event_uploads.first %>
 <%unless @upload.nil? %><p><%= image_tag @upload.photo.url(:thumb) %></p><% end %>
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<%#= link_to 'Edit', edit_event_path(@event) %>
+<%#= link_to 'Back', events_path %>
 

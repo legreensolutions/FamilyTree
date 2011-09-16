@@ -44,12 +44,12 @@ class AlertsController < ApplicationController
   # POST /alerts.xml
   def create
     @alert = Alert.new(params[:alert])
-    NO_OF_IMAGES.times {@alert.alert_uploads.build}
     respond_to do |format|
       if @alert.save
         format.html { redirect_to(alerts_path, :notice => 'Alert was successfully created.') }
         format.xml  { render :xml => @alert, :status => :created, :location => @alert }
       else
+        NO_OF_IMAGES.times {@alert.alert_uploads.build}
         format.html { render :action => "new" }
         format.xml  { render :xml => @alert.errors, :status => :unprocessable_entity }
       end
@@ -66,6 +66,9 @@ class AlertsController < ApplicationController
         format.html { redirect_to(alerts_path, :notice => 'Alert was successfully updated.') }
         format.xml  { head :ok }
       else
+        if @alert.alert_uploads.count != NO_OF_IMAGES
+      @alert.alert_uploads.count + ( NO_OF_IMAGES - @alert.alert_uploads.count).times{@alert.alert_uploads.build}
+    end
         format.html { render :action => "edit" }
         format.xml  { render :xml => @alert.errors, :status => :unprocessable_entity }
       end

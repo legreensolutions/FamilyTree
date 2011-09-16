@@ -44,12 +44,13 @@ class EventsController < ApplicationController
   # POST /events.xml
   def create
     @event = Event.new(params[:event])
-    NO_OF_IMAGES.times {@event.event_uploads.build}
+
     respond_to do |format|
       if @event.save
         format.html { redirect_to(events_path, :notice => 'Event was successfully created.') }
         format.xml  { render :xml => @event, :status => :created, :location => @event }
       else
+        NO_OF_IMAGES.times {@event.event_uploads.build}
         format.html { render :action => "new" }
         format.xml  { render :xml => @event.errors, :status => :unprocessable_entity }
       end
@@ -66,6 +67,9 @@ class EventsController < ApplicationController
         format.html { redirect_to(events_path, :notice => 'Event was successfully updated.') }
         format.xml  { head :ok }
       else
+        if @event.event_uploads.count != NO_OF_IMAGES
+      @event.event_uploads.count + ( NO_OF_IMAGES - @event.event_uploads.count).times{@event.event_uploads.build}
+    end
         format.html { render :action => "edit" }
         format.xml  { render :xml => @event.errors, :status => :unprocessable_entity }
       end

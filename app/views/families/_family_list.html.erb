@@ -4,7 +4,7 @@
 
 <% @families.each do |family| %>
   <tr>
-    <td><%=h family.name %></td>
+    <td><%=link_to h(family.name),family_path(family) %></td>
   </tr>
 <% end %>
 </table>
