@@ -13,7 +13,7 @@
     <% @upload = event.event_uploads.first %>
     <td>
       <%unless @upload.nil? %>
-          <%= image_tag @upload.photo.url(:thumb) %>
+          <%= link_to (image_tag @upload.photo.url(:thumb)),event_path(event) %>
          <% else %>
          'No Image'
          <% end %>
@@ -22,7 +22,7 @@
     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 
     <td>
-      <%= event.title %><br />
+      <%= link_to event.title,event_path(event) %><br />
       <%= event.description %><br />
       <%= event.event_date %><br /><br />
       <%= link_to image_tag('edit.png'), edit_event_path(event) %><%= link_to image_tag('delete.png'), event, :confirm => 'Are you sure?', :method => :delete %>
