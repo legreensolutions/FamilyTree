@@ -1,25 +1,35 @@
 &nbsp;<div class="page_container">
-<h3>Listing events</h3>
+<h3>Events</h3>
 
 <table align="center">
   <tr>
-  <th>Title</th><th>Description</th><th>Date</th><th>Image</th>
+  <!-- th>Title</th><th>Description</th><th>Date</th><th>Image</th -->
   </tr>
 
 <% @events.each do |event| %>
   <tr>
-    <td><%= event.title %></td>
-    <td><%= event.description %></td>
-    <td><%= event.event_date %></td>
+
+
     <% @upload = event.event_uploads.first %>
-    <td><%unless @upload.nil? %>
+    <td>
+      <%unless @upload.nil? %>
           <%= image_tag @upload.photo.url(:thumb) %>
          <% else %>
          'No Image'
          <% end %>
     </td>
-    <td><%= link_to image_tag('edit.png'), edit_event_path(event) %></td>
-    <td><%= link_to image_tag('delete.png'), event, :confirm => 'Are you sure?', :method => :delete %></td>
+
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+
+    <td>
+      <%= event.title %><br />
+      <%= event.description %><br />
+      <%= event.event_date %><br /><br />
+      <%= link_to image_tag('edit.png'), edit_event_path(event) %><%= link_to image_tag('delete.png'), event, :confirm => 'Are you sure?', :method => :delete %>
+    </td>
+
+    <td></td>
+    <td></td>
   </tr>
 <% end %>
 </table>

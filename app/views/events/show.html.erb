@@ -1,8 +1,20 @@
-<p>Title:<%= @event.title %></p>
-<p>Description<%= @event.description %></p>
-<p>Date:<%= @event.event_date %>
-<% @upload = @event.event_uploads.first %>
-<%unless @upload.nil? %><p><%= image_tag @upload.photo.url(:thumb) %></p><% end %>
-<%#= link_to 'Edit', edit_event_path(@event) %>
-<%#= link_to 'Back', events_path %>
+<div style = "margin-left:auto;margin-right:auto;text-align:center;width:800px;">
+  <div>
+
+    <div style="float:left;">
+    <% @upload = @event.event_uploads.first %>
+    <%unless @upload.nil? %><p><%= image_tag @upload.photo.url(:original), :width => "400px;" %></p><% end %>
+    </div>
+
+    <div style="float:left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </div>
+
+    <div style="float:left;text-align:left;">
+      <br /><br /><br /><br />
+      <p><h2><%= @event.title %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= @event.event_date %></h2></p>
+      <p><%= @event.description %></p>
+    </div>
+
+  </div>
+</div>
 

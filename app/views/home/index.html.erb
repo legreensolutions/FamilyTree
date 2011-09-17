@@ -7,9 +7,9 @@
     </div><!-- END OF home page text -->
 
     <div id="family_container"><%= render :partial=>'families/family_list.html.erb' %></div>
-    <div><%= link_to 'Committee',:controller=>'members',:action=>'committee_members' %></div>
+    <div class="left_menu"><%= link_to 'Committee',:controller=>'members',:action=>'committee_members' %></div>
     <% if current_user and current_user.is_admin %>
-    <div><%= link_to 'Content Management' ,content_managements_path %></div>
+    <div class="left_menu"><%= link_to 'Content Management' ,content_managements_path %></div>
     <% end %>
 </div> <!-- END OF home_page_content-->
 <div style="clear:both;">&nbsp;</div>
