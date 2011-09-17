@@ -2,7 +2,13 @@ class GalleriesController < ApplicationController
   # GET /galleries
   # GET /galleries.xml
   def index
+
+  if current_user
     @galleries = Gallery.all
+  else
+    @galleries = Gallery.find(:all, :conditions => ["public=true"])
+  end
+
 
     respond_to do |format|
       format.html # index.html.erb

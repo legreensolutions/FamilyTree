@@ -5,10 +5,11 @@
 <%= link_to '(Add new image)', new_gallery_path if current_user %>
 <div id="gallery">
 <% @galleries.each do |gallery| %>
- <ul style="list-style-type: none;">
 
+    <ul style="list-style-type: none;">
     <li><%= link_to image_tag(gallery.photo.url(:thumb)),gallery.photo.url(:medium),:title=>gallery.title %></li>
     </ul>
+
 <% end %>
 </div>
 </div>
