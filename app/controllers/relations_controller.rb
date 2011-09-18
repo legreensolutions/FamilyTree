@@ -7,9 +7,7 @@ class RelationsController < ApplicationController
   end
 
   def add_relation
-
     @member = Member.new
-
   end
 
 

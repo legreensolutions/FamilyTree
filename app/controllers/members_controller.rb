@@ -51,7 +51,9 @@ layout :resolve_layout
   # GET /members/1/edit
   def edit
     @member = Member.find(params[:id])
-
+    session[:relation_id] = ""
+    session[:member_id] = ""
+    session[:relation_name] = ""
   end
 
   # POST /members

@@ -8,6 +8,7 @@
 <% if session[:relation_name].blank? %>
 <h3>Editing member</h3>
 <% else %>
+  <% if params[:relation_name] %>
   <% case params[:relation_name].upcase
   when 'FATHER'
      relation = 'Father'
@@ -21,8 +22,8 @@
     relation = 'Spouse'
 
   end %>
-<h3>Add Relative <%= "#{relation}" %> </h3>
-<% end %>
+<h3>Add <%= params[:relation_name]%> of <%= Member.find_by_id(session[:member_id]).name %> </h3>
+<% end end %>
 <% form_for @member, :html => { :multipart => true } do |f| %>
   <%= f.error_messages %>
   <%= error_messages_for 'user'%>

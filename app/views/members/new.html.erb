@@ -3,6 +3,7 @@
 <% if params[:relation].blank? %>
 <h3>New member</h3>
 <% else %>
+<% if params[:relation_name] %>
   <% case params[:relation_name].upcase
   when 'FATHER'
      relation = 'Father'
@@ -18,8 +19,8 @@
   end %>
 <% @members = Member.all %>
 <%= select_tag(:search, "<option value='0'>-Select a Member</option>" + options_from_collection_for_select(@members, :id, :name)) %>
-<h3>Add Relative <%= "#{relation}" %> </h3>
-<% end %>
+<h3>Add <%= params[:relation_name]%> of <%= Member.find_by_id(session[:member_id]).name %> </h3>
+<% end end %>
 
 <% form_for @member, :html => { :multipart => true } do |f| %>
   <%= f.error_messages %>
