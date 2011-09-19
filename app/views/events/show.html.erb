@@ -1,9 +1,9 @@
 <div style = "margin-left:auto;margin-right:auto;text-align:center;width:800px;">
   <div>
 
-    <div style="float:left;">
+    <div style="float:left;width:400px;overflow:hidden;">
     <% @upload = @event.event_uploads.first %>
-    <%unless @upload.nil? %><p><%= image_tag @upload.photo.url(:original), :width => "400px;" %></p><% end %>
+    <%unless @upload.nil? %><p><%= image_tag @upload.photo.url(:original)%></p><% end %>
     </div>
 
     <div style="float:left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
