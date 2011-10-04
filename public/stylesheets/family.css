@@ -314,4 +314,11 @@ img {
     color:white;
     text-decoration:none;
 }
+.general_description_right {
+ position:absolute;
+ left:500px;
+ top:400px;
+ width:400px;
+ text-align:justify;
+}
 
