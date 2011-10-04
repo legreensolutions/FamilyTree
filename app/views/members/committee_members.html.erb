@@ -1,29 +1,34 @@
 <div class="page_container">
-<h3>Committee Members</h3>
 
-<div align="center">
-<% @members.each do |member| %>
-<div>
-  <%= image_tag member.photo.url(:thumb) %>
-  <%= member.name %>
-  <%= member.post.name %>
+
+    <h3>Committee Members</h3>
+
+    <% l1 = 1 %>
+
+    <% @members.each do |member| %>
+
+    <div align="center" style="width:120px;<%= l1 == member.post.level ? 'float:left' : 'clear:all;' %>;border:solid silver 1px;background-color:#fff; margin:2px;">
+      <%= image_tag member.photo.url(:thumb) %><br />
+      <%= member.name %><br />
+      <%= member.post.name %>
+    </div>
+
+    <% l1 = member.post.level %>
+    <% end %>
+
+
+
+<div class="general_description_right">
+  <%#= @content_management.description[0..@content_management.no_of_chars] %>
+  <%= @content_management.description %>
+
 </div>
-<% end %>
-</div>
-</div>
 
 
 
 
 
-<table align="center">
-<% @members.each do |member| %>
-<tr>
-  <td><%= image_tag member.photo.url(:thumb) %></td>
-  <td><%= member.name %></td>
-  <td><%= member.post.name %></td>
-</tr>
-<% end %>
-</table>
+
+
 </div>
 

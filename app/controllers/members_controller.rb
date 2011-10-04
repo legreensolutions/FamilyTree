@@ -217,6 +217,7 @@ end
 
  def committee_members
    @members = Member.find(:all,:include=>'post',:conditions=>['post_id != ?',""],:order=>'posts.level')
+   @content_management = ContentManagement.find(:first,:conditions=>['UPPER(page) = ?','COMMITTEE'])
  end
 
 private
