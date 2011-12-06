@@ -26,16 +26,13 @@
 
 </head>
 <body>
-<div id="container">
 
-  <div id = "left_top"></div>
-  <div id = "right_top">mannekattil.com</div>
-  <div id = "left_top1"></div>
-  <div id = "right_top1"><br /><br /><%=image_tag "../images/quote.png"%></div>
-  <div style="clear:both;height:0px;width:0px;overflow:hidden;"></div>
-  <div id="menu">
-    <%= render :partial=>'home/menu' -%>
-  </div>
+<div id="background_2">
+<div style="text-align:right;font-size:20px;">
+  <h1>Mannekattil Kudumbam</h1>
+  <h5>The Family Web Site&nbsp;&nbsp;&nbsp;</h5>
+</div>
+ <div style="clear:both;height:0px;width:0px;overflow:hidden;"></div>
 
     <% flash.each do |key,value| %>
                              <div  id="flash" class="flash_<%= key %>" >
@@ -43,10 +40,36 @@
                               </div><!-- end  flash   -->
                 <% end -%>
 
+<br /><br />
+<div class="login">
+                <% if current_user -%>
+                    Welcome
+                    <%= link_to "Logout",logout_path -%>
+                <% else -%>
+                    <%= link_to "Login",login_path -%>
+                <% end -%>
+
+
+</div>
+<br /><br />
+<br />
+<div id="menu_container">
+   <div id="menu">
+    <%= render :partial=>'home/menu' %>
+   </div>
+</div>
+
+<div style="width:95%;">
   <%= yield :layout %>
   <div class="footer_spacing"></div>
   <div style="clear:both;"></div>
   <div id="footer">&copy;Mannekattil.com</div>
+</div>
+
+
+<div id="church_image"></div>
+<div id="saint_image"></div>
+
 
 </div>
 </body>

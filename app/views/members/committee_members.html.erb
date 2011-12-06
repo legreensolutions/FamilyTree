@@ -7,7 +7,7 @@
 
     <% @members.each do |member| %>
 
-    <div align="center" style="width:120px;<%= l1 == member.post.level ? 'float:left' : 'clear:all;' %>;border:solid silver 1px;background-color:#fff; margin:2px;">
+    <div class ="committe_photo_div" style="<%= l1 == member.post.level ? 'float:left' : 'clear:all;' %>;">
       <%= image_tag member.photo.url(:thumb) %><br />
       <%= member.name %><br />
       <%= member.post.name %>
