@@ -9,12 +9,13 @@
             <%=link_to @related_member.name, member_path(@related_member.id) %>
           <% end %>
         <% else %>
-        <% form_tag "/relations/add_relation" ,:method=>'post'  do  %>
-          <%= hidden_field_tag 'user_id',@member.id %>
-          <%= hidden_field_tag 'relation_id',PARENT%>
-          <%= hidden_field_tag 'relation_name',"Father" %>
-          <%= submit_tag 'Father' %>
-
+        <% if current_user %>
+          <% form_tag "/relations/add_relation" ,:method=>'post'  do  %>
+            <%= hidden_field_tag 'user_id',@member.id %>
+            <%= hidden_field_tag 'relation_id',PARENT%>
+            <%= hidden_field_tag 'relation_name',"Father" %>
+            <%= submit_tag 'Father' %>
+          <% end %>
         <% end %>
         <% end %>
         </div>    <!-- class father end -->
@@ -27,12 +28,13 @@
               <%= link_to @related_member.name,member_path(@related_member.id) %>
             <% end %>
         <% else %>
-        <% form_tag "/relations/add_relation" ,:method=>'post'  do %>
-          <%= hidden_field_tag 'user_id',@member.id %>
-          <%= hidden_field_tag 'relation_id',PARENT %>
-          <%= hidden_field_tag 'relation_name',"Mother" %>
-          <%= submit_tag 'Mother' %>
-
+        <% if current_user %>
+          <% form_tag "/relations/add_relation" ,:method=>'post'  do %>
+            <%= hidden_field_tag 'user_id',@member.id %>
+            <%= hidden_field_tag 'relation_id',PARENT %>
+            <%= hidden_field_tag 'relation_name',"Mother" %>
+            <%= submit_tag 'Mother' %>
+          <% end %>
         <% end %>
         <% end %>
 
@@ -62,11 +64,13 @@
 
 
           <% end %>
-        <% form_tag "/relations/add_relation" ,:method=>'post'  do %>
-          <%= hidden_field_tag 'user_id',@member.id %>
-          <%= hidden_field_tag 'relation_id',PARENT %>
-          <%= hidden_field_tag 'relation_name',"Brothers" %>
-          <%= submit_tag 'Brothers' %>
+        <% if current_user %>
+          <% form_tag "/relations/add_relation" ,:method=>'post'  do %>
+            <%= hidden_field_tag 'user_id',@member.id %>
+            <%= hidden_field_tag 'relation_id',PARENT %>
+            <%= hidden_field_tag 'relation_name',"Brothers" %>
+            <%= submit_tag 'Brothers' %>
+          <% end %>
         <% end %>
         <% else %>
           Please enter father/mother's details before entering sisters.
@@ -90,12 +94,13 @@
            <% end %>
            <%#=link_to image_tag (@related_member.photo(:small), :size => "50x70", :crop => true,  :title => @related_member.name ), member_path(@related_member.id) %>
            <% else %>
-        <% form_tag "/relations/add_relation" ,:method=>'post'  do %>
-          <%= hidden_field_tag 'user_id',@member.id %>
-          <%= hidden_field_tag 'relation_id',SPOUSE %>
-          <%= hidden_field_tag 'relation_name',"Spouse" %>
-          <%= submit_tag 'Spouse' %>
-
+       <% if current_user %>
+          <% form_tag "/relations/add_relation" ,:method=>'post'  do %>
+            <%= hidden_field_tag 'user_id',@member.id %>
+            <%= hidden_field_tag 'relation_id',SPOUSE %>
+            <%= hidden_field_tag 'relation_name',"Spouse" %>
+            <%= submit_tag 'Spouse' %>
+          <% end %>
         <% end %>
         <% end %>
 
@@ -118,11 +123,13 @@
 
 
           <% end %>
-        <% form_tag "/relations/add_relation" ,:method=>'post'  do %>
-          <%= hidden_field_tag 'user_id',@member.id %>
-          <%= hidden_field_tag 'relation_id',PARENT %>
-          <%= hidden_field_tag 'relation_name',"Sisters" %>
-          <%= submit_tag 'Sisters' %>
+        <% if current_user %>
+          <% form_tag "/relations/add_relation" ,:method=>'post'  do %>
+            <%= hidden_field_tag 'user_id',@member.id %>
+            <%= hidden_field_tag 'relation_id',PARENT %>
+            <%= hidden_field_tag 'relation_name',"Sisters" %>
+            <%= submit_tag 'Sisters' %>
+        <% end %>
         <% end %>
         <% else %>
         Please enter father/mother's details before entering sisters
@@ -152,13 +159,14 @@
               <% end %>
              <% end %>
             <% end %>
-
-        <% form_tag "/relations/add_relation" ,:method=>'post'  do %>
-          <%= hidden_field_tag 'user_id',@member.id %>
-          <%= hidden_field_tag 'relation_id',PARENT %>
-          <%= hidden_field_tag 'relation_name',"Daughters" %>
-          <%= submit_tag 'Daughters' %>
-        <% end %>
+        <% if current_user %>
+          <% form_tag "/relations/add_relation" ,:method=>'post'  do %>
+            <%= hidden_field_tag 'user_id',@member.id %>
+            <%= hidden_field_tag 'relation_id',PARENT %>
+            <%= hidden_field_tag 'relation_name',"Daughters" %>
+            <%= submit_tag 'Daughters' %>
+          <% end %>
+       <% end %>
     </div>                                  <!-- END DAUGHTER'S DIV-->
 
     <div style="float:left;height:80px;">   <!-- START SON'S DIV-->
@@ -174,13 +182,14 @@
               <% end %>
             <% end %>
             <% end %>
-
-        <% form_tag "/relations/add_relation" ,:method=>'post'  do %>
-          <%= hidden_field_tag 'user_id',@member.id %>
-          <%= hidden_field_tag 'relation_id',PARENT %>
-          <%= hidden_field_tag 'relation_name',"Sons" %>
-          <%= submit_tag 'Sons' %>
-        <% end %>
+        <% if current_user %>
+          <% form_tag "/relations/add_relation" ,:method=>'post'  do %>
+            <%= hidden_field_tag 'user_id',@member.id %>
+            <%= hidden_field_tag 'relation_id',PARENT %>
+            <%= hidden_field_tag 'relation_name',"Sons" %>
+            <%= submit_tag 'Sons' %>
+          <% end %>
+       <% end %>
       </div>  <!-- END SON'S DIV-->
 
 

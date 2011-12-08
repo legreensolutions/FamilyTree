@@ -14,6 +14,7 @@ session[:relation_name] = params[:relation_name]%>
 
 <h3>Add <%= params[:relation_name]%> of <%= Member.find_by_id(session[:member_id]).name %> </h3>
 <div id="div_to_be_updated">
+
 <% form_for @member, :html => { :multipart => true } do |f| %>
   <%= f.error_messages %>
   <%= error_messages_for 'user'%>
