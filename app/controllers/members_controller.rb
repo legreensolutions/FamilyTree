@@ -3,7 +3,7 @@ class MembersController < ApplicationController
   # GET /members
   # GET /members.xml
 
-layout :resolve_layout
+#layout :resolve_layout
 
 
   def index

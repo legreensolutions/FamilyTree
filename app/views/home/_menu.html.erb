@@ -1,23 +1,66 @@
-<%uri=request.request_uri -%>
+
 <div class="menu_left"></div>
+<% if @page_id.to_s == 'home_index'.to_s
+  active_class = "mnu_active"
+ else
+  active_class = "mnu"
+ end
 
- <div class="mnu"><%= link_to "Home",root_url -%></div><div class="menu_separator"></div>
- <div class="mnu"><%= link_to "Family Tree",family_tree_path-%></div><div class="menu_separator"></div>
- <div class="mnu_active"><%= link_to "Events",events_path-%></div><div class="menu_separator"></div>
- <div class="mnu"><%= link_to "Gallery",galleries_path-%></div><div class="menu_separator"></div>
+ %>
+ <div class=<%="#{active_class}" %>><%= link_to "Home",root_url -%></div><div class="menu_separator"></div>
+ <% if (@page_id.to_s == 'families_index'.to_s or @page_id.to_s == 'families_show'.to_s or @page_id.to_s == 'families_edit'.to_s or @page_id.to_s == 'families_new'.to_s or @page_id.to_s == 'members_family_tree' )
+  active_class = "mnu_active"
+ else
+  active_class = "mnu"
+ end
 
+ %>
+ <div class=<%="#{active_class}" %>><%= link_to "Family Tree",family_tree_path-%></div><div class="menu_separator"></div>
+ <% if (@page_id.to_s == 'events_index'.to_s or @page_id.to_s == 'events_show'.to_s or @page_id.to_s == 'events_edit'.to_s or @page_id.to_s == 'events_new'.to_s)
+  active_class = "mnu_active"
+ else
+  active_class = "mnu"
+ end
 
- <div class="mnu"><%= link_to "Members",members_path-%></div><div class="menu_separator"></div>
+ %>
 
+ <div class=<%="#{active_class}" %>><%= link_to "Events",events_path-%></div><div class="menu_separator"></div>
+
+ <% if @page_id.to_s == 'galleries_index'.to_s or @page_id.to_s == 'galleries_new'.to_s or @page_id.to_s == 'galleries_edit'.to_s
+  active_class = "mnu_active"
+ else
+  active_class = "mnu"
+ end
+
+ %>
+
+ <div class=<%="#{active_class}" %>><%= link_to "Gallery",galleries_path-%></div><div class="menu_separator"></div>
+<% if   (@page_id.to_s == 'members_index'.to_s or @page_id.to_s == 'members_show' or @page_id.to_s == 'members_new' or  @page_id.to_s == 'members_edit' or @page_id.to_s == 'members_assign_post' or @page_id.to_s == 'committee_members' or @page_id.to_s == 'relations_add_relation')
+  active_class = "mnu_active"
+ else
+  active_class = "mnu"
+ end
+
+ %>
+
+ <div class=<%="#{active_class}" %>><%= link_to "Members",members_path-%></div><div class="menu_separator"></div>
+
+<% if @page_id.to_s == 'members_edit'.to_s or @page_id.to_s == 'users_edit'.to_s
+  active_class = "mnu_active"
+ else
+  active_class = "mnu"
+ end
+
+ %>
 
 
 <%- if current_user -%>
             <!--div class="mnu"--><%#= link_to image_tag "Members", members_path -%><!--/div><div class="menu_separator"></div -->
 
             <% if current_user.member -%>
-                  <div class="mnu"><%= link_to "Profile",edit_member_path(current_user.member.id) -%></div>
+                  <div class=<%="#{active_class}" %>><%= link_to "Profile",edit_member_path(current_user.member.id) -%></div>
             <% else -%>
-                  <div class="mnu"><%= link_to "Profile",edit_user_path(current_user)-%></div>
+                  <div class=<%="#{active_class}" %>><%= link_to "Profile",edit_user_path(current_user)-%></div>
             <% end -%>
             <div class="menu_separator"></div>
 

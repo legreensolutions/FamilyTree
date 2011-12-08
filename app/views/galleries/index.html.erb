@@ -1,15 +1,15 @@
-<h3 align="center">Gallery </h3>
-<div align="center">
-
-<div align="left">Tags : <%= tag_list(Gallery.all) %></div>
-
+<%if current_user%>
 <div align="right" style="float:right;"><%= link_to '(Add new image)', new_gallery_path if current_user %></div>
+<% end %>
+<div align="left" style="float:left;">Tags : <%= tag_list(Gallery.all) %></div><br />
+
+
 
 
 <div id="gallery">
 
 <table align="center">
-
+<tr><td><h3 align="center">Gallery </h3></td></tr>
 <tr>
 <% @galleries.each do |gallery| %>
 <% unless gallery.photo_file_name.nil? %>
@@ -20,7 +20,7 @@
 <% end %>
 </tr>
 </table>
-</div>
+
 </div>
 <br />
 

@@ -1,6 +1,7 @@
 class FamiliesController < ApplicationController
   # GET /families
   # GET /families.xml
+
   def index
     @families = Family.all
 

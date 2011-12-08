@@ -220,7 +220,7 @@ h5 {
 
 
     width:180px;
-    height:200px;
+    height:150px;
     border-style:solid;
     border-width:1px;
     border-color:#4587ba;
@@ -230,7 +230,6 @@ h5 {
     opacity:0.6;
     filter:alpha(opacity=60);
 }
-
 
 
 #events_container h2.box a img{
@@ -265,6 +264,55 @@ h5 {
    color: blue;
     font-size:13px;
     width:178px;
+}
+
+#news_container {
+    width:180px;
+    height:150px;
+    margin-top:70px;
+
+    border-style:solid;
+    border-width:1px;
+    border-color:#4587ba;
+    float:right;
+    padding:5px;
+    text-align:left;
+    opacity:0.6;
+    filter:alpha(opacity=60);
+}
+#news_container h2.box a img{
+    padding:0px;
+    margin:0px;
+    border:none;
+    text-decoration:none;
+}
+
+#news_container h2.box, #news_container h2.box a {
+    text-decoration:none;
+    padding:0px;
+    margin:0px;
+    margin-left:1px;
+    border:none;
+    color:blue;
+}
+
+#news_container table tbody tr td {
+    font-size:13px;
+    height:20px;
+    width:178px;
+    border:0px;
+    border-bottom:solid black 1px;
+}
+#news_container table tbody tr td a {
+    font-size:13px;
+    width:180px;
+}
+#news_container table tbody tr td a:hover {
+   /* background-color:blue;*/
+   color: blue;
+    font-size:13px;
+    width:178px;
+    text-decoration:none;
 }
 
 #right_menu_container {

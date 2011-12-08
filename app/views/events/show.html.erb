@@ -1,27 +1,24 @@
+
 <div align="right">
 <% @prev = Event.find(:first,:conditions=>['id != ? and created_at < ?',@event.id,@event.created_at]) %>
 <%= link_to 'Prev', event_path(@prev.id) if @prev %>
 <% @next = Event.find(:first,:conditions=>['id != ? and created_at > ?',@event.id,@event.created_at]) %>
 <%= link_to 'Next', event_path(@next.id) if @next %>
 </div>
-<div style = "margin-left:auto;margin-right:auto;text-align:center;width:800px;">
-  <div>
 
-    <div style="float:left;width:400px;overflow:hidden;">
-    <% @upload = @event.event_uploads.first %>
-    <%unless @upload.nil? %><p><%= image_tag @upload.photo.url(:original)%></p><% end %>
+<div  class="family_show" style="margin-left:300px;">
+
+    <div style="float:left;">
+      <% @upload = @event.event_uploads.first %>
+    <%unless @upload.nil? %><p><%= image_tag @upload.photo.url(:thumb)%></p><% end %>
     </div>
 
-    <div style="float:left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+    <div class="family_show_description">
+      <h2><%= @event.title %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= @event.event_date %></h2><br />
+      <%= @event.description %>
     </div>
 
-    <div style="float:left;text-align:left;">
-      <br /><br /><br /><br />
-      <p><h2><%= @event.title %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= @event.event_date %></h2></p>
-      <p><%= @event.description %></p>
-
-    </div>
-
-  </div>
 </div>
 

@@ -9,6 +9,7 @@
     </div><!-- END OF home page text -->
 
 <div id="events_container" ><%= render :partial=>'events/event_list.html.erb' %></div>
+<div id="news_container"><%= render :partial=>'news_items/news_list.html.erb' %></div>
 <div id="right_menu_container">
     <%= link_to 'Committee',:controller=>'members',:action=>'committee_members' %></div>
     <% if current_user and current_user.is_admin %>

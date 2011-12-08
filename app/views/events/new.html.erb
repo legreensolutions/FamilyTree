@@ -1,6 +1,6 @@
 <br />
 
-<div class="page_container">
+<div align="center">
 <h3>Events</h3>
 
 <table align="center">
@@ -26,8 +26,8 @@
   </tr>
   <% end %>
   <tr>
-    <td colspan="2">
-    <%= f.hidden_field :user_id %>
+    <td colspan="2" align="center">
+    <%= f.hidden_field :user_id,:value=>current_user.id %>
     <%= f.submit 'Create' %>
     </td>
   </tr>
