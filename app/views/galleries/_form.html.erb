@@ -4,10 +4,19 @@
   <td><%= form.text_field :title %>
   <%= form.hidden_field :user_id,:value=>current_user.id %>
   </td>
+  <% unless @gallery.new_record?  %>
+     <td rowspan="5" valign="top" align="center"><%= image_tag @gallery.photo.url(:thumb)%></td>
+  <% end %>
+
 </tr>
 <tr>
   <td><%= form.label :description %></td>
-  <td><%= form.text_area :description,:size=>'34x5' %>
+  <td><%= form.text_area :description,:size=>'35x5' %>
+  </td>
+</tr>
+<tr>
+  <td><%= form.label :tags %></td>
+  <td><%= form.text_field :tags %>
   </td>
 </tr>
 <tr>

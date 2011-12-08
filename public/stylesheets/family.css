@@ -2,15 +2,19 @@ body {
     background-color:#fff;
     background-image:url('../images/bg.png');
     background-repeat:repeat-x;
-    color:#fff;
+   /* color:#fff;*/
+   color:#215384;
     font-family:Serif, Arial;
     font-size:14px;
 }
 body a {
-    color:#000;
+    /*color:#000;*/
+    color:black;
+    text-decoration:none;
 }
 body a:hover {
     text-decoration:underline;
+    color:blue;
 }
 
 #church_image {
@@ -203,7 +207,8 @@ h5 {
     width:180px;
 }
 #family_container table tbody tr td a:hover {
-    background-color:blue;
+   /* background-color:blue;*/
+   color: blue;
     font-size:13px;
     width:178px;
 }
@@ -211,21 +216,176 @@ h5 {
 
 #events_container {
     /*position:relative;*/
-    margin-top:240px;
-    margin-left:10px;
-    width:140px;
+
+
+
+    width:180px;
     height:200px;
     border-style:solid;
     border-width:1px;
     border-color:#4587ba;
-    float:left;
+    float:right;
     padding:5px;
     text-align:left;
+    opacity:0.6;
+    filter:alpha(opacity=60);
 }
+
+
+
+#events_container h2.box a img{
+    padding:0px;
+    margin:0px;
+    border:none;
+    text-decoration:none;
+}
+
+#events_container h2.box, #events_container h2.box a {
+    text-decoration:none;
+    padding:0px;
+    margin:0px;
+    margin-left:1px;
+    border:none;
+    color:blue;
+}
+
+#events_container table tbody tr td {
+    font-size:13px;
+    height:20px;
+    width:178px;
+    border:0px;
+    border-bottom:solid black 1px;
+}
+#events_container table tbody tr td a {
+    font-size:13px;
+    width:180px;
+}
+#events_container table tbody tr td a:hover {
+   /* background-color:blue;*/
+   color: blue;
+    font-size:13px;
+    width:178px;
+}
+
+#right_menu_container {
+    /*position:relative;*/
+
+
+    float:left;
+    width:180px;
+    height:10px;
+    margin-top:10px;
+    margin-left:800px;
+    padding-bottom:10px;
+    text-align:center;
+    opacity:0.6;
+    filter:alpha(opacity=60);
+
+}
+#right_menu_container:hover {
+    background-color:#c1d7e7;;
+}
+#right_menu_container a {
+    color:black;
+    text-decoration:none;
+}
+#right_menu_container a:hover {
+    color:blue;
+    text-decoration:none;
+}
+
+
+#right_menu_container1 {
+    /*position:relative;*/
+
+
+    float:left;
+    width:180px;
+    height:10px;
+    margin-top:11px;
+    margin-left:800px;
+    padding-bottom:10px;
+    text-align:center;
+    opacity:0.6;
+    filter:alpha(opacity=60);
+
+}
+
+#right_menu_container1:hover {
+    background-color:#c1d7e7;;
+}
+#right_menu_container1 a {
+    color:black;
+    text-decoration:none;
+}
+#right_menu_container1 a:hover {
+    color:blue;
+    text-decoration:none;
+}
+
+#right_menu_container2 {
+    /*position:relative;*/
+
+
+    float:left;
+    width:180px;
+    height:10px;
+    margin-top:12px;
+    margin-left:800px;
+    padding-bottom:10px;
+    text-align:center;
+    opacity:0.6;
+    filter:alpha(opacity=60);
+
+}
+
+#right_menu_container2:hover {
+   background-color:#c1d7e7;
+}
+#right_menu_container2 a {
+    color:black;
+    text-decoration:none;
+}
+#right_menu_container2 a:hover {
+    color:blue;
+    text-decoration:none;
+}
+
+h3 {
+    color:#215384;
+
+    font-weight:bold;
+
+}
+
+.family_show {
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:30px;
+    text-align:center;
+    width:800px;
+    height:300px;
+}
+
+.family_show_description{
+     float:left;
+     width:350px;
+     text-align:left;
+     margin-left:40px;
+}
+
+
+
+
+
+
+
+
 .right_menu {
     float:right;
-    margin-right:10px;
+    margin-left:10px;
     width:150px;
+    margin-top:200px;
     background-color:white;
     opacity:0.2;
     filter:alpha(opacity=40);
@@ -235,6 +395,7 @@ h5 {
     font-weight:bold;
     text-decoration:none;
     color:black;
+
 }
 .right_menu:hover {
     background-color:black;
@@ -252,9 +413,9 @@ h5 {
 #home_page_description {
     float:left;
     text-align:justify;
-    width:700px;
-    margin-left:180px;
-    margin-top:50px;
+    width:560px;
+    margin-left:200px;
+    margin-top:20px;
 }
 #home_page_description p{
     text-indent:0px;
@@ -317,7 +478,7 @@ tr .even {
 
 }
 td {
-    text-align:left;
+/*text-align:left;*/
 }
 input, textarea {
  border:none;
@@ -355,6 +516,11 @@ h2.box a {
     margin:0px;
     padding:0px;
 }
+#footer {
+  color:#000;
+  text-align:center;
+}
+
 .father img {
  /*   position:relative;
     top:0px;
@@ -371,6 +537,10 @@ div a img.children {
     background-image:url('../images/home_alternate.png');
     height:147px;
     width:798px;
+}
+#gallery{
+    height:150px;
+    text-align:center;
 }
 #gallery ul li {
  float:left;
@@ -389,7 +559,7 @@ img {
 }
 
 #family_container table tbody tr td a:hover, #events_container table tbody tr td a:hover {
-    color:#fff;
+    color:blue;
     text-decoration:none;
 }
 .general_description_right {

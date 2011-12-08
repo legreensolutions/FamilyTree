@@ -2,6 +2,7 @@
 session[:member_id] = params[:user_id]
 session[:relation_name] = params[:relation_name]%>
 <% @members = Member.find(:all,:conditions=>['id != ?',session[:member_id]],:order=>'name ASC') %>
+<div align="center" >
 <%= select_tag(:search, "<option value='0'>-Select a Member</option>" + options_from_collection_for_select(@members, :id, :name)) %>
 
 
@@ -10,7 +11,7 @@ session[:relation_name] = params[:relation_name]%>
         :url => {:controller => 'relations', :action=> 'find' },
         :with => "'member_id=' + escape(value)" %>
 
-<div class="page_container" >
+
 <h3>Add <%= params[:relation_name]%> of <%= Member.find_by_id(session[:member_id]).name %> </h3>
 <div id="div_to_be_updated">
 <% form_for @member, :html => { :multipart => true } do |f| %>

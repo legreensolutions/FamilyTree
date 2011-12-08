@@ -26,7 +26,10 @@
   </tr>
   <% end %>
   <tr>
-    <td colspan="2"><%= f.submit 'Create' %></td>
+    <td colspan="2">
+    <%= f.hidden_field :user_id %>
+    <%= f.submit 'Create' %>
+    </td>
   </tr>
 <% end %>
 </table>

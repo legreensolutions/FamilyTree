@@ -1,16 +1,25 @@
-<br />
+<h3 align="center">Gallery </h3>
+<div align="center">
 
-<div class="page_container">
-<h3>Gallery</h3>
-<%= link_to '(Add new image)', new_gallery_path if current_user %>
+<div align="left">Tags : <%= tag_list(Gallery.all) %></div>
+
+<div align="right" style="float:right;"><%= link_to '(Add new image)', new_gallery_path if current_user %></div>
+
+
 <div id="gallery">
-<% @galleries.each do |gallery| %>
 
-    <ul style="list-style-type: none;">
-    <li><%= link_to image_tag(gallery.photo.url(:thumb)),gallery.photo.url(:medium),:title=>gallery.title %></li>
-    </ul>
+<table align="center">
+
+<tr>
+<% @galleries.each do |gallery| %>
+<% unless gallery.photo_file_name.nil? %>
+  <td>
+    <%= link_to image_tag(gallery.photo.url(:thumb)),gallery.photo.url(:medium),:title=>gallery.title   %></td>
 
 <% end %>
+<% end %>
+</tr>
+</table>
 </div>
 </div>
 <br />

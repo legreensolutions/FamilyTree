@@ -28,9 +28,24 @@
 <body>
 <div id="container">
 
-  <div id = "home_alternate">mannekattil.com</div>
+  <div id = "home_alternate">mannekattil.com
 
-  <div id="menu_left"></div>
+
+
+   </div><div class="login" style="float:right;margin-right:5px;">
+                <% if current_user -%>
+                  <!--  Welcome <%#=current_user.email %>-->
+                    <%= link_to "Logout",logout_path -%>
+                <% else -%>
+                    <%= link_to "Login",login_path -%>
+                <% end -%>
+
+
+</div>
+
+
+<div id="menu_left"></div>
+
   <div id="menu">
     <%= render :partial=>'home/menu' %>
   </div>

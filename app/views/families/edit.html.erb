@@ -1,6 +1,6 @@
 <br />
 
-<div class="page_container">
+<div align="center">
 <h3>Editing family</h3>
 <table align="center">
 <% form_for @family, :html => { :multipart => true } do |f| %>
@@ -23,7 +23,9 @@
     <td>  <%= f.file_field :photo%>
  </td>
 </tr>
- <tr><td colspan="2"><%= f.submit 'Update' %></td></tr>
+ <tr><td colspan="2" align="center"><%= f.submit 'Update' %>
+
+ </td></tr>
 <% end %>
 </table>
 </div>

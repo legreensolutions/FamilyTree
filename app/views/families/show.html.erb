@@ -1,6 +1,5 @@
 <br />
-<div style = "margin-left:auto;margin-right:auto;text-align:center;width:800px;">
-  <div>
+<div class="family_show">
 
     <div style="float:left;">
       <%- unless  @family.photo_file_name.nil? -%>
@@ -10,7 +9,7 @@
 
 
 
-    <div style="float:left;width:350px;text-align:left;margin-left:40px;">
+    <div class="family_show_description">
       <h2><%=h @family.name %></h2><br />
       <%= @family.long_description -%>
     </div>

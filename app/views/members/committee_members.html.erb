@@ -1,33 +1,33 @@
-<div class="page_container">
+<div align="center">
 
 
     <h3>Committee Members</h3>
+    <table align="center">
 
-    <% l1 = 1 %>
+<tr>
+ <% @members.each do |member| %>
 
-    <% @members.each do |member| %>
-
-    <div class ="committe_photo_div" style="<%= l1 == member.post.level ? 'float:left' : 'clear:all;' %>;">
-      <%= image_tag member.photo.url(:thumb) %><br />
-      <%= member.name %><br />
-      <%= member.post.name %>
-    </div>
-
-    <% l1 = member.post.level %>
+  <td>
+    <%= member.post.name %><br />
+    <% unless member.photo_file_name.nil? %>
+    <%= image_tag member.photo.url(:thumb) %>&nbsp;&nbsp;<br />
+    <% else %>
+    <%= image_tag 'default_big.jpg' %>&nbsp;&nbsp;<br />
     <% end %>
+    <%= member.name %>
+
+  </td>
 
 
+<% end %>
+</tr>
+</table>
 
 <div class="general_description_right">
   <%#= @content_management.description[0..@content_management.no_of_chars] %>
-  <%= @content_management.description %>
+  <%= @content_management.description if @content_management %>
 
 </div>
-
-
-
-
-
 
 
 </div>

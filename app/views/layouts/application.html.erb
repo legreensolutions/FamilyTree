@@ -43,7 +43,7 @@
 <br /><br />
 <div class="login">
                 <% if current_user -%>
-                    Welcome
+                  <!--  Welcome <%#=current_user.email %>-->
                     <%= link_to "Logout",logout_path -%>
                 <% else -%>
                     <%= link_to "Login",login_path -%>
@@ -59,7 +59,7 @@
    </div>
 </div>
 
-<div style="width:95%;">
+<div >
   <%= yield :layout %>
   <div class="footer_spacing"></div>
   <div style="clear:both;"></div>

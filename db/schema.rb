@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110914094150) do
+ActiveRecord::Schema.define(:version => 20111204050234) do
 
   create_table "alert_uploads", :force => true do |t|
     t.integer  "alert_id"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(:version => 20110914094150) do
     t.string   "page",           :null => false
     t.string   "identification", :null => false
     t.integer  "no_of_chars",    :null => false
-    t.string   "description",    :null => false
+    t.text     "description",    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20110914094150) do
     t.boolean  "obsolete",    :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "families", :force => true do |t|
@@ -87,6 +88,7 @@ ActiveRecord::Schema.define(:version => 20110914094150) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "tags"
   end
 
   create_table "members", :force => true do |t|
@@ -124,6 +126,7 @@ ActiveRecord::Schema.define(:version => 20110914094150) do
     t.boolean  "obsolete",    :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "news_uploads", :force => true do |t|
@@ -136,9 +139,10 @@ ActiveRecord::Schema.define(:version => 20110914094150) do
 
   create_table "posts", :force => true do |t|
     t.string   "name"
+    t.integer  "level",      :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "level"
+
   end
 
   create_table "relations", :force => true do |t|

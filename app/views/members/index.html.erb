@@ -1,6 +1,6 @@
- <br />
-
-<div class="page_container">
+<%= include_wice_grid_assets %>
+<div align="right" ><%= link_to 'New Member',new_member_path %></div>
+<div align="center">
 <h3>Members</h3>
  <table align="center">
     <tr>
@@ -12,30 +12,39 @@
       </tr>
   </table><br />
 <% unless @members.blank? %>
-<table align="center">
-  <tr><th>Name</th><th>House</th><th>Post</th></tr>
+<div align="center">
+  <%= grid(@members) do |g|
 
-<% @members.each do |member| %>
-  <tr>
-  <%# ,:controller=>'relations',:action=>'index',:id=>member.id%>
-    <td><%= link_to member.name ,member_path(member.id) %></td>
-    <td><%#= member.user.email unless member.user.nil? %><%= member.house_name %></td>
-   <!-- <td><%#= image_tag member.photo.url(:small)%></td> -->
-    <% if current_user.is_admin? %>
-    <!--<td><%#= link_to 'Post', :controller=>'members',:action=>'assign_post',:id=>member.id %></td> -->
+    g.column :column_name => 'Name',:attribute_name => 'name',:no_filter => true do  |member|
+      link_to member.name ,member_path(member.id)
+    end
 
-    <td><%= link_to member.post ? member.post.name: 'Ordinary member', :controller=>'members',:action=>'assign_post',:id=>member.id  %></td>
-    <% else %>
-    <td><%= member.post ? member.post.name: 'Ordinary member' %></td>
-    <% end %>
-    <td><%= link_to image_tag('edit.png'), edit_member_path(member) %></td>
-    <td><%= link_to image_tag('delete.png'), member, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+    g.column :column_name => 'House' ,:attribute_name => 'house_name',:no_filter => true do |member|
+      member.house_name
+    end
+
+    if current_user and current_user.is_admin?
+        g.column :column_name => 'Post',:attribute_name => 'name',:no_filter => true,:model_class => Post do |member|
+          link_to member.post ? member.post.name: 'Ordinary member', :controller=>'members',:action=>'assign_post',:id=>member.id
+        end
+    else
+         g.column :column_name => 'Post' do |member|
+            member.post ? member.post.name: 'Ordinary member'
+        end
+    end
+
+    g.column do |member|
+      link_to image_tag('edit.png'), edit_member_path(member)
+    end
+    g.column do |member|
+      link_to image_tag('delete.png'), member, :confirm => 'Are you sure?', :method => :delete
+    end
+
+
+  end -%>
+ </div>
 <% else %>
   <p>No Records Found</p>
 <% end %>
 </div>
-<%= link_to 'New Member',new_member_path %>
 

@@ -4,9 +4,9 @@ class GalleriesController < ApplicationController
   def index
 
   if current_user
-    @galleries = Gallery.all
+    @galleries = Gallery.find(:all, :conditions => ["tags like ?","%#{params[:tag_id]}%"])
   else
-    @galleries = Gallery.find(:all, :conditions => ["public=true"])
+    @galleries = Gallery.find(:all, :conditions => ["public= ? and tags like ?",true,"%#{params[:tag_id]}%"])
   end
 
 

@@ -1,20 +1,19 @@
-<br /><div class="page_container">
+<div align="right" class="add_new_links"><%= link_to '(Add New)', new_content_management_path %></div>
+<div align="center">
 <h3>Content Management</h3>
 
+
 <table align="center">
-  <tr>
-  </tr>
 
 <% @content_managements.each do |content_management| %>
-  <tr>
+   <tr>
     <td><%= link_to content_management.page, edit_content_management_path(content_management)%></td>
     <td><%= link_to image_tag('edit.png'), edit_content_management_path(content_management) %></td>
     <td><%= link_to image_tag('delete.png'), content_management, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
-</div>
-<br />
 
-<%#= link_to 'New content_management', new_content_management_path %>
+<br />
+</div>
 

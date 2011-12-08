@@ -9,9 +9,18 @@ layout :resolve_layout
   def index
 
      if params[:search]
-       @members = Member.find(:all,:include => [:family],:conditions=>['members.name LIKE ? OR email LIKE ? OR families.name LIKE ? OR house_name LIKE ? ',"%#{params[:search_text]}%","%#{params[:search_text]}%","%#{params[:search_text]}%","%#{params[:search_text]}%"],:order => "members.id DESC")
+        @members = initialize_grid(Member,
+        :conditions=>['members.name LIKE ? OR email LIKE ? OR families.name LIKE ? OR house_name LIKE ? ',"%#{params[:search_text]}%","%#{params[:search_text]}%","%#{params[:search_text]}%","%#{params[:search_text]}%"],
+        :include => [:post,:family],
+        :order => "members.id",
+        :per_page => 20)
+
+     #  @members = Member.find(:all,:include => [:family],:conditions=>['members.name LIKE ? OR email LIKE ? OR families.name LIKE ? OR house_name LIKE ? ',"%#{params[:search_text]}%","%#{params[:search_text]}%","%#{params[:search_text]}%","%#{params[:search_text]}%"],:order => "members.id DESC")
     else
-      @members = Member.all
+      @members = initialize_grid(Member,
+    :include => :post,
+    :order => "members.id",
+    :per_page => 20)
     end
 
     respond_to do |format|
@@ -203,7 +212,7 @@ end
      if  params[:post_id]
        @member = Member.find(params[:member_id])
        @posts = Post.all
-      if params[:post_id].to_i == 0
+      if params[:post_id].to_s == "no_post"
         flash[:notice] = 'Please select  post'
 
       else

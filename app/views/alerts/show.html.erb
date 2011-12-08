@@ -1,8 +1,22 @@
-<p>Title:<%= @alert.title %></p>
-<p>Description<%= @alert.description %></p>
-<p>Date:<%= @alert.alert_date %>
-<% @upload = @alert.alert_uploads.first %>
-<%unless @upload.nil? %><p><%= image_tag @upload.photo.url(:thumb) %></p><% end %>
-<%= link_to 'Edit', edit_alert_path(@alert) %> |
-<%= link_to 'Back', alerts_path %>
+
+<div class="family_show" style="margin-left:450px;">
+  <div>
+
+    <div style="float:left;">
+    <% @upload = @alert.alert_uploads.first %>
+      <%unless @upload.nil? %>
+      <%= image_tag @upload.photo.url(:thumb) %>
+      <% end %>
+    </div>
+
+
+
+    <div class="family_show_description">
+      <%=h @alert.title %><br />
+      <%= @alert.description %><br />
+      <%= @alert.alert_date%><br />
+    </div>
+
+  </div>
+</div>
 
