@@ -9,18 +9,31 @@ class MembersController < ApplicationController
   def index
 
      if params[:search]
-        @members = initialize_grid(Member,
+     #   @members = initialize_grid(Member,
+      #  :conditions=>['members.name LIKE ? OR email LIKE ? OR families.name LIKE ? OR house_name LIKE ? ',"%#{params[:search_text]}%","%#{params[:search_text]}%","%#{params[:search_text]}%","%#{params[:search_text]}%"],
+       # :include => [:post,:family],
+        #:order => "members.id",
+        #:per_page => 20)
+        @members = Member.paginate(
         :conditions=>['members.name LIKE ? OR email LIKE ? OR families.name LIKE ? OR house_name LIKE ? ',"%#{params[:search_text]}%","%#{params[:search_text]}%","%#{params[:search_text]}%","%#{params[:search_text]}%"],
         :include => [:post,:family],
         :order => "members.id",
-        :per_page => 20)
+        :page => params[:page],
+        :per_page => 15
+        )
 
      #  @members = Member.find(:all,:include => [:family],:conditions=>['members.name LIKE ? OR email LIKE ? OR families.name LIKE ? OR house_name LIKE ? ',"%#{params[:search_text]}%","%#{params[:search_text]}%","%#{params[:search_text]}%","%#{params[:search_text]}%"],:order => "members.id DESC")
     else
-      @members = initialize_grid(Member,
+     # @members = initialize_grid(Member,
+    #:include => :post,
+    #:order => "members.id",
+    #:per_page => 20)
+    @members = Member.paginate(
     :include => :post,
     :order => "members.id",
-    :per_page => 20)
+    :page => params[:page],
+        :per_page => 15
+   )
     end
 
     respond_to do |format|
