@@ -284,6 +284,9 @@ h5 {
     text-align:left;
     opacity:0.6;
     filter:alpha(opacity=60);
+    position:absolute;
+    top:310px;
+    margin-right:0px;
 }
 #news_container h2.box a img{
     padding:0px;
@@ -323,24 +326,21 @@ h5 {
 
 #right_menu_container {
     /*position:relative;*/
-
-
+    position:absolute;
+    top:530px;
+    left:0px;
     float:left;
-    width:180px;
-    height:10px;
-    margin-top:10px;
-    margin-left:800px;
-    padding-bottom:10px;
-    text-align:center;
-    opacity:0.6;
-    filter:alpha(opacity=60);
+    width:197px;
+    height:27px;
+    text-align:left;
+    background-color:#c1d7e7;
+    font-size:14px;
+    font-weight:bold;
+    background-image:url('../images/committee.png');
+}
 
-}
-#right_menu_container:hover {
-    background-color:#c1d7e7;;
-}
 #right_menu_container a {
-    color:black;
+    color:#000;
     text-decoration:none;
 }
 #right_menu_container a:hover {
@@ -450,7 +450,6 @@ h3 {
     border-color:#4587ba;
     font-weight:bold;
     text-decoration:none;
-    color:black;
 
 }
 .right_menu:hover {
@@ -465,7 +464,7 @@ h3 {
     text-decoration:none;
 }
 
-
+/*
 #home_page_description {
     float:left;
     text-align:justify;
@@ -473,11 +472,27 @@ h3 {
     margin-left:250px;
     margin-top:20px;
 }
+
 #home_page_description p{
     text-indent:0px;
     color:black;
     font-size:14px;
 }
+*/
+
+#home_page_description_container {
+    text-align:justify;
+    width:100%;
+    margin:auto;
+}
+
+#home_page_description {
+    text-align:justify;
+    width:600px;
+    margin:auto;
+    text-align:center;
+}
+
 
 .full_width_div {
     width:100%;
