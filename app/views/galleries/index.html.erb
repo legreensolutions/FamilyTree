@@ -1,9 +1,10 @@
 <%if current_user%>
 <div align="right" style="float:right;"><%= link_to '(Add new image)', new_gallery_path if current_user %></div>
 <% end %>
-<div align="left" style="float:left;">Tags : <%= tag_list(Gallery.all) %></div><br />
-
-
+<% unless @galleries.blank? %>
+<div align="left" style="float:left;">
+Tags : <%= tag_list(Gallery.all) %>
+</div><br />
 
 
 <div id="gallery">
@@ -22,5 +23,10 @@
 </table>
 
 </div>
+<% else %>
+<div align="center">
+No Records Found
+</div>
+<% end %>
 <br />
 

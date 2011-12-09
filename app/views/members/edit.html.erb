@@ -1,5 +1,5 @@
 <br />
-<% if @member.user_id == current_user.id %>
+<% if current_user and @member.user_id == current_user.id %>
   <div align="right">
     <%= link_to 'Change password',:controller=>'password_resets',:action=>'change_password' %>
   </div>

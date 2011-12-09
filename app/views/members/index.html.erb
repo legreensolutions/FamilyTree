@@ -1,4 +1,6 @@
-<div align="right" ><%= link_to 'New Member',new_member_path %></div>
+<div align="right" >
+<%= link_to 'New Member',new_member_path if current_user %>
+</div>
 <div align="center">
 <h3>Members</h3>
  <table align="center">
@@ -24,9 +26,10 @@
 <% else %>
 <td><%=member.post ? member.post.name: 'Ordinary member'%></td>
 <%  end -%>
+<%if current_user  %>
 <td><%=link_to image_tag('edit.png'), edit_member_path(member)%></td>
 <td><%=link_to image_tag('delete.png'), member, :confirm => 'Are you sure?', :method => :delete%></td>
-
+<% end %>
 </tr>
 <% end %>
 </table>

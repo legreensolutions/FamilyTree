@@ -16,6 +16,8 @@
             <%= hidden_field_tag 'relation_name',"Father" %>
             <%= submit_tag 'Father' %>
           <% end %>
+        <% else %>
+          Please login to enter  details of father.
         <% end %>
         <% end %>
         </div>    <!-- class father end -->
@@ -35,6 +37,8 @@
             <%= hidden_field_tag 'relation_name',"Mother" %>
             <%= submit_tag 'Mother' %>
           <% end %>
+        <% else %>
+          Please login to enter details of mother.
         <% end %>
         <% end %>
 
@@ -48,7 +52,7 @@
   <div class="full_width_div">
     <div style="text-align:center;margin:auto;height:85px;width:625px;">
         <div class="siblings">
-        <% if @member.father or @member.mother %>
+        <% if @member.father or @member.mother%>
           <%  @related_members = @member.find_brothers_or_sisters %>
             <% unless @related_members.blank? %>
              <% @related_members.each do |related_member| %>
@@ -71,6 +75,8 @@
             <%= hidden_field_tag 'relation_name',"Brothers" %>
             <%= submit_tag 'Brothers' %>
           <% end %>
+        <% else %>
+          Please login to enter  details of brothers.
         <% end %>
         <% else %>
           Please enter father/mother's details before entering sisters.
@@ -78,9 +84,17 @@
         </div>
         <div class="self">
         <%if @member.photo_file_name %>
-        <%=link_to image_tag (@member.photo(:small), :height => "70", :crop => true, :title => @member.name ), edit_member_path(@member) %>&nbsp;
+        <% if current_user %>
+          <%=link_to image_tag (@member.photo(:small), :height => "70", :crop => true, :title => @member.name ), edit_member_path(@member) %>&nbsp;
         <% else %>
-        <%=link_to @member.name,edit_member_path(@member) ,:title => @member.name%>
+          <%= image_tag (@member.photo(:small), :height => "70", :crop => true, :title => @member.name ) %>&nbsp;
+        <% end %>
+        <% else %>
+        <% if current_user %>
+          <%=link_to @member.name,edit_member_path(@member) ,:title => @member.name%>
+        <% else %>
+          <%= @member.name %>
+        <% end %>
         <% end %>
 
         </div>
@@ -101,6 +115,8 @@
             <%= hidden_field_tag 'relation_name',"Spouse" %>
             <%= submit_tag 'Spouse' %>
           <% end %>
+        <% else %>
+          Please login to enter  details of spouse.
         <% end %>
         <% end %>
 
@@ -108,7 +124,7 @@
         <div class="siblings">
         <%#  @related_members = @member.find_brothers_or_sisters %>
         <% if @member.father or @member.mother %>
-            <% unless @related_members.blank? %>
+           <% unless @related_members.blank? %>
              <% @related_members.each do |related_member| %>
               <% @member_rel = Member.find_by_id_and_gender_id(related_member.user_id,FEMALE)  %>
                  <% if @member_rel %>
@@ -130,6 +146,8 @@
             <%= hidden_field_tag 'relation_name',"Sisters" %>
             <%= submit_tag 'Sisters' %>
         <% end %>
+        <% else %>
+          Please login to enter  details of sisters.
         <% end %>
         <% else %>
         Please enter father/mother's details before entering sisters
@@ -166,7 +184,9 @@
             <%= hidden_field_tag 'relation_name',"Daughters" %>
             <%= submit_tag 'Daughters' %>
           <% end %>
-       <% end %>
+       <% else %>
+          Please login to enter  details of daughters.
+        <% end %>
     </div>                                  <!-- END DAUGHTER'S DIV-->
 
     <div style="float:left;height:80px;">   <!-- START SON'S DIV-->
@@ -189,7 +209,9 @@
             <%= hidden_field_tag 'relation_name',"Sons" %>
             <%= submit_tag 'Sons' %>
           <% end %>
-       <% end %>
+       <% else %>
+          Please login to enter  details of sons.
+        <% end %>
       </div>  <!-- END SON'S DIV-->
 
 
