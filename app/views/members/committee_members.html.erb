@@ -1,34 +1,32 @@
-<div align="center">
+<div class="full_width_div">
+<div style="width:80%;text-align:justifymargin:auto;">
+
+        <h3>Committee Members</h3>
+         <% @members.each do |member| %>
+            <div style="width:80%;text-align:justifymargin:auto;">
+            <%= member.post.name %><br />
+            <% unless member.photo_file_name.nil? %>
+            <%= image_tag member.photo.url(:thumb) %>&nbsp;&nbsp;<br />
+            <% else %>
+            <%= image_tag 'default_big.jpg' %>&nbsp;&nbsp;<br />
+            <% end %>
+            <%= member.name %>
+            </div>
 
 
-    <h3>Committee Members</h3>
-    <table align="center">
-
-<tr>
- <% @members.each do |member| %>
-
-  <td>
-    <%= member.post.name %><br />
-    <% unless member.photo_file_name.nil? %>
-    <%= image_tag member.photo.url(:thumb) %>&nbsp;&nbsp;<br />
-    <% else %>
-    <%= image_tag 'default_big.jpg' %>&nbsp;&nbsp;<br />
-    <% end %>
-    <%= member.name %>
-
-  </td>
+        <% end %>
 
 
-<% end %>
-</tr>
-</table>
+    <br /><br />
+    <div style="clear:both;"></div>
 
-<div class="general_description_right">
-  <%#= @content_management.description[0..@content_management.no_of_chars] %>
-  <%= @content_management.description if @content_management %>
+        <br /><br />
 
+    <div style="width:80%;text-align:justifymargin:auto;">
+      <%#= @content_management.description[0..@content_management.no_of_chars] %>
+      <%= @content_management.description if @content_management %>
+
+    </div>
 </div>
-
-
 </div>
 

@@ -134,7 +134,7 @@ h5 {
     background-image:url('../images/menu/new/menu_right.png');
     background-repeat:no-repeat;
 }
-
+/*
 .login {
     text-align:right;
     margin-right:15px;
@@ -160,7 +160,44 @@ h5 {
     color:#000;
     text-decoration:none;
 }
+*/
 
+
+
+.login {
+    margin-top:15px;
+    color:#fff;
+    text-decoration:none;
+    outline:0px;
+
+    position:absolute;
+    top:0px;
+    left:300px;
+    width:113px;
+    height:23px;
+    margin:auto;
+    padding:0px;
+    background-image:url('../images/login_bg.png');
+    background-repeat:no-repeat;
+    font-weight:bold;
+}
+.login a {
+    color:#fff;
+    text-decoration:none;
+    width:113px;
+    height:23px;
+    background-repeat:no-repeat;
+}
+
+.login a:hover {
+    color:#000;
+    text-decoration:none;
+    background-image:url('../images/login_hover_bg.png');
+    width:113px;
+    height:23px;
+    background-repeat:no-repeat;
+
+}
 
 /* ------------------------*/
 
@@ -234,7 +271,16 @@ h5 {
     text-align:left;
     opacity:0.6;
     filter:alpha(opacity=60);
+
+    position:absolute;
+    top:475px;
+    right:5px;
+
+
+
 }
+
+
 
 
 
@@ -275,7 +321,6 @@ h5 {
 #news_container {
     width:180px;
     height:150px;
-    /*margin-top:70px;*/
     border-style:solid;
     border-width:1px;
     border-color:#4587ba;
@@ -286,7 +331,7 @@ h5 {
     filter:alpha(opacity=60);
     position:absolute;
     top:310px;
-    margin-right:0px;
+    right:5px;
 }
 #news_container h2.box a img{
     padding:0px;
@@ -324,8 +369,8 @@ h5 {
     text-decoration:none;
 }
 
-#right_menu_container {
-    /*position:relative;*/
+
+#right_menu_container2 {
     position:absolute;
     top:530px;
     left:0px;
@@ -337,6 +382,37 @@ h5 {
     font-size:14px;
     font-weight:bold;
     background-image:url('../images/committee.png');
+    background-repeat:repeat-none;
+
+}
+
+#right_menu_container2:hover {
+   background-color:#c1d7e7;
+}
+#right_menu_container2 a {
+    color:black;
+    text-decoration:none;
+    outline:0px;
+}
+#right_menu_container2 a:hover, #right_menu_container2 a:focus {
+    color:blue;
+    text-decoration:none;
+    outline:0px;
+}
+#right_menu_container {
+    position:absolute;
+    top:557px;
+    left:0px;
+    float:left;
+    width:197px;
+    height:27px;
+    text-align:left;
+    background-color:#c1d7e7;
+    font-size:14px;
+    font-weight:bold;
+    background-image:url('../images/committee.png');
+    background-repeat:repeat-none;
+
 }
 
 #right_menu_container a {
@@ -348,11 +424,8 @@ h5 {
     text-decoration:none;
 }
 
-
+/*
 #right_menu_container1 {
-    /*position:relative;*/
-
-
     float:left;
     width:180px;
     height:10px;
@@ -362,6 +435,35 @@ h5 {
     text-align:center;
     opacity:0.6;
     filter:alpha(opacity=60);
+}
+
+#right_menu_container1:hover {
+    background-color:#c1d7e7;;
+}
+#right_menu_container1 a {
+    color:black;
+    text-decoration:none;
+}
+#right_menu_container1 a:hover {
+    color:blue;
+    text-decoration:none;
+}
+*/
+
+
+#right_menu_container1 {
+    position:absolute;
+    top:584px;
+    left:0px;
+    float:left;
+    width:197px;
+    height:27px;
+    text-align:left;
+    background-color:#c1d7e7;
+    font-size:14px;
+    font-weight:bold;
+    background-image:url('../images/committee.png');
+    background-repeat:no-repeat;
 
 }
 
@@ -377,10 +479,8 @@ h5 {
     text-decoration:none;
 }
 
+/*
 #right_menu_container2 {
-    /*position:relative;*/
-
-
     float:left;
     width:180px;
     height:10px;
@@ -406,6 +506,12 @@ h5 {
     text-decoration:none;
     outline:0px;
 }
+*/
+
+
+
+
+
 
 h3 {
     color:#215384;
@@ -652,5 +758,12 @@ img {
     margin:2px;
     color:#000;
 
+}
+#flash.flash_notice{
+    padding:0px;
+    margin:0px;
+    position:absolute;
+    top:0px;
+    left:420px;
 }
 
