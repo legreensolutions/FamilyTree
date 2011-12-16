@@ -29,7 +29,8 @@
   <%= error_messages_for 'user'%>
 <%= render :partial => "members/form", :object => f %>
   <p>
-    <%= f.submit 'Update' %>
+    <%= f.submit 'Update' %> &nbsp;<%= link_to 'Back',member_path(@member.id) %>
+
   </p>
 <% fields_for :relation do |rf| %>
 <%= rf.hidden_field :user_id,:value=>session[:member_id]%>

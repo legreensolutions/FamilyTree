@@ -19,7 +19,7 @@ class MembersController < ApplicationController
         :include => [:post,:family],
         :order => "members.id",
         :page => params[:page],
-        :per_page => 15
+        :per_page => 50
         )
 
      #  @members = Member.find(:all,:include => [:family],:conditions=>['members.name LIKE ? OR email LIKE ? OR families.name LIKE ? OR house_name LIKE ? ',"%#{params[:search_text]}%","%#{params[:search_text]}%","%#{params[:search_text]}%","%#{params[:search_text]}%"],:order => "members.id DESC")
@@ -32,7 +32,7 @@ class MembersController < ApplicationController
     :include => :post,
     :order => "members.id",
     :page => params[:page],
-        :per_page => 15
+        :per_page => 50
    )
     end
 

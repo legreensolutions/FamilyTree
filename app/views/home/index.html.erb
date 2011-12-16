@@ -4,7 +4,7 @@
 <!--div id="home_page_description"-->
 <div id="home_page_description_container">
   <div id="home_page_description">
-        <p><%= @content_management.description[0..@content_management.no_of_chars] %>
+        <p style="text-align:justify;"><%= @content_management.description[0..@content_management.no_of_chars] %>
         <!--The history of the Mannekattil Family had its roots on the soil of Kerala occupying a major position in Kerala history. This family has grown and spread from the fertile banks of the holy river Pamba which flows along the famous Parthasarathy temple of Aranmula in the Pathanamthitta district. So from the very origin of this family, it had some secular qualities and has close association with Hinduism. Sri. Iruppootty was the first known person of this family and the history of this family begins from that starting point. He was a magnanimous personality and had influence over the administration and day to day activities of Aranmula temple. This influence had continued between A.D 1660 and 1740. His high handed influence and authority over the administrative matters of Aranmula temple made him popular among the people.--><%= link_to 'read more ...',:controller=>'home',:action=>'detailed_content' %>
         </p>
   </div>

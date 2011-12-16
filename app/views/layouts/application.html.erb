@@ -32,36 +32,40 @@
   <h1>Mannekattil Kudumbam</h1>
   <h5>The Family Web Site&nbsp;&nbsp;&nbsp;</h5>
 </div>
- <div style="clear:both;height:0px;width:0px;overflow:hidden;"></div>
+<div style="clear:both;height:0px;width:0px;overflow:hidden;"></div>
+
+
 
     <% flash.each do |key,value| %>
-                             <div  id="flash" class="flash_<%= key %>" >
-                                <p><%= value %></p>
-                              </div><!-- end  flash   -->
-                <% end -%>
+        <div  id="flash" class="flash_<%= key %>" >
+        <p><%= value %></p>
+        </div><!-- end  flash   -->
+    <% end -%>
 
 <br /><br />
-<div class="full_width_div">
-  <div class="login">
-                  <% if current_user -%>
-                    <!--  Welcome <%#=current_user.email %>-->
-                      <%= link_to "Logout",logout_path -%>
-                  <% else -%>
-                      <%= link_to "Login",login_path -%>
-                  <% end -%>
 
 
-  </div>
-</div>
+          <div class="login">
+                          <% if current_user -%>
+                            <!--  Welcome <%#=current_user.email %>-->
+                              <%= link_to "Logout",logout_path -%>
+                          <% else -%>
+                              <%= link_to "Login",login_path -%>
+                          <% end -%>
+          </div>
+
+
 <br /><br />
 <br /><br />
+
 <div id="menu_container">
    <div id="menu">
     <%= render :partial=>'home/menu' %>
    </div>
 </div>
+<div style="clear:both;height:0px;width:0px;overflow:hidden;"></div>
 
-<div >
+<div class="full_width_div">
   <%= yield :layout %>
   <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
   <div class="footer_spacing"></div>

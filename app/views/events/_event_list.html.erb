@@ -1,5 +1,5 @@
 <% @events = Event.find(:all,:order=>'event_date desc',:limit=>5)%>
-<h2 class="box"><%= link_to "Events &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +  image_tag ("../images/right_arrow.png"), events_path %></h2>
+<h2 class="box"><%= link_to "&nbsp;"*45, events_path %></h2>
 
 <table align="center">
 

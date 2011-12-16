@@ -1,3 +1,4 @@
+<% session[:return_uri]= request.request_uri %>
 <div align="right" >
 <%= link_to 'New Member',new_member_path if current_user %>
 </div>
@@ -17,14 +18,23 @@
 <div align="center">
 <table>
 <% @members.each do |member| %>
-<tr>
+<tr class="underline">
+<td>
+
+      <% unless member.photo_file_name.nil? %>
+            <%=link_to (image_tag(member.photo(:small), :height=>"30px;"), member_path(member.id)) %>
+            <% else %>
+            <%= image_tag 'default_big.jpg', :height=>"30px;" %>&nbsp;&nbsp;<br />
+      <% end %>
+
+</td>
 <td><%=link_to member.name ,member_path(member.id)%></td>
 <td><%= member.house_name %></td>
 
 <%if current_user and current_user.is_admin? %>
-<td><%=link_to member.post ? member.post.name: 'Ordinary member', :controller=>'members',:action=>'assign_post',:id=>member.id%></td>
+<td><%=link_to member.post ? member.post.name: ' ', :controller=>'members',:action=>'assign_post',:id=>member.id%></td>
 <% else %>
-<td><%=member.post ? member.post.name: 'Ordinary member'%></td>
+<td><%=member.post ? member.post.name: ' '%></td>
 <%  end -%>
 <%if current_user  %>
 <td><%=link_to image_tag('edit.png'), edit_member_path(member)%></td>
