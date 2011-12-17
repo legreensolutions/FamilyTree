@@ -45,7 +45,7 @@
 
  <div class=<%="#{active_class}" %>><%= link_to "Members",members_path-%></div><div class="menu_separator"></div>
 
-<% if @page_id.to_s == 'members_edit'.to_s or @page_id.to_s == 'users_edit'.to_s
+<% if @page_id.to_s == 'users_edit'.to_s
   active_class = "mnu_active"
  else
   active_class = "mnu"

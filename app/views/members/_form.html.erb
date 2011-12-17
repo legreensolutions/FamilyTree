@@ -41,6 +41,10 @@
   <td><%= form.select("family_id", Family.all.collect {|family| [ family.name, family.id ] }, {:include_blank => 'Select...'})%></td>
 </tr>
 <tr>
+  <td><%= form.label 'Origin Family' %></td>
+  <td><%= form.select("origin_family_id", Family.all.collect {|family| [ family.name, family.id ] }, {:include_blank => 'Select...'})%></td>
+</tr>
+<tr>
   <td><%= form.label :house_name %></td>
   <td><%= form.text_field :house_name %></td>
 </tr>

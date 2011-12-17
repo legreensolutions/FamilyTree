@@ -216,6 +216,7 @@ class MembersController < ApplicationController
 end
 
   def tree
+    @member = Member.find(params[:id])
   end
 
   def family_tree

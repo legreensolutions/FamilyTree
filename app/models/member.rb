@@ -88,5 +88,7 @@ class Member < ActiveRecord::Base
     return nil
   end
 
+
+
 end
 
