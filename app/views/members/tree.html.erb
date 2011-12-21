@@ -1,6 +1,25 @@
 
 <div align="center">
-<%= display_family_tree(@member) %>
+
+<% tmp = display_family_tree(@member) %>
+<table>
+<% index = 0 %>
+<% total = tmp.count - 1 %>
+<% while total >= 0 %>
+<tr>
+<% if tmp[total][0] %>
+<td><%= link_to tmp[total][0].name,member_path(tmp[total][0].id) %></td>
+<% end %>
+<% if tmp[total][1] %>
+<td><%= link_to tmp[total][1].name,member_path(tmp[total][1].id) %></td>
+<% end %>
+
+<% total = total - 1 %>
+</tr>
+<% end %>
+</table>
+<br />
+
 
 </div>
 

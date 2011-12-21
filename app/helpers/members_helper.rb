@@ -2,46 +2,52 @@ module MembersHelper
 
   def display_family_tree(member)
 
-    out = "<table>"
-    out += "<tr>"
-    out += "<td>" + link_to (member.name,member_path(member.id))+ "</td>"
-    out += family_structure(member)
-    out += "</tr>"
-    out += "</table>"
-    out
+    tmp = [[]]
+    index = 0
+    tmp[index][0] = member
+    index = index + 1
+    family_structure(member,index,tmp)
+    tmp
+
   end
 
 
-  def family_structure(member)
+  def family_structure(member,index,tmp)
     father = member.father
     mother = member.mother
-    out = "<tr>"
+
     if father and include_in_origin_family(member.origin_family_id,father.origin_family_id)
-      out += "<td>" + link_to (member.father.name ,member_path(member.father.id)) + "</td>"
+      tmp << [[]]
+      tmp[index][0] = member.father
+
     end
     if mother and include_in_origin_family(member.origin_family_id,mother.origin_family_id)
-      out += "<td>" +  link_to (member.mother.name,member_path(member.mother.id)) + "</td>"
+      tmp << [[]]
+
+      tmp[index][0] = member.mother
+
     end
+
     if father and !include_in_origin_family(member.origin_family_id,father.origin_family_id)
       if mother and include_in_origin_family(member.origin_family_id,mother.origin_family_id)
-        out += "<td>" + link_to (member.father.name,member_path(member.father.id)) + "</td>"
+          tmp[index][1] = member.father
+
       end
     end
     if mother and !include_in_origin_family(member.origin_family_id,mother.origin_family_id)
       if father and  include_in_origin_family(member.origin_family_id,father.origin_family_id)
-        out += "<td>" + link_to (member.mother.name,member_path(member.mother.id)) + "</td>"
+        tmp[index][1] = member.mother
       end
     end
-    out += "</tr>"
-    if father
-      out += family_structure(father)
+    index = index + 1
+  if (father and father.father  and include_in_origin_family(father.father.origin_family_id,father.origin_family_id))
+     family_structure(father,index,tmp)
     end
-    if mother
-      out += family_structure(mother)
+    if (mother and mother.mother and include_in_origin_family( mother.mother.origin_family_id,mother.origin_family_id))
+       family_structure(mother,index,tmp)
     end
-
-    out
-  end
+  tmp
+end
 
   def include_in_origin_family(member_origin_family_id,father_origin_family_id)
     if member_origin_family_id == father_origin_family_id
