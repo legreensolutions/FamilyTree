@@ -220,6 +220,7 @@ end
   end
 
   def family_tree
+    @families = Family.all
   end
 
   def assign_post
@@ -242,7 +243,7 @@ end
 
  def committee_members
    @members = Member.find(:all,:include=>'post',:conditions=>['post_id != ?',""],:order=>'posts.level')
-   @content_management = ContentManagement.find(:first,:conditions=>['UPPER(page) = ?','COMMITTEE'])
+   @content_management = ContentManagement.find(:first,:conditions=>['UPPER(page) = ? AND UPPER(identification)= ?','COMMITTEE MEMBERS','PREV_MEMBERS'])
  end
 
 private

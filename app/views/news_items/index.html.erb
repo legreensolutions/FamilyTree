@@ -18,8 +18,10 @@
          'No Image'
          <% end %>
     </td>
+    <% if current_user and current_user.is_admin %>
     <td><%= link_to image_tag('edit.png'), edit_news_item_path(news_item) %></td>
     <td><%= link_to image_tag('delete.png'), news_item, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>

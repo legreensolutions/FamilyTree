@@ -1,11 +1,11 @@
-<table align="center">
+<table align="center" width="100%">
 <tr>
     <td>Page</td>
-    <td><%= form.text_field :page %></td>
+    <td><%= form.text_field :page,:readonly=>true %></td>
   </tr>
   <tr>
     <td>Identification</td>
-    <td><%= form.text_field :identification %></td>
+    <td><%= form.text_field :identification,:readonly=>true %></td>
   </tr>
   <tr>
     <td>No.of characters to display</td>
@@ -13,7 +13,10 @@
   </tr>
   <tr>
     <td>Description</td>
-    <td><%= form.text_area :description,:size=>'35x20' %></td>
+    <td><%#= form.text_area :description,:size=>'35x20' %>
+    <%= form.text_area :description ,:size => "35x15", :class=>"widgEditor"%>
+
+    </td>
   </tr>
 </table>
 

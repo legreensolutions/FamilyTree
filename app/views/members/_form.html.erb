@@ -88,6 +88,41 @@
   <td>  <%= form.file_field :photo%>
  </td>
 </tr>
+<tr>
+  <td><%= form.label 'Date of Birth' %></td>
+  <td>  <%= form.date_select :dob,:start_year=>Time.now.year - 111,:end_year=>Time.now.year %>
+ </td>
+</tr>
+<tr>
+  <td><%= form.label 'Date of Marriage' %></td>
+  <td>  <%= form.date_select :marriage_date,:start_year=>Time.now.year - 111,:end_year=>Time.now.year%>
+ </td>
+</tr>
+<tr>
+  <td><%= form.label 'Parish' %></td>
+  <td>  <%= form.text_field :parish%>
+ </td>
+</tr>
+<tr>
+  <td><%= form.label 'Occupation' %></td>
+  <td>  <%= form.text_field :occupation%>
+ </td>
+</tr>
+<tr>
+  <td><%= form.label 'Position' %></td>
+  <td>  <%= form.text_field :position%>
+ </td>
+</tr>
+<tr>
+  <td><%= form.label 'Official Address' %></td>
+  <td>  <%= form.text_field :official_address%>
+ </td>
+</tr>
+<tr>
+  <td><%= form.label 'Diseased' %></td>
+  <td>  <%= form.check_box :diseased %>
+ </td>
+</tr>
 
 <% if  @member.user_id.nil? %>
 <% fields_for :user do |user_form|%>

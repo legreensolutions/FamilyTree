@@ -19,13 +19,11 @@ module MembersHelper
     if father and include_in_origin_family(member.origin_family_id,father.origin_family_id)
       tmp << [[]]
       tmp[index][0] = member.father
-
     end
-    if mother and include_in_origin_family(member.origin_family_id,mother.origin_family_id)
+
+    if (mother and include_in_origin_family(member.origin_family_id,mother.origin_family_id) )
       tmp << [[]]
-
       tmp[index][0] = member.mother
-
     end
 
     if father and !include_in_origin_family(member.origin_family_id,father.origin_family_id)

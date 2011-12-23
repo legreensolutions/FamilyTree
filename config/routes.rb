@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+
   map.resources :content_managements
 
   map.resources :posts
@@ -33,6 +34,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :user_session
  # map.root :controller => "user_sessions", :action => "new"
  map.root :controller=>'home',:action=>'index'
+  map.contact_us 'contact-us',:controller=>'home',:action=>'contact_us'
+  map.guidelines 'guidelines',:controller=>'home',:action=>'guidelines'
   map.resources :users
   map.resource :account, :controller => "users"
 

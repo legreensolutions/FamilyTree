@@ -1,9 +1,8 @@
-<div class="full_width_div">
-<div style="width:80%;text-align:justifymargin:auto;">
+<div style="width:65%;float:right;" >
 
         <h3>Committee Members</h3>
          <% @members.each do |member| %>
-            <div style="width:80%;text-align:justifymargin:auto;">
+            <div style="float:left;float:left;" align="center">
             <%= member.post.name %><br />
             <% unless member.photo_file_name.nil? %>
             <%= image_tag member.photo.url(:thumb) %>&nbsp;&nbsp;<br />
@@ -13,7 +12,6 @@
             <%= member.name %>
             </div>
 
-
         <% end %>
 
 
@@ -22,11 +20,12 @@
 
         <br /><br />
 
-    <div style="width:80%;text-align:justifymargin:auto;">
+    <div style="width:80%;text-align:justify;margin:auto;">
       <%#= @content_management.description[0..@content_management.no_of_chars] %>
       <%= @content_management.description if @content_management %>
-
     </div>
 </div>
-</div>
+<% unless @content_management.blank? %>
+<div id="family_container"><%= render :partial=>'members/prev_committee_members' %></div>
+<% end %>
 

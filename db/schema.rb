@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111216092515) do
+ActiveRecord::Schema.define(:version => 20111223105239) do
 
   create_table "alert_uploads", :force => true do |t|
     t.integer  "alert_id"
@@ -117,7 +117,14 @@ ActiveRecord::Schema.define(:version => 20111216092515) do
     t.datetime "updated_at"
     t.integer  "gender_id"
     t.integer  "post_id"
-    t.integer  "origin_family_id",                      :null => false
+    t.integer  "origin_family_id"
+    t.date     "dob"
+    t.date     "marriage_date"
+    t.string   "parish"
+    t.string   "occupation"
+    t.string   "position"
+    t.string   "official_address"
+    t.boolean  "diseased",           :default => false
   end
 
   create_table "news_items", :force => true do |t|
@@ -143,7 +150,6 @@ ActiveRecord::Schema.define(:version => 20111216092515) do
     t.integer  "level",      :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "level"
   end
 
   create_table "relations", :force => true do |t|

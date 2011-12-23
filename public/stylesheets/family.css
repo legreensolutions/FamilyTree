@@ -709,6 +709,7 @@ input, textarea {
     background-image:url('../images/tree.png');
     background-repeat:no-repeat;
     padding-top:350px;
+    margin-left:25px;
 }
 
 .LongDescription {

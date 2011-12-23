@@ -15,8 +15,10 @@
               Title:<%= @news_item.title %>
               Description<%= @news_item.description %>
               Date:<%= @news_item.news_date %>
+              <% if current_user and current_user.is_admin %>
               <%= link_to 'Edit', edit_news_item_path(@news_item) %> |
               <%= link_to 'Back', news_items_path %>
+              <% end %>
 
             </td>
           </tr>
