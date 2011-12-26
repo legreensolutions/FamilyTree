@@ -1,16 +1,15 @@
-<div style="width:65%;float:right;" >
+<div style="width:75%;float:right;" >
 
         <h3>Committee Members</h3>
          <% @members.each do |member| %>
-            <div style="float:left;float:left;" align="center">
-            <%= member.post.name %><br />
+            <div style="float:left;" align="center">
+            <%= member.post.name %> &nbsp;&nbsp;<br />
             <% unless member.photo_file_name.nil? %>
-            <%= image_tag member.photo.url(:thumb) %>&nbsp;&nbsp;<br />
+            <%= image_tag member.photo.url(:thumb),:title=>member.name %>&nbsp;<br />
             <% else %>
-            <%= image_tag 'default_big.jpg' %>&nbsp;&nbsp;<br />
+            <%= image_tag 'default_big.jpg',:title=>member.name %>&nbsp;<br />
             <% end %>
-            <%= member.name %>
-            </div>
+        </div>
 
         <% end %>
 
@@ -20,9 +19,9 @@
 
         <br /><br />
 
-    <div style="width:80%;text-align:justify;margin:auto;">
+<div style="width:80%;text-align:justify;margin:auto;">
       <%#= @content_management.description[0..@content_management.no_of_chars] %>
-      <%= @content_management.description if @content_management %>
+      <%#= @content_management.description if @content_management %>
     </div>
 </div>
 <% unless @content_management.blank? %>

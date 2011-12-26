@@ -1,3 +1,44 @@
+<%= stylesheet_link_tag "default" ,"alphacube"%>
+  <%= javascript_include_tag  "window" %>
+<script type="text/javascript">
+function win1(news)
+{
+
+  var win = new Window({id: "win1", className: "alphacube",title:'Important', width:380, height:150, top:0, left: 1, parent:$('container')});
+  win.getContent().innerHTML = "<p>" + news +"</p>";
+win.setDestroyOnClose();
+  win.show();
+  win.setConstraint(true, {left:10, right:20})
+  win.toFront();
+
+}
+
+
+
+
+</script>
+<style>
+
+
+#container {
+  position:absolute;
+  top:150px;
+  left:600px;
+  width:380px;
+  height:100px;
+  z-index:auto;
+}
+</style>
+<% @user = User.find(:first) %>
+ <div id="container"></div>
+<%#if !cookies[:display]
+            cookies[:display] = {:value => 'true',
+   :expires => 1.days.from_now }
+          %>
+<script>
+ win1(<%="'#{@news.description}'"%>);
+</script>
+<%#end%>
 
 
 

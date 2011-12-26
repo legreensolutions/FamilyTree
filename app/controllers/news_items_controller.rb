@@ -2,7 +2,11 @@ class NewsItemsController < ApplicationController
   # GET /news_items
   # GET /news_items.xml
   def index
+    if params[:tag_id]
+    @news_items = NewsItem.find(:all, :conditions => ["tags like ?","%#{params[:tag_id]}%"],:order=>'created_at DESC')
+  else
     @news_items = NewsItem.find(:all,:order=>'created_at DESC')
+  end
 
     respond_to do |format|
       format.html # index.html.erb

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111223105239) do
+ActiveRecord::Schema.define(:version => 20111224062528) do
 
   create_table "alert_uploads", :force => true do |t|
     t.integer  "alert_id"
@@ -131,10 +131,12 @@ ActiveRecord::Schema.define(:version => 20111223105239) do
     t.string   "title"
     t.text     "description"
     t.date     "news_date"
-    t.boolean  "obsolete",    :default => false
+    t.boolean  "obsolete",             :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.string   "tags"
+    t.boolean  "display_on_home_page", :default => false
   end
 
   create_table "news_uploads", :force => true do |t|

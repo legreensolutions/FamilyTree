@@ -5,24 +5,40 @@
 <div align="left" style="float:left;">
 Tags : <%= tag_list(Gallery.all) %>
 </div><br />
-
+<h3 align="center">Gallery</h3>
 
 <div id="gallery">
 
-<table align="center">
-<tr><td><h3 align="center">Gallery </h3></td></tr>
-<tr>
-<% @galleries.each do |gallery| %>
-<% unless gallery.photo_file_name.nil? %>
-  <td>
-    <%= link_to image_tag(gallery.photo.url(:thumb)),gallery.photo.url(:medium),:title=>gallery.title   %></td>
 
-<% end %>
-<% end %>
-</tr>
-</table>
+<div style="width:80%;float:right;" >
+
+
+         <% @galleries.each do |gallery| %>
+            <div style="float:left;float:left;" align="center">
+              <%= link_to image_tag(gallery.photo.url(:thumb)),gallery.photo.url(:medium),:title=>gallery.title   %> &nbsp;&nbsp;
+            </div>
+
+        <% end %>
+
+
+    <br /><br />
+    <div style="clear:both;"></div>
+
+        <br /><br />
+
+
+
+
+
+
+
+
+
+
+
 
 </div>
+
 <% else %>
 <div align="center">
 No Records Found

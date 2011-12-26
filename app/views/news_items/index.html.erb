@@ -1,3 +1,13 @@
+<%if current_user%>
+<div align="right" style="float:right;">
+<%= link_to 'Add New', new_news_item_path %>
+</div>
+<% end %>
+<% unless @news_items.blank? %>
+<div align="left" style="float:left;">
+Tags : <%= news_items_tag_list(@news_items) %>
+</div><br />
+<% end %>
 <div align="center">
 <h3>News</h3>
 
@@ -8,7 +18,7 @@
 
 <% @news_items.each do |news_item| %>
   <tr>
-    <td><%= news_item.title %></td>
+    <td><%= link_to news_item.title,news_item_path(news_item) %></td>
     <td><%= news_item.description %></td>
     <td><%= news_item.news_date %></td>
     <% @upload = news_item.news_uploads.first %>
@@ -28,5 +38,4 @@
 
 <br />
 </div>
-<%= link_to 'New news_item', new_news_item_path %>
 

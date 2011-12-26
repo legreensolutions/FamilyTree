@@ -15,6 +15,16 @@
     <td>Date</td>
     <td><%= f.date_select(:news_date, :order => [:month, :day,:year]) %></td>
    </tr>
+   <tr>
+    <td><%= f.label "Tags" %></td>
+    <td><%= f.text_field :tags %>
+  </td>
+  </tr>
+  <tr>
+    <td><%= f.label 'Very Important?' %></td>
+    <td><%= f.check_box :display_on_home_page %>
+  </td>
+  </tr>
   <% f.fields_for :news_uploads do |photo_form| %>
   <tr>
     <td>Upload photo</td>
