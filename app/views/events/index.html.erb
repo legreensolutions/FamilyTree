@@ -1,5 +1,6 @@
 &nbsp;<div align="center">
 <div align="right"><%= link_to 'New event', new_event_path if current_user %></div>
+<% unless @events.blank? %>
 <h3>Events</h3>
 
 
@@ -41,4 +42,7 @@
 
 <br />
 </div>
+<% else %>
+<h4>No Records </h4>
+<% end %>
 

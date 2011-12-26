@@ -31,14 +31,11 @@ win.setDestroyOnClose();
 </style>
 <% @user = User.find(:first) %>
  <div id="container"></div>
-<%#if !cookies[:display]
-            cookies[:display] = {:value => 'true',
-   :expires => 1.days.from_now }
-          %>
+<% if @news %>
 <script>
  win1(<%="'#{@news.description}'"%>);
 </script>
-<%#end%>
+<%end%>
 
 
 

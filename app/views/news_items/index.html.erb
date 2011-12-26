@@ -7,7 +7,7 @@
 <div align="left" style="float:left;">
 Tags : <%= news_items_tag_list(@news_items) %>
 </div><br />
-<% end %>
+
 <div align="center">
 <h3>News</h3>
 
@@ -38,4 +38,7 @@ Tags : <%= news_items_tag_list(@news_items) %>
 
 <br />
 </div>
+<% else %>
+<h4>No Records </h4>
+<% end %>
 
