@@ -840,12 +840,10 @@ img {
 }
 
 .button {
+background-image:url('../images/link_bg.png');
 font: bold 12px Arial;
 text-decoration: none;
-background-color: #7eafde;
-color: #333333;
-padding: 2px 6px 2px 6px;
-border: 1px solid #CCCCCC;
+padding: 4px 8px 4px 8px;
 
 }
 
