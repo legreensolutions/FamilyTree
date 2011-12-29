@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 29, 2011 at 04:56 PM
+-- Generation Time: Dec 29, 2011 at 05:01 PM
 -- Server version: 5.1.41
 -- PHP Version: 5.3.2-1ubuntu4.10
 
@@ -19,15 +19,65 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- Database: `family`
 --
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `alerts`
+--
+
+CREATE TABLE IF NOT EXISTS `alerts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8_unicode_ci,
+  `alert_date` date DEFAULT NULL,
+  `obsolete` tinyint(1) DEFAULT '0',
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
 --
 -- Dumping data for table `alerts`
 --
 
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `alert_uploads`
+--
+
+CREATE TABLE IF NOT EXISTS `alert_uploads` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `alert_id` int(11) DEFAULT NULL,
+  `photo_file_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `photo_file_size` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
 --
 -- Dumping data for table `alert_uploads`
 --
 
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `content_managements`
+--
+
+CREATE TABLE IF NOT EXISTS `content_managements` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `page` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `identification` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `no_of_chars` int(11) NOT NULL,
+  `description` text COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `content_managements`
@@ -37,15 +87,61 @@ INSERT INTO `content_managements` (`id`, `page`, `identification`, `no_of_chars`
 (1, 'home', 'description', 828, 'The history of the Mannekattil Family had its roots on the soil of Kerala occupying a major position in Kerala history. This family has grown and spread from the fertile banks of the holy river Pamba which flows along the famous Parthasarathy temple of Aranmula in the Pathanamthitta district. Sri. Iruppootty was the first known person of this family and the history of this family begins from that starting point. He was a magnanimous personality and had influence over the administration and day to day activities of Aranmula temple. This influence had continued between A.D 1660 and 1740. His high handed influence and authority over the administrative matters of Aranmula temple made him popular among the people. In those days temples were a common platform for public meetings and practising martial arts. There is a', NULL, '2011-12-10 06:08:34'),
 (2, 'COMMITTEE', 'COMMITTEE', 100, 'It was on the 6th of December, 1984 that we convened the first meeting of our family. But\r\nin the annual meeting held in the year 1996, we decided to publish a family directory including the\r\nessential details of the members of the family. In order to have a speedy implementation of this\r\nproject, a committee was constituted with Rev.C.V. Varughese as Chairman and Sri. A.V. Thomas,\r\nSri. A.C. John, Sri. A.V. John as committee members. When the committee expressed their inability\r\nto complete this colossal project, it was suggested that a sub committee be elected. The sub\r\ncommittee was headed by Sri.A.T. Varughese. Even then, the dream of putting the Smaranika &\r\nDirectory of Mannekattil family into black and white, could not be completed. The Kudumbayogam\r\nGeneral Committee held on 15th August 2006 unanimously elected Sri.A.C. John Alimullumankal\r\nas the new Convenor of the Smaranika & Directory 2006. The Smaranika & Directory has been\r\ndesigned based on the data collected by the committee, constituted in the year 1996. In this context,\r\nthe names of the following members are worth mentioning.', NULL, NULL);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `countries`
+--
+
+CREATE TABLE IF NOT EXISTS `countries` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
 --
 -- Dumping data for table `countries`
 --
 
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `districts`
+--
+
+CREATE TABLE IF NOT EXISTS `districts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
 --
 -- Dumping data for table `districts`
 --
 
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `events`
+--
+
+CREATE TABLE IF NOT EXISTS `events` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8_unicode_ci,
+  `event_date` date DEFAULT NULL,
+  `obsolete` tinyint(1) DEFAULT '0',
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `events`
@@ -53,6 +149,22 @@ INSERT INTO `content_managements` (`id`, `page`, `identification`, `no_of_chars`
 
 INSERT INTO `events` (`id`, `title`, `description`, `event_date`, `obsolete`, `created_at`, `updated_at`, `user_id`) VALUES
 (1, 'family get together', 'family get together', '2012-09-16', 0, '2011-09-16 12:51:10', '2011-09-16 12:51:10', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `event_uploads`
+--
+
+CREATE TABLE IF NOT EXISTS `event_uploads` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `event_id` int(11) DEFAULT NULL,
+  `photo_file_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `photo_file_size` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `event_uploads`
@@ -64,6 +176,25 @@ INSERT INTO `event_uploads` (`id`, `event_id`, `photo_file_name`, `photo_file_si
 (3, 1, NULL, NULL, '2011-09-16 12:51:11', '2011-09-16 12:51:11'),
 (4, 1, NULL, NULL, '2011-09-16 12:51:11', '2011-09-16 12:51:11');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `families`
+--
+
+CREATE TABLE IF NOT EXISTS `families` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `short_description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `long_description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `photo_file_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `photo_content_type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `photo_file_size` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+
 --
 -- Dumping data for table `families`
 --
@@ -72,6 +203,27 @@ INSERT INTO `families` (`id`, `name`, `created_at`, `updated_at`, `short_descrip
 (1, 'mumbai', '2011-09-02 05:00:36', '2011-09-02 05:00:36', 'mumbai', '', 'mumbai_family.JPG', 'image/jpeg', 2143686),
 (2, 'Mannekattil Branch (b)', '2011-09-17 12:03:25', '2011-09-17 12:03:25', 'Mannekattil Branch (b)', '\r\nThe descendants of Varughese, (Iruppootty Asans second son) are also known by the original family name Mannekattil and for convenience we call it as Mannekattil Branch (b) ', 'images.jpeg', 'image/jpeg', 10428),
 (3, 'Kannampally', '2011-12-19 15:00:27', '2011-12-19 15:00:27', 'Parur', 'Kannampilly, Parur', '15.1.jpg', 'image/jpeg', 18929);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `galleries`
+--
+
+CREATE TABLE IF NOT EXISTS `galleries` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `photo_file_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `photo_content_type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `photo_file_size` int(11) DEFAULT NULL,
+  `public` tinyint(1) DEFAULT '1',
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `tags` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `galleries`
@@ -82,6 +234,50 @@ INSERT INTO `galleries` (`id`, `title`, `description`, `photo_file_name`, `photo
 (2, 'suth', 'suth', 'a.jpg', 'image/jpeg', 5410, 1, 1, '2011-09-12 18:22:22', '2011-09-12 18:22:22', NULL),
 (3, 'mumbai marraige', 'mumbai marraige', 'gt.jpg', 'image/jpeg', 36443, 1, 1, '2011-09-17 11:14:45', '2011-09-17 11:14:45', NULL),
 (4, 'wine', 'wine', '982.jpg', 'image/jpeg', 2931, 0, 1, '2011-09-17 11:15:12', '2011-09-17 11:15:12', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `members`
+--
+
+CREATE TABLE IF NOT EXISTS `members` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `pet_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `phone` int(11) DEFAULT NULL,
+  `mobile` int(11) DEFAULT NULL,
+  `family_id` int(11) DEFAULT NULL,
+  `house_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `house_number` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `street` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `place` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `pin` int(11) DEFAULT NULL,
+  `district_id` int(11) DEFAULT NULL,
+  `state_id` int(11) DEFAULT NULL,
+  `country_id` int(11) DEFAULT NULL,
+  `demoted` tinyint(1) DEFAULT '0',
+  `lock` tinyint(1) DEFAULT '0',
+  `photo_file_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `photo_content_type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `photo_file_size` int(11) DEFAULT NULL,
+  `created_by` int(11) DEFAULT '1',
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `gender_id` int(11) DEFAULT NULL,
+  `post_id` int(11) DEFAULT NULL,
+  `origin_family_id` int(11) DEFAULT NULL,
+  `dob` date DEFAULT NULL,
+  `marriage_date` date DEFAULT NULL,
+  `parish` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `occupation` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `position` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `official_address` varchar(1024) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `diseased` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=22 ;
 
 --
 -- Dumping data for table `members`
@@ -108,6 +304,26 @@ INSERT INTO `members` (`id`, `name`, `email`, `pet_name`, `phone`, `mobile`, `fa
 (20, 'Sunil S', '', NULL, NULL, NULL, NULL, '', '', '', '', NULL, NULL, NULL, NULL, 0, 0, 'sunil.jpg', 'image/jpeg', 11236, 1, NULL, '2011-09-14 06:40:38', '2011-09-14 06:40:38', 1, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, 0),
 (21, 'Shruthi', '', NULL, NULL, NULL, NULL, '', '', '', '', NULL, NULL, NULL, NULL, 0, 0, 'sruthi.jpg', 'image/jpeg', 10508, 1, NULL, '2011-09-14 06:41:02', '2011-09-14 06:41:02', 2, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, 0);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `news_items`
+--
+
+CREATE TABLE IF NOT EXISTS `news_items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8_unicode_ci,
+  `news_date` date DEFAULT NULL,
+  `obsolete` tinyint(1) DEFAULT '0',
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `display_on_home_page` tinyint(1) NOT NULL DEFAULT '0',
+  `tags` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+
 --
 -- Dumping data for table `news_items`
 --
@@ -115,12 +331,43 @@ INSERT INTO `members` (`id`, `name`, `email`, `pet_name`, `phone`, `mobile`, `fa
 INSERT INTO `news_items` (`id`, `title`, `description`, `news_date`, `obsolete`, `created_at`, `updated_at`, `user_id`, `display_on_home_page`, `tags`) VALUES
 (1, 'test', 'test test test test test test test test test ', '2011-12-10', 0, '2011-12-10 07:13:13', '2011-12-10 07:13:13', NULL, 0, '');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `news_uploads`
+--
+
+CREATE TABLE IF NOT EXISTS `news_uploads` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `news_item_id` int(11) DEFAULT NULL,
+  `photo_file_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `photo_file_size` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+
 --
 -- Dumping data for table `news_uploads`
 --
 
 INSERT INTO `news_uploads` (`id`, `news_item_id`, `photo_file_name`, `photo_file_size`, `created_at`, `updated_at`) VALUES
 (1, 1, 'mannekattil_welcom.jpg', 63065, '2011-12-10 07:13:13', '2011-12-10 07:17:13');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `posts`
+--
+
+CREATE TABLE IF NOT EXISTS `posts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `level` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `posts`
@@ -131,6 +378,20 @@ INSERT INTO `posts` (`id`, `name`, `created_at`, `updated_at`, `level`) VALUES
 (2, 'Secretary', NULL, NULL, 2),
 (3, 'Treasurer', '2011-10-04 05:13:53', '2011-10-04 05:13:53', 3),
 (4, 'Exe. Member', '2011-10-04 05:14:09', '2011-10-04 05:14:09', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `relations`
+--
+
+CREATE TABLE IF NOT EXISTS `relations` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `related_user_id` int(11) DEFAULT NULL,
+  `relation_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=41 ;
 
 --
 -- Dumping data for table `relations`
@@ -172,6 +433,17 @@ INSERT INTO `relations` (`id`, `user_id`, `related_user_id`, `relation_id`) VALU
 (39, 21, 15, 1),
 (40, 21, 20, 1);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `schema_migrations`
+--
+
+CREATE TABLE IF NOT EXISTS `schema_migrations` (
+  `version` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  UNIQUE KEY `unique_schema_migrations` (`version`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 --
 -- Dumping data for table `schema_migrations`
 --
@@ -199,10 +471,46 @@ INSERT INTO `schema_migrations` (`version`) VALUES
 ('20111003060231'),
 ('20111204050234');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `states`
+--
+
+CREATE TABLE IF NOT EXISTS `states` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
 --
 -- Dumping data for table `states`
 --
 
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `crypted_password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `password_salt` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `persistence_token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `single_access_token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `perishable_token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `active` int(11) DEFAULT '0',
+  `is_admin` int(11) DEFAULT '2',
+  `created_by` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `users`
