@@ -835,4 +835,7 @@ img {
 .center {
  text-align:center;margin:auto;
 }
+.edit_member table tbody tr td input {
+    border:solid #d8ecf9 1px;
+}
 
