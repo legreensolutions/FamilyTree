@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   def index
     @content_management = ContentManagement.find(:first,:conditions=>['UPPER(page) = ? AND UPPER(identification) = ?','HOME','DESCRIPTION'])
-    @news = NewsItem.find(:first,:conditions=>['display_on_home_page = ?',true],:order=>'id desc')|| NewsItem.find(:first,:order=>'id desc')
+    @news = NewsItem.find(:first,:conditions=>['display_on_home_page = ? AND obsolete = ?',true,false],:order=>'id desc')|| NewsItem.find(:first,:conditions=>[obsolete = ?',false],:order=>'id desc')
   end
 
   def detailed_content

@@ -32,7 +32,9 @@
   </tr>
   <% end %>
   <tr>
-    <td colspan="2" align="center"><%= f.submit 'Create' %></td>
+    <td colspan="2" align="center"><%= f.submit 'Create' %>
+    <%= f.hidden_field :user_id,:value=>current_user.id %>
+    </td>
   </tr>
 <% end %>
 </table>

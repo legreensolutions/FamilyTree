@@ -30,9 +30,16 @@
     <td>Upload photo</td>
     <td><%= photo_form.file_field :photo %></td>
   </tr>
+
+  <% end %>
+  <% if current_user and current_user.is_admin? %>
+  <tr>
+    <td>Make obsolete</td>
+    <td><%= f.check_box :obsolete %></td>
+  </tr>
   <% end %>
   <tr>
-    <td colspan="2" align="center"><%= f.submit 'Update' %></td>
+    <td colspan="2" align="center"><%= f.submit 'Update' %><%= f.hidden_field :user_id,:value=>@news_item.user_id %></td>
   </tr>
 <% end %>
 </table>

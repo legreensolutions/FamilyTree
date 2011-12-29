@@ -1,6 +1,6 @@
 <%if current_user%>
 <div align="right" style="float:right;">
-<%= link_to 'Add New', new_news_item_path %>
+<%= link_to 'Add New', new_news_item_path,:class=>'button' %>
 </div>
 <% end %>
 <% unless @news_items.blank? %>

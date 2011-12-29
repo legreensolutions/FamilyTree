@@ -28,12 +28,12 @@
   <tr>
     <td colspan="2" align="center">
     <%= f.hidden_field :user_id,:value=>current_user.id %>
-    <%= f.submit 'Create' %>
+    <%= f.submit 'Create' %>&nbsp;&nbsp;<%= link_to 'Back', events_path %>
     </td>
   </tr>
 <% end %>
 </table>
 
-<%= link_to 'Back', events_path %>
+
 </div>
 

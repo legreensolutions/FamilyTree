@@ -8,10 +8,23 @@
 <% while total >= 0 %>
 <tr>
 <% if tmp[total][0] %>
-<td><%= link_to tmp[total][0].name,member_path(tmp[total][0].id) %></td>
+<td>
+  <%#= link_to tmp[total][0].name,member_path(tmp[total][0].id) %>
+  <% unless tmp[total][0].photo_file_name.nil? %>
+    <%=link_to (image_tag(tmp[total][0].photo(:small), :height=>"30px;",:title=>tmp[total][0].name), member_path(tmp[total][0].id)) %>
+   <% else %>
+    <%=link_to (image_tag 'default_big.jpg', :height=>"30px;",:title=>tmp[total][0].name) , member_path(tmp[total][0].id) %>
+  <% end %>
+</td>
 <% end %>
 <% if tmp[total][1] %>
-<td><%= link_to tmp[total][1].name,member_path(tmp[total][1].id) %></td>
+<td><%#= link_to tmp[total][1].name,member_path(tmp[total][1].id) %>
+  <% unless tmp[total][1].photo_file_name.nil? %>
+      <%=link_to (image_tag(tmp[total][1].photo(:small), :height=>"30px;",:title=>tmp[total][1].name), member_path(tmp[total][1].id)) %>
+  <% else %>
+    <%=link_to (image_tag 'default_big.jpg', :height=>"30px;",:title=>tmp[total][1].name) , member_path(tmp[total][1].id) %>
+  <% end %>
+</td>
 <% end %>
 
 <% total = total - 1 %>

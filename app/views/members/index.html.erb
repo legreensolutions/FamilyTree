@@ -1,6 +1,6 @@
 <% session[:return_uri]= request.request_uri %>
 <div align="right" >
-<%= link_to 'New Member',new_member_path if current_user %>
+<%= link_to 'New Member',new_member_path,:class=>'button' if current_user %>
 </div>
 <div align="center">
 <h3>Members</h3>
