@@ -10,7 +10,7 @@
 <% form_tag '/members/assign_post',:method=>'post' do %>
 <%= select_tag('post_id', "<option value='no_post'>-Select .....</option><option value="">Ordinary Member</option>"  + options_from_collection_for_select(@posts, :id, :name,@member.post_id)) %><br /> <br />
 <%= hidden_field_tag 'member_id',@member.id %>
-<%= submit_tag 'Assign',:name=>'assign' %>
+<%= submit_tag 'Assign',:name=>'assign' ,:class=>'button_new'%>
 <% end %>
 </div>
 

@@ -29,7 +29,7 @@
   <%= error_messages_for 'user'%>
 <%= render :partial => "members/form", :object => f %>
   <p>
-    <%= f.submit 'Update' %> &nbsp;<%= link_to 'Back',member_path(@member.id) %>
+    <%= f.submit 'Update',:class=>'button_new' %> &nbsp;<%= link_to 'Back',member_path(@member.id) ,:class=>'button_new'%>
 
   </p>
 <% fields_for :relation do |rf| %>

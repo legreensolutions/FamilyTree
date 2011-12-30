@@ -39,7 +39,7 @@
   </tr>
   <% end %>
   <tr>
-    <td colspan="2" align="center"><%= f.submit 'Update' %><%= f.hidden_field :user_id,:value=>@news_item.user_id %></td>
+    <td colspan="2" align="center"><%= f.submit 'Update',:class=>'button_new' %><%= f.hidden_field :user_id,:value=>@news_item.user_id %></td>
   </tr>
 <% end %>
 </table>

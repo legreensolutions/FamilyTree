@@ -508,7 +508,7 @@ h5 {
 }
 
 #right_menu_container1:hover {
-    background-color:#c1d7e7;;
+    background-color:#c1d7e7;
 }
 #right_menu_container1 a {
     color:black;
@@ -845,5 +845,25 @@ font: bold 12px Arial;
 text-decoration: none;
 padding: 4px 8px 4px 8px;
 
+}
+
+.button_new {
+background-color:#c1d7e7;
+color:#215384;
+font: bold 12px Arial;
+text-decoration: none;
+padding: 4px 8px 4px 8px;
+font-weight:bold;
+}
+
+
+a.button_new  {
+text-decoration:none;
+color:#215384;
+}
+
+a:hover.button_new  {
+    color:#215384;
+    text-decoration:none;
 }
 

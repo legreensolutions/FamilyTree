@@ -4,7 +4,7 @@
 <% form_for @user do |f| %>
   <%= f.error_messages %>
   <%= render :partial => "form", :object => f %>
-  <%= f.submit "Register" %>
+  <%= f.submit "Register" ,:class=>'button_new'%>
 <% end %>
 </div>
 <br />
