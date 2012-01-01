@@ -30,7 +30,9 @@ win.setDestroyOnClose();
 }
 </style>
  <div id="container"></div>
-<% if @news %>
+<% if @news  and !cookies[:display]
+cookies[:display] = {:value => 'true',
+   :expires => 1.hours.from_now } %>
 <script>
  win1(<%="'#{@news.description}'"%>);
 </script>
