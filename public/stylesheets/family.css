@@ -866,4 +866,8 @@ a:hover.button_new  {
     color:#215384;
     text-decoration:none;
 }
+div.clear
+{
+clear:both;
+}
 
