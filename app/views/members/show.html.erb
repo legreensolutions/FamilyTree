@@ -18,7 +18,7 @@
             <%= submit_tag 'Father' %>
           <% end %>
         <% else %>
-          Please login to enter  details of father.
+          <div class="tooltip" title ="Please login to enter  details of Father.">Father</div>
         <% end %>
         <% end %>
         </div>    <!-- class father end -->
@@ -39,7 +39,8 @@
             <%= submit_tag 'Mother' %>
           <% end %>
         <% else %>
-          Please login to enter details of mother.
+          <div class="tooltip" title ="Please login to enter  details of mother.">Mother</div>
+
         <% end %>
         <% end %>
 
@@ -77,7 +78,7 @@
             <%= submit_tag 'Brothers' %>
           <% end %>
         <% else %>
-          Please login to enter  details of brothers.
+          <span title="Login to enter details of Brother(s)">Brother(s)</span>
         <% end %>
         <% else %>
           Please enter father/mother's details before entering sisters.
@@ -117,7 +118,7 @@
             <%= submit_tag 'Spouse' %>
           <% end %>
         <% else %>
-          Please login to enter  details of spouse.
+          Spouse
         <% end %>
         <% end %>
 
@@ -148,7 +149,7 @@
             <%= submit_tag 'Sisters' %>
         <% end %>
         <% else %>
-          Please login to enter  details of sisters.
+          <span title="Login to enter details of sister">Sister(s)</span>
         <% end %>
         <% else %>
         Please enter father/mother's details before entering sisters
@@ -186,7 +187,7 @@
             <%= submit_tag 'Daughters' %>
           <% end %>
        <% else %>
-          Please login to enter  details of daughters.
+          <span title="Login to enter details of Daughter(s)">Daughter(s)</span>
         <% end %>
     </div>                                  <!-- END DAUGHTER'S DIV-->
 
@@ -211,7 +212,7 @@
             <%= submit_tag 'Sons' %>
           <% end %>
        <% else %>
-          Please login to enter  details of sons.
+          <span title="Login to enter details of Son">Son (s)</span>
         <% end %>
       </div>  <!-- END SON'S DIV-->
 
