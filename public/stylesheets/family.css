@@ -645,9 +645,9 @@ h3 {
 }
 
 .full_width_div {
-    width:100%;
-    text-align:center;
     margin:auto;
+    width:99%;
+    text-align:center;
 }
 
 #parents_inner_div {
@@ -660,6 +660,7 @@ h3 {
  .siblings {
     float:left;
     width:215px;
+    width:250px;
     height:55px;
     border:1px solid #1e4968;
     margin:2px;
@@ -839,13 +840,19 @@ img {
     border:solid #d8ecf9 1px;
 }
 
-.button {
+.button a{
 background-image:url('../images/link_bg.png');
+background-repeat:no-repeat;
 font: bold 12px Arial;
 text-decoration: none;
 padding: 4px 8px 4px 8px;
-
+float:right;
+width:95px;
 }
+.button a:hover {
+    text-decoration:none;
+}
+
 
 .button_new {
 background-color:#c1d7e7;

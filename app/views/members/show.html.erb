@@ -1,4 +1,4 @@
-<div align="right"><%= link_to 'Back',session[:return_uri] %></div>
+<div class="button"><%= link_to 'Back',session[:return_uri] %></div>
 <!-- PARENTS -->
   <div class="full_width_div">
     <div id = "parents_inner_div">    <!-- parents inner div -->
@@ -52,7 +52,8 @@
 <!-- SELF -->
 
   <div class="full_width_div">
-    <div style="text-align:center;margin:auto;height:85px;width:625px;">
+    <div style="text-align:center;margin:auto;height:85px;width:99%;" id = "one">
+    <div style="text-align:center;margin:auto;height:85px;width:1000px;margin-left:280px;" id = "two">
         <div class="siblings">
         <% if @member.father or @member.mother%>
           <%  @related_members = @member.find_brothers_or_sisters %>
@@ -83,7 +84,7 @@
         <% else %>
           Please enter father/mother's details before entering sisters.
         <% end %>
-        </div>
+        </div>  <!-- END OF BROTHERS DIV-->
         <div class="self">
         <%if @member.photo_file_name %>
         <% if current_user %>
@@ -99,7 +100,7 @@
         <% end %>
         <% end %>
 
-        </div>
+        </div>  <!-- END OF SELF -->
         <div class="connect">&nbsp;</div>
         <div class="spouse">
           <% if @related_member = @member.find_spouse %>
@@ -159,6 +160,7 @@
 
         </div>
     </div>
+  </div>
   </div>
 <div style="clear:both;"></div>
 
