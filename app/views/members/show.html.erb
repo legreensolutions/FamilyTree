@@ -85,7 +85,7 @@
           Please enter father/mother's details before entering sisters.
         <% end %>
         </div>  <!-- END OF BROTHERS DIV-->
-        <div class="self">
+        <div class="self" title=<%= @member.name %>>
         <%if @member.photo_file_name %>
         <% if current_user %>
           <%=link_to image_tag (@member.photo(:small), :height => "70", :crop => true, :title => @member.name ), edit_member_path(@member) %>&nbsp;
@@ -107,7 +107,7 @@
             <% if @related_member.photo_file_name %>
                <%=link_to image_tag (@related_member.photo(:small), :height => "70", :crop => true,  :title => @related_member.name ), member_path(@related_member.id) %>
             <% else %>
-              <%= link_to @related_member.name,member_path(@related_member.id) %>
+              <%= link_to @related_member.name,member_path(@related_member.id),  :title => @related_member.name %>
            <% end %>
            <%#=link_to image_tag (@related_member.photo(:small), :size => "50x70", :crop => true,  :title => @related_member.name ), member_path(@related_member.id) %>
            <% else %>

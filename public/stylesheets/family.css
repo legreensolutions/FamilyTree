@@ -671,6 +671,7 @@ h3 {
     height:80px;
     width:60px;
     margin:2px;
+    overflow:hidden;
 
 }
 .self {
@@ -841,13 +842,15 @@ img {
 }
 
 .button a{
-background-image:url('../images/link_bg.png');
+background-image:url('../images/left_button_bg.png');
 background-repeat:no-repeat;
 font: bold 12px Arial;
 text-decoration: none;
-padding: 4px 8px 4px 8px;
+padding:0px;
+padding-top: 5px;
 float:right;
-width:95px;
+width:113px;
+height:23px;
 }
 .button a:hover {
     text-decoration:none;
