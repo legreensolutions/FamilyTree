@@ -1,4 +1,6 @@
-<div align="right" ><%= link_to 'New family', new_family_path,:class=>'button' %></div>
+<% if current_user %>
+<div  class='button' ><%= link_to 'New family', new_family_path %></div>
+<% end %>
 <div align="center">
 <h3>Families</h3>
 

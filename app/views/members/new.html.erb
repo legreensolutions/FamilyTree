@@ -1,4 +1,5 @@
 <br />
+<div class="button"><%= link_to 'Back',members_path %></div>
 <div align="center">
 <% if params[:relation].blank? %>
 <h3>New member</h3>
@@ -28,7 +29,7 @@
 
 <%= render :partial => "members/form", :object => f %>
   <p>
-    <%= f.submit 'Create',:class=>'button_new' %> &nbsp;&nbsp;<%= link_to 'Back', members_path,:class=>'button_new'%>
+    <%= f.submit 'Create',:class=>'button_new' %>
   </p>
 <% fields_for :relation do |rf| %>
 <%= rf.hidden_field :user_id,:value=>session[:member_id]%>
@@ -37,5 +38,4 @@
 <% end %>
 <% end %>
 </div>
-
 

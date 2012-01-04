@@ -1,5 +1,5 @@
 <br />
-
+  <div class="button"><%= link_to 'Back',session[:return_uri] %></div>
 <div align="center">
 <h3>Events</h3>
 
@@ -28,7 +28,8 @@
   <tr>
     <td colspan="2" align="center">
     <%= f.hidden_field :user_id,:value=>current_user.id %>
-    <%= f.submit 'Create',:class=>'button_new' %>&nbsp;&nbsp;<%= link_to 'Back', events_path,:class=>'button_new' %>
+    <%= f.submit 'Create',:class=>'button_new' %>&nbsp;&nbsp;
+
     </td>
   </tr>
 <% end %>

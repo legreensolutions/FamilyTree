@@ -1,6 +1,6 @@
 <% session[:return_uri]= request.request_uri %>
-<div align="right" >
-<%= link_to 'New Member',new_member_path,:class=>'button' if current_user %>
+<div class='button'>
+<%= link_to 'New Member',new_member_path if current_user %>
 </div>
 <div align="center">
 <h3>Members</h3>
@@ -9,13 +9,14 @@
       <td><%- form_tag members_path, :method => :get do -%>
         <strong>Search:</strong>
         <%= text_field_tag :search_text,'',:value=>params[:search_text] %>
-        <%= submit_tag "Search", :name => 'search' %>
+        <%= submit_tag "Search", :name => 'search',:class=>'button_new' %>
         <% end %></td>
       </tr>
   </table><br />
 <% unless @members.blank? %>
 
 <div align="center">
+<%= will_paginate @members %><br />
 <table>
 <% @members.each do |member| %>
 <tr class="underline">
@@ -32,7 +33,7 @@
 <td><%= member.house_name %></td>
 
 <%if current_user and current_user.is_admin? %>
-<td><%=link_to member.post ? member.post.name: ' ', :controller=>'members',:action=>'assign_post',:id=>member.id%></td>
+<td><%=link_to member.post ? member.post.name: image_tag ('post.png',:title=>'assign post'), :controller=>'members',:action=>'assign_post',:id=>member.id%></td>
 <% else %>
 <td><%=member.post ? member.post.name: ' '%></td>
 <%  end -%>
@@ -43,7 +44,7 @@
 <% end %>
 </tr>
 <% end %>
-</table>
+</table><br />
 <%= will_paginate @members %>
 
  </div>

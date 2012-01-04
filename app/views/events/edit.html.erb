@@ -1,4 +1,5 @@
-&nbsp;<div align="center">
+<div class="button"><%= link_to 'Back', events_path%></div>
+<div align="center">
 <h3>Editing event</h3>
 <table align="center">
 <% form_for @event, :html => { :multipart => true } do |f| %>
@@ -23,7 +24,7 @@
   </tr>
   <% end %>
   <tr>
-    <td colspan="2"><%= f.hidden_field :user_id %><%= f.submit 'Update',:class=>'button_new' %></td>
+    <td colspan="2" align="center"><%= f.hidden_field :user_id %><%= f.submit 'Update',:class=>'button_new' %></td>
   </tr>
 <% end %>
 </table>

@@ -1,4 +1,8 @@
-<br /><div align="center">
+<br />
+<div class="button">
+<%= link_to 'Back', news_items_path %>
+</div>
+<div align="center">
 <h3>News</h3>
 <table align="center">
 <% form_for @news_item ,:html=>{:multipart=>true} do |f| %>
@@ -32,7 +36,7 @@
   </tr>
   <% end %>
   <tr>
-    <td colspan="2" align="center"><%= f.submit 'Create',:class=>'button_new' %> &nbsp;&nbsp;<%= link_to 'Back', news_items_path,:class=>'button_new'%>
+    <td colspan="2" align="center"><%= f.submit 'Create',:class=>'button_new' %>
     <%= f.hidden_field :user_id,:value=>current_user.id %>
     </td>
   </tr>

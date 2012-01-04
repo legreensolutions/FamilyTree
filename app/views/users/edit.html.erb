@@ -1,4 +1,9 @@
-<br /><div align="center">
+<% if current_user and @user.id == current_user.id %>
+  <div class="button">
+    <%= link_to 'Change password',:controller=>'password_resets',:action=>'change_password' %>
+  </div>
+<% end %><br />
+<div align="center">
 <h3>Edit Account</h3>
 
 <% form_for @user do |f| %>

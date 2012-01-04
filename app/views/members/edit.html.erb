@@ -1,9 +1,5 @@
 <br />
-<% if current_user and @member.user_id == current_user.id %>
-  <div align="right">
-    <%= link_to 'Change password',:controller=>'password_resets',:action=>'change_password' %>
-  </div>
-<% end %>
+<div class="button"><%= link_to 'Back',members_path %></div>
 <div align="center">
 <% if session[:relation_name].blank? %>
 <h3>Editing member</h3>
@@ -29,7 +25,7 @@
   <%= error_messages_for 'user'%>
 <%= render :partial => "members/form", :object => f %>
   <p>
-    <%= f.submit 'Update',:class=>'button_new' %> &nbsp;<%= link_to 'Back',member_path(@member.id) ,:class=>'button_new'%>
+    <%= f.submit 'Update',:class=>'button_new' %>
 
   </p>
 <% fields_for :relation do |rf| %>
