@@ -5,7 +5,7 @@
         <div class="father">
         <% if @related_member = @member.father %>
           <% unless @related_member.photo_file_name.nil? %>
-            <%=link_to image_tag (@related_member.photo(:small), :height => "50", :title => @related_member.name ), member_path(@related_member.id) %>
+            <%=link_to image_tag(@related_member.photo(:small), :height => "50", :title => @related_member.name ), member_path(@related_member.id) %>
           <% else %>
             <%=link_to @related_member.name, member_path(@related_member.id) %>
           <% end %>
@@ -26,7 +26,7 @@
          <div class="mother">
         <% if @related_member = @member.mother %>
             <% unless @related_member.photo_file_name.nil? %>
-              <%=link_to image_tag (@related_member.photo(:small), :height => "50", :crop => true,  :title => @related_member.name ), member_path(@related_member.id) %>
+              <%=link_to image_tag(@related_member.photo(:small), :height => "50", :crop => true,  :title => @related_member.name ), member_path(@related_member.id) %>
             <% else %>
               <%= link_to @related_member.name,member_path(@related_member.id) %>
             <% end %>
@@ -62,7 +62,7 @@
               <% @member_rel = Member.find_by_id_and_gender_id(related_member.user_id,MALE)  %>
                 <% if @member_rel %>
                   <% if @member_rel.photo_file_name %>
-                  <%=link_to image_tag (@member_rel.photo(:small), :height => "50", :crop => true,  :title => @member_rel.name ), member_path(@member_rel.id) %>
+                  <%=link_to image_tag(@member_rel.photo(:small), :height => "50", :crop => true,  :title => @member_rel.name ), member_path(@member_rel.id) %>
                   <% else %>
                    <%= link_to @member_rel.name,member_path(@member_rel.id) if @member_rel %>
                   <% end %>
@@ -88,9 +88,9 @@
         <div class="self" title=<%= @member.name %>>
         <%if @member.photo_file_name %>
         <% if current_user %>
-          <%=link_to image_tag (@member.photo(:small), :height => "70", :crop => true, :title => @member.name ), edit_member_path(@member) %>&nbsp;
+          <%=link_to image_tag(@member.photo(:small), :height => "70", :crop => true, :title => @member.name ), edit_member_path(@member) %>&nbsp;
         <% else %>
-          <%= image_tag (@member.photo(:small), :height => "70", :crop => true, :title => @member.name ) %>&nbsp;
+          <%= image_tag(@member.photo(:small), :height => "70", :crop => true, :title => @member.name ) %>&nbsp;
         <% end %>
         <% else %>
         <% if current_user %>
@@ -105,7 +105,7 @@
         <div class="spouse">
           <% if @related_member = @member.find_spouse %>
             <% if @related_member.photo_file_name %>
-               <%=link_to image_tag (@related_member.photo(:small), :height => "70", :crop => true,  :title => @related_member.name ), member_path(@related_member.id) %>
+               <%=link_to image_tag(@related_member.photo(:small), :height => "70", :crop => true,  :title => @related_member.name ), member_path(@related_member.id) %>
             <% else %>
               <%= link_to @related_member.name,member_path(@related_member.id),  :title => @related_member.name %>
            <% end %>
@@ -132,7 +132,7 @@
               <% @member_rel = Member.find_by_id_and_gender_id(related_member.user_id,FEMALE)  %>
                  <% if @member_rel %>
                   <% if @member_rel.photo_file_name %>
-                  <%=link_to image_tag (@member_rel.photo(:small), :height => "50", :crop => true,  :title => @member_rel.name ), member_path(@member_rel.id) %>
+                  <%=link_to image_tag(@member_rel.photo(:small), :height => "50", :crop => true,  :title => @member_rel.name ), member_path(@member_rel.id) %>
                   <% else %>
                    <%= link_to @member_rel.name,member_path(@member_rel.id) if @member_rel %>
                   <% end %>
@@ -200,7 +200,7 @@
             <% @related_members.each do |member_rel| %>
               <% unless member_rel.photo_file_name.nil? %>
 
-              <%=link_to image_tag (member_rel.photo(:small), :height => "50", :crop => true,  :title => member_rel.name ), member_path(member_rel.id) %>
+              <%=link_to image_tag(member_rel.photo(:small), :height => "50", :crop => true,  :title => member_rel.name ), member_path(member_rel.id) %>
               <% else %>
                  <%= link_to member_rel.name,member_path(member_rel.id) %><br />
               <% end %>
