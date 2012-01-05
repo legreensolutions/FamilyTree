@@ -1,10 +1,10 @@
 <%if current_user%>
 <div class="button">
-<%= link_to 'Add New', new_news_item_path %>
+<%= link_to 'Add New', new_news_item_path%>
 </div>
 <% end %>
 <% unless @news_items.blank? %>
-<div align="left" style="float:left;">
+<div class="center">
 Tags : <%= news_items_tag_list(@news_items) %>
 </div><br />
 
@@ -12,15 +12,12 @@ Tags : <%= news_items_tag_list(@news_items) %>
 <h3>News</h3>
 
 <table align="center">
-  <tr>
+  <!--tr>
   <th>Title</th><th>Description</th><th>Date</th><th>Image</th>
-  </tr>
+  </tr -->
 
 <% @news_items.each do |news_item| %>
   <tr>
-    <td><%= link_to news_item.title,news_item_path(news_item) %></td>
-    <td><%= news_item.description %></td>
-    <td><%= news_item.news_date %></td>
     <% @upload = news_item.news_uploads.first %>
     <td><%unless @upload.nil? %>
           <%= image_tag @upload.photo.url(:thumb) %>
@@ -28,10 +25,16 @@ Tags : <%= news_items_tag_list(@news_items) %>
          'No Image'
          <% end %>
     </td>
-    <% if current_user and current_user.is_admin %>
-    <td><%= link_to image_tag('edit.png'), edit_news_item_path(news_item) %></td>
-    <td><%= link_to image_tag('delete.png'), news_item, :confirm => 'Are you sure?', :method => :delete %></td>
-    <% end %>
+    <td>
+      <h3><%= link_to news_item.title,news_item_path(news_item) %></h3>
+      <%= news_item.news_date %><br />
+      <%= news_item.description[0..50] %><br />
+      <% if current_user and current_user.is_admin %>
+      <%= link_to image_tag('edit.png'), edit_news_item_path(news_item) %>
+      <%= link_to image_tag('delete.png'), news_item, :confirm => 'Are youh3 sure?', :method => :delete %>
+      <% end %>
+      <hr />
+    </td>
   </tr>
 <% end %>
 </table>

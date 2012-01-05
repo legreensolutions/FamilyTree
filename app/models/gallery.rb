@@ -12,8 +12,10 @@ end
   has_attached_file :photo,
     :styles => {
       :thumb=> "100x100#",
-      :small  => "150x150>",
-      :medium =>"300x300" }
+      :small  => "150",
+      :medium =>"300",
+      :large => "600"
+       }
 
 validates_attachment_presence :photo
 

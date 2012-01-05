@@ -5,14 +5,10 @@
 
 
 <table align="center">
-  <tr>
-  <!-- th>Title</th><th>Description</th><th>Date</th><th>Image</th -->
-  </tr>
+
 
 <% @events.each do |event| %>
   <tr>
-
-
     <% @upload = event.event_uploads.first %>
     <td>
       <%unless @upload.nil? %>
@@ -24,18 +20,16 @@
 
     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 
-    <td>
-      <%= link_to event.title,event_path(event) %><br />
-      <%= event.description %><br />
+    <td class="table-left-aligned">
+      <h3><%= link_to event.title,event_path(event) %></h3>
+      <%= event.description[0..50] %><br />
       <%= event.event_date %><br /><br />
       <% if current_user and (current_user.id == event.user_id) %>
       <%= link_to image_tag('edit.png'), edit_event_path(event) %>
       <%= link_to image_tag('delete.png'), event, :confirm => 'Are you sure?', :method => :delete %>
       <% end %>
+      <hr />
     </td>
-
-    <td></td>
-    <td></td>
   </tr>
 <% end %>
 </table>

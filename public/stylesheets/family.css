@@ -646,7 +646,7 @@ h3 {
 
 .full_width_div {
     margin:auto;
-    width:99%;
+    width:95%;
     text-align:center;
 }
 
@@ -890,5 +890,10 @@ clear:both;
     background-color:white;
     width:39px;
     height:50px;
+}
+
+.table-left-aligned {
+ margin:15px;
+ text-align:left;
 }
 

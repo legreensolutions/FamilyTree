@@ -15,7 +15,7 @@ Tags : <%= tag_list(Gallery.all) %>
 
          <% @galleries.each do |gallery| %>
             <div style="float:left;float:left;" align="center">
-               <%= link_to image_tag(gallery.photo.url(:thumb)),gallery.photo.url(:medium),:title=>gallery.title   %> &nbsp;&nbsp;
+               <%= link_to image_tag(gallery.photo.url(:thumb)),gallery.photo.url(:large),:title=>gallery.title   %> &nbsp;&nbsp;
              </div>
 
         <% end %>
