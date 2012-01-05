@@ -897,3 +897,15 @@ clear:both;
  text-align:left;
 }
 
+
+
+.button_new {
+    background-image:url("../images/button_bg.png");
+    background-repeat:no-repeat;
+    width:103px;
+    height:27px;
+}
+.button_new:hover {
+    background-image:url("../images/button_hover_bg.png");
+}
+
