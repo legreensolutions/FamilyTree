@@ -937,8 +937,8 @@ text-decoration: none;
 padding:0px;
 padding-top: 5px;
 float:right;
-width:113px;
-height:23px;
+width:74px;
+height:27px;
 }
 .button a:hover {
     text-decoration:none;
@@ -946,7 +946,7 @@ height:23px;
 
 
 .button_new {
-background-color:#c1d7e7;
+/*background-color:#c1d7e7;*/
 color:#215384;
 font: bold 12px Arial;
 text-decoration: none;
@@ -988,12 +988,13 @@ clear:both;
 
 
 .button_new {
-    background-image:url("../images/button_bg.png");
+    background-image:url("../images/button_back.png");
     background-repeat:no-repeat;
-    width:103px;
-    height:27px;
+    width:100px;
+    height:40px;
+    color:white;
 }
 .button_new:hover {
-    background-image:url("../images/button_hover_bg.png");
+    background-image:url("../images/button_back_hover.png");
 }
 
