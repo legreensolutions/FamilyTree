@@ -21,13 +21,13 @@
 <% @members.each do |member| %>
 <%  title = ""
 if !member.house_name.blank?
-    title = "House:#{member.house_name}, ".to_s
+    title = "#{member.house_name}, ".to_s
   end
   if !member.occupation.blank?
-    title +=  "Occupation : #{member.occupation}, " .to_s
+    title +=  "#{member.occupation}, " .to_s
   end
   if !member.pet_name.blank?
-    title += "Pet Name : #{member.pet_name} ".to_s
+    title += "#{member.pet_name} ".to_s
   end
 %>
 <tr class="underline">
