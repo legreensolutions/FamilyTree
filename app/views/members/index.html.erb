@@ -19,22 +19,34 @@
 <%= will_paginate @members %><br />
 <table>
 <% @members.each do |member| %>
+<%  title = ""
+if !member.house_name.blank?
+    title = "House:#{member.house_name}, ".to_s
+  end
+  if !member.occupation.blank?
+    title +=  "Occupation : #{member.occupation}, " .to_s
+  end
+  if !member.pet_name.blank?
+    title += "Pet Name : #{member.pet_name} ".to_s
+  end
+%>
 <tr class="underline">
 <td>
   <%#= link_to 'Roots',:controller=>'members',:action=>'tree',:id=>member.id %>
-  <%= link_to (image_tag "roots_black.png"),:controller=>'members',:action=>'tree',:id=>member.id %>
+  <%= link_to (image_tag "roots_black.png",:title=>'Trace Root'),:controller=>'members',:action=>'tree',:id=>member.id %>
 </td>
 <td>
 
       <% unless member.photo_file_name.nil? %>
-            <%=link_to (image_tag(member.photo(:small), :height=>"30px;"), member_path(member.id)) %>
+            <%=link_to (image_tag(member.photo(:small), :height=>"30px;",:title=>title), member_path(member.id)) %>
             <% else %>
-             <%=link_to (image_tag 'default_big.jpg', :height=>"30px;") , member_path(member.id) %>&nbsp;&nbsp;<br />
+             <%=link_to (image_tag 'default_big.jpg', :height=>"30px;",:title=>title) , member_path(member.id) %>&nbsp;&nbsp;<br />
       <% end %>
 
 </td>
-<td><%=link_to member.name ,member_path(member.id)%></td>
-<td><%= member.house_name %></td>
+
+<td><%=link_to member.name ,member_path(member.id),{:title=>title}%></td>
+<!--<td><%#= member.house_name %></td>-->
 
 <%if current_user and current_user.is_admin? %>
 <td><%=link_to member.post ? member.post.name: image_tag ('post.png',:title=>'assign post'), :controller=>'members',:action=>'assign_post',:id=>member.id%></td>
@@ -42,8 +54,8 @@
 <td><%=member.post ? member.post.name: ' '%></td>
 <%  end -%>
 <%if current_user  %>
-<td><%=link_to image_tag('edit.png'), edit_member_path(member)%></td>
-<td><%=link_to image_tag('delete.png'), member, :confirm => 'Are you sure?', :method => :delete%></td>
+<td><%=link_to image_tag('edit.png',:title=>'show details'), edit_member_path(member)%></td>
+<td><%=link_to image_tag('delete.png',:title=>'Delete'), member, :confirm => 'Are you sure?', :method => :delete%></td>
 <% end %>
 </tr>
 <% end %>

@@ -1,9 +1,8 @@
-<h1>Listing districts</h1>
-
+<div align="center">
+<div class='button'><%= link_to 'New', new_district_path if current_user and current_user.is_admin %></div>
+<% unless @districts.blank? %>
 <table align="center">
-  <tr>
-    <th>Name</th>
-  </tr>
+<tr><td colspan="3" align="center"><h3>Districts</h3></td></tr>
 
 <% @districts.each do |district| %>
   <tr>
@@ -13,8 +12,8 @@
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New district', new_district_path %>
+</div>
+<% else %>
+<h4>No Records </h4>
+<% end %>
 

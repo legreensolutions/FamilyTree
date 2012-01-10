@@ -58,6 +58,9 @@ cookies[:display] = {:value => 'true',
     <% if current_user and current_user.is_admin %>
       <div id="right_menu_container1">   <%= link_to '&nbsp;&nbsp;&nbsp;Content Management' ,content_managements_path %></div>
       <div id="right_menu_container2">   <%= link_to '&nbsp;&nbsp;&nbsp;Edit Families' ,families_path %></div>
+      <div id="right_menu_container3">   <%= link_to '&nbsp;&nbsp;&nbsp;Posts' ,posts_path %></div>
+      <div id="right_menu_container4">   <%= link_to '&nbsp;&nbsp;&nbsp;Countries' ,countries_path %></div>
+      <div id="right_menu_container5">   <%= link_to '&nbsp;&nbsp;&nbsp;Disctricts' ,districts_path %></div>
     <% end %>
 
 

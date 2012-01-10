@@ -1,14 +1,15 @@
-<h1>Editing post</h1>
+<div class="button"><%= link_to 'Back', posts_path%></div>
+<h3>Edit post</h3>
 
 <% form_for(@post) do |f| %>
   <%= f.error_messages %>
 
   <p>
-    <%= f.label :name %><br />
+    <%= f.label :name %> :
     <%= f.text_field :name %>
   </p>
   <p>
-    <%= f.submit 'Update' %>
+    <%= f.submit 'Update',:class=>'button_new' %>
   </p>
 <% end %>
 

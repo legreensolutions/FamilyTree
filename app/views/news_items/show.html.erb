@@ -8,7 +8,7 @@
             <td>
               <% @upload = @news_item.news_uploads.first %>
               <% unless @upload.nil? %>
-              <%= image_tag @upload.photo.url(:thumb) %>
+              <%= image_tag @upload.photo.url(:small) %>
               <% end %>
             </td>
             <td class="table-left-aligned">

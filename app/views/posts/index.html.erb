@@ -1,11 +1,11 @@
-<h1>Listing posts</h1>
+<div align="center">
+<div class='button'><%= link_to 'New Post', new_post_path if current_user and current_user.is_admin %></div>
+<% unless @posts.blank? %>
+<table align="center">
+<tr><td colspan="3" align="center"><h3>Posts</h3></td></tr>
 
-<table>
-  <tr>
-    <th>Name</th>
-  </tr>
 
-<% @posts.each do |post| %>
+ <% @posts.each do |post| %>
   <tr>
     <td><%=h post.name %></td>
     <td><%= link_to image_tag('edit.png'), edit_post_path(post) %></td>
@@ -13,8 +13,8 @@
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New post', new_post_path %>
+</div>
+<% else %>
+<h4>No Records </h4>
+<% end %>
 

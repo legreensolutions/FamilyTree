@@ -1,14 +1,15 @@
-<h1>Editing district</h1>
+<div class='button'><%= link_to 'Back', districts_path %>
+<h3>Edit district</h3>
 
 <% form_for(@district) do |f| %>
   <%= f.error_messages %>
 
   <p>
-    <%= f.label :name %><br />
+    <%= f.label :name %> :
     <%= f.text_field :name %>
   </p>
   <p>
-    <%= f.submit 'Update' %>
+    <%= f.submit 'Update',:class=>'button_new' %>
   </p>
 <% end %>
 
