@@ -11,7 +11,9 @@
 
     <div style="float:left;">
       <% @upload = @event.event_uploads.first %>
-    <%unless @upload.nil? %><p><%= image_tag @upload.photo.url(:small)%></p><% end %>
+    <%unless @upload.nil? %>
+      <p><div id="gallery"><%= link_to image_tag(@upload.photo.url(:small)),@upload.photo.url(:original)%></div></p>
+    <% end %>
     </div>
 
 
