@@ -935,10 +935,11 @@ background-repeat:no-repeat;
 font: bold 12px Arial;
 text-decoration: none;
 padding:0px;
-padding-top: 5px;
+padding-top: 13px;
 float:right;
-width:74px;
-height:27px;
+width:100px;
+height:40px;
+color:#fff;
 }
 .button a:hover {
     text-decoration:none;
@@ -997,4 +998,10 @@ clear:both;
 .button_new:hover {
     background-image:url("../images/button_back_hover.png");
 }
+#search_text.search_box {
+ border:solid #a4d7f1 1px;
+}
+input#user_session_submit.button_new {
+background-color:#e3f1fa;
+    }
 

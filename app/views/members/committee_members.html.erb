@@ -4,13 +4,17 @@
         <h3>Committee Members</h3>
          <% @members.each do |member| %>
             <div style="float:left;" align="center">
-            <%= member.post.name %> &nbsp;&nbsp;<br />
-            <% unless member.photo_file_name.nil? %>
-            <%= image_tag member.photo.url(:thumb),:title=>member.name %>&nbsp;<br />
-            <% else %>
-            <%= image_tag 'default_big.jpg',:title=>member.name %>&nbsp;<br />
-            <% end %>
-        </div>
+              <%= unless member.post.nil?
+                    member.post.name
+                  end
+              %> &nbsp;&nbsp;<br />
+              <%#= member.post.name %> &nbsp;&nbsp;<br />
+              <% unless member.photo_file_name.nil? %>
+              <%= image_tag member.photo.url(:thumb),:title=>member.name %>&nbsp;<br />
+              <% else %>
+              <%= image_tag 'default_big.jpg',:title=>member.name %>&nbsp;<br />
+              <% end %>
+            </div>
 
         <% end %>
 
