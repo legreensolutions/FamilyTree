@@ -994,11 +994,12 @@ clear:both;
     width:100px;
     height:40px;
     color:white;
+    background-color:#ddeef9;
 }
 .button_new:hover {
     background-image:url("../images/button_back_hover.png");
 }
-#search_text.search_box {
+#search_text.search_box, input#user_session_email, input#user_session_password {
  border:solid #a4d7f1 1px;
 }
 input#user_session_submit.button_new {
