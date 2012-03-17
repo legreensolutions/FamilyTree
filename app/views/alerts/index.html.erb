@@ -11,7 +11,7 @@
   <tr>
     <td><%= alert.title %></td>
     <td><%= alert.description %></td>
-    <td><%= alert.alert_date %></td>
+    <td><%= alert.alert_date.strftime("%d/%m/%Y") %></td>
     <% @upload = alert.alert_uploads.first %>
     <td><%unless @upload.nil?  %>
           <%= image_tag @upload.photo.url(:thumb) %>

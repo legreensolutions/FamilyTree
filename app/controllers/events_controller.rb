@@ -87,5 +87,11 @@ class EventsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def delete_image
+    @upload = EventUpload.find_by_id(params[:id])
+    @upload.destroy
+
+  end
 end
 

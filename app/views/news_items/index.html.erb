@@ -27,7 +27,7 @@ Tags : <%= news_items_tag_list(@news_items) %>
     </td>
     <td>
       <h3><%= link_to news_item.title,news_item_path(news_item) %></h3>
-      <%= news_item.news_date %><br />
+      <%= news_item.news_date.strftime("%d/%m/%Y") %><br />
       <%= news_item.description[0..50] %><br />
       <% if current_user and current_user.is_admin %>
       <%= link_to image_tag('edit.png'), edit_news_item_path(news_item) %>

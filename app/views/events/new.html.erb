@@ -1,5 +1,5 @@
 <br />
-  <div class="button"><%= link_to 'Back',session[:return_uri] %></div>
+  <div class="button"><%= link_to 'Back',events_path %></div>
 <div align="center">
 <h3>Events</h3>
 
@@ -17,7 +17,7 @@
   </tr>
   <tr>
     <td>Event Date</td>
-    <td><%= f.date_select(:event_date, :order => [:month, :day,:year]) %></td>
+    <td><%= f.date_select(:event_date, {:order => [:month, :day,:year],:start_year=>1988}) %></td>
    </tr>
   <% f.fields_for :event_uploads do |photo_form| %>
   <tr>

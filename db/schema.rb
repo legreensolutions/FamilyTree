@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111224062528) do
+ActiveRecord::Schema.define(:version => 20120314024119) do
 
   create_table "alert_uploads", :force => true do |t|
     t.integer  "alert_id"
@@ -24,6 +24,14 @@ ActiveRecord::Schema.define(:version => 20111224062528) do
     t.text     "description"
     t.date     "alert_date"
     t.boolean  "obsolete",    :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "committee_members", :force => true do |t|
+    t.integer  "member_id"
+    t.integer  "post_id"
+    t.integer  "year"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -92,11 +100,11 @@ ActiveRecord::Schema.define(:version => 20111224062528) do
   end
 
   create_table "members", :force => true do |t|
-    t.string   "name",                                  :null => false
+    t.string   "name",                                               :null => false
     t.string   "email"
     t.string   "pet_name"
-    t.integer  "phone"
-    t.integer  "mobile"
+    t.integer  "phone",              :limit => 8
+    t.integer  "mobile",             :limit => 8
     t.integer  "family_id"
     t.string   "house_name"
     t.string   "house_number"
@@ -106,12 +114,12 @@ ActiveRecord::Schema.define(:version => 20111224062528) do
     t.integer  "district_id"
     t.integer  "state_id"
     t.integer  "country_id"
-    t.boolean  "demoted",            :default => false
-    t.boolean  "lock",               :default => false
+    t.boolean  "demoted",                         :default => false
+    t.boolean  "lock",                            :default => false
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
-    t.integer  "created_by",         :default => 1
+    t.integer  "created_by",                      :default => 1
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -124,7 +132,7 @@ ActiveRecord::Schema.define(:version => 20111224062528) do
     t.string   "occupation"
     t.string   "position"
     t.string   "official_address"
-    t.boolean  "diseased",           :default => false
+    t.boolean  "diseased",                        :default => false
   end
 
   create_table "news_items", :force => true do |t|

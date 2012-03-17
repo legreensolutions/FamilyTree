@@ -7,9 +7,18 @@
   <%= link_to image_tag(@member.photo.url(:thumb)),member_path(@member.id)%>
 <% end %>
 </div>
+<% post_id = ""
+year = Date.today.year
+@post = @member.posts.find(:first,:conditions=>['year =?',Date.today.year])
+if !@post.nil?
+post_id =  @post.id
+year = CommitteeMember.find_by_member_id_and_year(@member.id,Date.today.year).year
+end
+%>
 <% form_tag '/members/assign_post',:method=>'post' do %>
-<%= select_tag('post_id', "<option value='no_post'>-Select .....</option><option value="">Ordinary Member</option>"  + options_from_collection_for_select(@posts, :id, :name,@member.post_id)) %><br /> <br />
-<%= hidden_field_tag 'member_id',@member.id %>
+<p>Select Post : <%= select_tag('post_id', "<option value='no_post'>-Select .....</option><option value="">Ordinary Member</option>"  + options_from_collection_for_select(@posts, :id, :name,post_id))%></p>
+<p>Year :  <%= select_year year,:start_year => 2010,:end_year=>Date.today.year %>
+<%= hidden_field_tag 'member_id',@member.id %><br /> <br />
 <%= submit_tag 'Assign',:name=>'assign' ,:class=>'button_new'%>
 <% end %>
 </div>

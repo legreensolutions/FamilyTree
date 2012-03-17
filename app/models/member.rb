@@ -6,7 +6,10 @@ class Member < ActiveRecord::Base
   belongs_to :district
   validates_presence_of :name
   validates_presence_of :gender_id
-  belongs_to :post
+ # belongs_to :post
+ has_many :committee_members
+ has_many :posts, :through => :committee_members
+
 
 
   has_many :child_member_relations, :class_name => "Relation", :foreign_key => "user_id"
@@ -88,7 +91,9 @@ class Member < ActiveRecord::Base
     return nil
   end
 
-
+ def has_photo?
+    !self.photo_file_name.nil?
+  end
 
 end
 

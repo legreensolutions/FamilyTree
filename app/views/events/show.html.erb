@@ -10,9 +10,18 @@
 <div  class="family_show" style="margin-left:300px;">
 
     <div style="float:left;">
-      <% @upload = @event.event_uploads.first %>
+      <% @upload = @event.event_uploads.first%>
     <%unless @upload.nil? %>
-      <p><div id="gallery"><%= link_to image_tag(@upload.photo.url(:small)),@upload.photo.url(:original)%></div></p>
+
+      <p>
+      <div id="gallery">
+
+          <%= link_to image_tag(@upload.photo.url(:small)),@upload.photo.url(:original)%><br />
+
+      </div>
+
+     </p>
+
     <% end %>
     </div>
 
@@ -20,9 +29,13 @@
 
     <div class="family_show_description">
       <h2><%= @event.title %></h2>
-      <%= @event.event_date %><br />
+      <%= @event.event_date.strftime("%d/%m/%Y") %><br />
       <%= @event.description %>
       <hr />
+      <%unless @upload.nil? %>
+        <%= link_to_remote "[Delete this image]",
+    :url => { :action => "delete_image", :id => @upload.id }  %>
+    <% end %>
     </div>
 
 

@@ -14,7 +14,7 @@
     <div class="family_show_description">
       <%=h @alert.title %><br />
       <%= @alert.description %><br />
-      <%= @alert.alert_date%><br />
+      <%= @alert.alert_date.strftime("%d/%m/%Y")%><br />
     </div>
 
   </div>

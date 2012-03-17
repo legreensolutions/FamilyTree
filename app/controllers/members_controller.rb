@@ -16,7 +16,7 @@ class MembersController < ApplicationController
         #:per_page => 20)
         @members = Member.paginate(
         :conditions=>['members.name LIKE ? OR email LIKE ? OR families.name LIKE ? OR house_name LIKE ? ',"%#{params[:search_text]}%","%#{params[:search_text]}%","%#{params[:search_text]}%","%#{params[:search_text]}%"],
-        :include => [:post,:family],
+        :include => [:posts,:family],
         :order => "members.id",
         :page => params[:page],
         :per_page => 50,
@@ -30,7 +30,7 @@ class MembersController < ApplicationController
     #:order => "members.id",
     #:per_page => 20)
     @members = Member.paginate(
-    :include => :post,
+    :include => :posts,
     :order => "members.id",
     :page => params[:page],
         :per_page => 50,
@@ -98,25 +98,22 @@ class MembersController < ApplicationController
          @user.password = Digest::SHA1.hexdigest(Time.now.to_s.split(//).sort_by{rand}.join)[0..10]
          @user.password_confirmation = @user.password
            if @user.save_without_session_maintenance
-            @user.deliver_activation_instructions!
-            @member.update_attribute('user_id',@user.id)
-            unless params[:relation].nil?
-              flash[:notice] = 'Relation added successfully.'
-            # format.html { redirect_to(:controller=>'relations',:action=>'index',:id=>params[:relation][:user_id] ) }
-            format.html{redirect_to(member_path(@member.id), :notice => 'Relation created.')}
-            else
+              @user.deliver_activation_instructions!
+              @member.update_attribute('user_id',@user.id)
+              unless params[:relation].nil?
+                flash[:notice] = 'Relation added successfully.'
+              # format.html { redirect_to(:controller=>'relations',:action=>'index',:id=>params[:relation][:user_id] ) }
+              format.html{redirect_to(member_path(@member.id), :notice => 'Relation created.')}
+              else
 
-              format.html { redirect_to(members_path, :notice => 'Your account has been created. Please check your e-mail for your account  activation instructions!.') }
-            end
-            else
-
-
+                format.html { redirect_to(members_path, :notice => 'Your account has been created. Please check your e-mail for your account  activation instructions!.') }
+              end
+          else
              flash[:notice] = "Please enter email"
-              format.html { render :action => "edit" }
-
-         end
+             format.html { render :action => "edit" }
           end
-          # end of enable signning of a member by saving to users table also
+        end # end of enable signning of a member by saving to users table also
+
           unless params[:relation][:user_id].blank?
           # format.html { redirect_to(:controller=>'relations',:action=>'index',:id=>params[:relation][:user_id]) }
 
@@ -126,7 +123,7 @@ class MembersController < ApplicationController
           format.xml  { render :xml => @member, :status => :created, :location => @member }
           end
 
-      else
+    else #else of member save
 
           format.html { render :action => "new" }
           format.xml  { render :xml => @member.errors, :status => :unprocessable_entity }
@@ -226,14 +223,22 @@ end
   end
 
   def assign_post
-     if  params[:post_id]
+   if  params[:post_id]
        @member = Member.find(params[:member_id])
        @posts = Post.all
       if params[:post_id].to_s == "no_post"
         flash[:notice] = 'Please select  post'
 
       else
-        @member.update_attribute('post_id',params[:post_id])
+       # @member.update_attribute('post_id',params[:post_id])
+       if CommitteeMember.find_by_member_id_and_year(@member.id,params[:date][:year]).blank?
+
+       CommitteeMember.create(:member_id=>@member.id,:post_id=>params[:post_id],:year=>params[:date][:year])
+      else
+
+       @committee_member = CommitteeMember.find_by_member_id_and_year(@member.id,params[:date][:year])
+       @committee_member.update_attribute('post_id',params[:post_id])
+      end
         flash[:notice] = 'Success'
         redirect_to members_path
       end
@@ -244,8 +249,13 @@ end
  end
 
  def committee_members
-   @members = Member.find(:all,:include=>'post',:conditions=>['post_id != ?',""],:order=>'posts.level')
-   @content_management = ContentManagement.find(:first,:conditions=>['UPPER(page) = ? AND UPPER(identification)= ?','COMMITTEE MEMBERS','PREV_MEMBERS'])
+   if params[:year]
+    @members = Member.find(:all,:include=>'posts',:conditions=>['committee_members.post_id != ? and year = ?',"",params[:year]],:order=>'posts.level')
+  else
+    @members = Member.find(:all,:include=>'posts',:conditions=>['committee_members.post_id != ? and year = ?',"",Date.today.year],:order=>'posts.level')
+  end
+  # @content_management = ContentManagement.find(:first,:conditions=>['UPPER(page) = ? AND UPPER(identification)= ?','COMMITTEE MEMBERS','PREV_MEMBERS'])
+  @years = CommitteeMember.find(:all,:select=>'DISTINCT year',:order=>'year',:limit=>5)
  end
 
 private

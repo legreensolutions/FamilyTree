@@ -4,8 +4,10 @@
         <h3>Committee Members</h3>
          <% @members.each do |member| %>
             <div style="float:left;" align="center">
-              <%= unless member.post.nil?
-                    member.post.name
+              <% unless member.posts.nil?
+                    member.posts.each do |post| %>
+                     <%= post.name%>
+                    <%end
                   end
               %> &nbsp;&nbsp;<br />
               <%#= member.post.name %> &nbsp;&nbsp;<br />
@@ -29,7 +31,7 @@
       <%#= @content_management.description if @content_management %>
     </div>
 </div>
-<% unless @content_management.blank? %>
+<% unless @years.nil? %>
 <div id="family_container"><%= render :partial=>'members/prev_committee_members' %></div>
 <% end %>
 

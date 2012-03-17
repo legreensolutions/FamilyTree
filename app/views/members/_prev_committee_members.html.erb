@@ -1,2 +1,6 @@
-<%= @content_management.description %>
+<%#= @content_management.description %>
+
+  <% @years.each do |year| %>
+    <%= link_to year.year,:controller=>'members',:action=>'committee_members',:year=>year.year %><br /><br />
+  <% end %>
 

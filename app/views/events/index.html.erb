@@ -23,7 +23,7 @@
     <td class="table-left-aligned">
       <h3><%= link_to event.title,event_path(event) %></h3>
       <%= event.description[0..50] %><br />
-      <%= event.event_date %><br /><br />
+      <%= event.event_date.strftime("%d/%m/%Y") %><br /><br />
       <% if current_user and (current_user.id == event.user_id) %>
       <%= link_to image_tag('edit.png'), edit_event_path(event) %>
       <%= link_to image_tag('delete.png'), event, :confirm => 'Are you sure?', :method => :delete %>

@@ -36,22 +36,45 @@ if !member.house_name.blank?
   <%= link_to (image_tag "roots_black.png",:title=>'Trace Root'),:controller=>'members',:action=>'tree',:id=>member.id %>
 </td>
 <td>
-
-      <% unless member.photo_file_name.nil? %>
-            <%=link_to (image_tag(member.photo(:small), :height=>"30px;",:title=>title), member_path(member.id)) %>
-            <% else %>
-             <%=link_to (image_tag 'default_big.jpg', :height=>"30px;",:title=>title) , member_path(member.id) %>&nbsp;&nbsp;<br />
-      <% end %>
-
+<div>
+ <span  style="color:white;
+    font-size:20px;
+    position:absolute;
+    margin-top:10px;
+    margin-left:10px;
+    text-align:left;opacity:0.8; filter:alpha(opacity=80);">
+    <%= image_tag 'post.png' %> </span>
+    <%= display_photo_of_member(member,title)%>
+      <%# unless member.photo_file_name.nil? %>
+            <%#=link_to (image_tag(member.photo(:small), :height=>"30px;",:title=>title), member_path(member.id)) %>
+            <%# else %>
+             <%#=link_to (image_tag 'default_big.jpg', :height=>"30px;",:title=>title) , member_path(member.id) %>&nbsp;&nbsp;<br />
+      <%# end %>
+</div>
 </td>
 
 <td><%=link_to member.name ,member_path(member.id),{:title=>title}%></td>
 <!--<td><%#= member.house_name %></td>-->
-
+<% @posts = member.posts.find(:first,:conditions=>['year =?',Date.today.year]) %>
 <%if current_user and current_user.is_admin? %>
-<td><%=link_to member.post ? member.post.name: image_tag ('post.png',:title=>'assign post'), :controller=>'members',:action=>'assign_post',:id=>member.id%></td>
+<td>
+
+<% if !@posts.nil?
+ post =  @posts.name %>
+ <%=link_to  post  , :controller=>'members',:action=>'assign_post',:id=>member.id%>
+ <% else %>
+ <%=link_to image_tag ('post.png',:title=>'assign post') , :controller=>'members',:action=>'assign_post',:id=>member.id%>
+<%end %>
+
+</td>
 <% else %>
-<td><%=member.post ? member.post.name: ' '%></td>
+<td>
+  <% if !@posts.nil? %>
+  <%= post.name %>
+  <% else %>
+    <%= ' ' %>
+  <% end %>
+</td>
 <%  end -%>
 <%if current_user  %>
 <td><%=link_to image_tag('edit.png',:title=>'show details'), edit_member_path(member)%></td>

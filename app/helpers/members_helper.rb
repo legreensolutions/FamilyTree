@@ -58,5 +58,15 @@ end
       false
     end
   end
+
+  def display_photo_of_member(member,title="")
+    unless member.nil?
+      if member.has_photo?
+        content_tag(:div,link_to (image_tag(member.photo(:small), :height=>"30px;",:title=>title), member_path(member.id)))
+      else
+        content_tag(:div,link_to (image_tag('default_big.jpg', :height=>"30px;",:title=>title) , member_path(member.id)))
+      end
+    end
+  end
 end
 

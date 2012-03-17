@@ -16,7 +16,8 @@
 </tr>
 <tr>
   <td><%= form.label :tags %></td>
-  <td><%= form.text_field :tags %>
+  <td><%#= form.text_field :tags %>
+  <%= text_field_with_auto_complete :gallery, :tags %>
   </td>
 </tr>
 <tr>
