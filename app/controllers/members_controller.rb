@@ -11,9 +11,9 @@ class MembersController < ApplicationController
      if params[:search]
      #   @members = initialize_grid(Member,
       #  :conditions=>['members.name LIKE ? OR email LIKE ? OR families.name LIKE ? OR house_name LIKE ? ',"%#{params[:search_text]}%","%#{params[:search_text]}%","%#{params[:search_text]}%","%#{params[:search_text]}%"],
-       # :include => [:post,:family],
-        #:order => "members.id",
-        #:per_page => 20)
+       # :include => [:posts,:family],
+        #:order => "members.name",
+        #:per_page => 50)
         @members = Member.paginate(
         :conditions=>['members.name LIKE ? OR email LIKE ? OR families.name LIKE ? OR house_name LIKE ? ',"%#{params[:search_text]}%","%#{params[:search_text]}%","%#{params[:search_text]}%","%#{params[:search_text]}%"],
         :include => [:posts,:family],
@@ -26,9 +26,9 @@ class MembersController < ApplicationController
      #  @members = Member.find(:all,:include => [:family],:conditions=>['members.name LIKE ? OR email LIKE ? OR families.name LIKE ? OR house_name LIKE ? ',"%#{params[:search_text]}%","%#{params[:search_text]}%","%#{params[:search_text]}%","%#{params[:search_text]}%"],:order => "members.id DESC")
     else
      # @members = initialize_grid(Member,
-    #:include => :post,
-    #:order => "members.id",
-    #:per_page => 20)
+    #:include => [:posts,:family],
+    #:order => "members.name",
+    #:per_page => 50)
     @members = Member.paginate(
     :include => :posts,
     :order => "members.id",
@@ -230,14 +230,20 @@ end
         flash[:notice] = 'Please select  post'
 
       else
+        if params[:show_in_contact_us]
+          show_in_contact_us = true
+        else
+          show_in_contact_us = false
+        end
+
        # @member.update_attribute('post_id',params[:post_id])
        if CommitteeMember.find_by_member_id_and_year(@member.id,params[:date][:year]).blank?
 
-       CommitteeMember.create(:member_id=>@member.id,:post_id=>params[:post_id],:year=>params[:date][:year])
+       CommitteeMember.create(:member_id=>@member.id,:post_id=>params[:post_id],:year=>params[:date][:year],:show_in_contact_us=>show_in_contact_us)
       else
 
        @committee_member = CommitteeMember.find_by_member_id_and_year(@member.id,params[:date][:year])
-       @committee_member.update_attribute('post_id',params[:post_id])
+       @committee_member.update_attributes(:post_id=>params[:post_id],:show_in_contact_us=>show_in_contact_us)
       end
         flash[:notice] = 'Success'
         redirect_to members_path

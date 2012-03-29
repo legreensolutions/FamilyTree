@@ -1,0 +1,61 @@
+<div align="center">
+ <% form_tag do %>
+<table>
+<tr>
+
+<td>
+
+
+<table align="center">
+
+         <% @committee_members.each do |member| %>
+          <tr>
+
+            <td>
+              <table>
+              <tr>
+              <td valign="top">
+              <%= display_photo_of_member(member,member.name,"80px;")%>
+              </td>
+              <td>
+              <%= member.name %><br />
+              <% unless member.posts.nil?
+                    member.posts.each do |post| %>
+                     <%= post.name%>
+                    <% end
+                  end
+              %><br />
+
+              <%= check_box_tag 'member_id[]',member.id %>
+              </td>
+              </tr>
+              </table>
+             </td>
+
+        </tr>
+        <% end %>
+
+
+</table>
+<table>
+<tr>
+  <td valign="top"><%= display_photo_of_member(@admin,@admin.name,"100px;")%></td>
+  <td><%= @admin.name %><br />
+  Web Administrator <br />
+  <%= check_box_tag 'member_id[]',@admin.id %>
+  </td>
+</tr>
+</table>
+
+</td>
+<td><%= "&nbsp;"*20%></td>
+  <td> <%= text_area_tag 'msg','',:size=>"40x10" %>
+        <p><%= submit_tag 'Send',:name=>'send' %>
+  </td>
+
+</tr>
+</table>
+</div>
+
+<% end %>
+

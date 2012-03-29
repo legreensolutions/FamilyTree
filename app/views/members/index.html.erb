@@ -37,13 +37,15 @@ if !member.house_name.blank?
 </td>
 <td>
 <div>
+<% if member.diseased %>
  <span  style="color:white;
     font-size:20px;
     position:absolute;
-    margin-top:10px;
+    margin-top:12px;
     margin-left:10px;
     text-align:left;opacity:0.8; filter:alpha(opacity=80);">
-    <%= image_tag 'post.png' %> </span>
+    <%= image_tag 'diseased.png' %> </span>
+<% end %>
     <%= display_photo_of_member(member,title)%>
       <%# unless member.photo_file_name.nil? %>
             <%#=link_to (image_tag(member.photo(:small), :height=>"30px;",:title=>title), member_path(member.id)) %>

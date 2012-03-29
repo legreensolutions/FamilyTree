@@ -11,11 +11,12 @@
                   end
               %> &nbsp;&nbsp;<br />
               <%#= member.post.name %> &nbsp;&nbsp;<br />
-              <% unless member.photo_file_name.nil? %>
-              <%= image_tag member.photo.url(:thumb),:title=>member.name %>&nbsp;<br />
-              <% else %>
-              <%= image_tag 'default_big.jpg',:title=>member.name %>&nbsp;<br />
-              <% end %>
+              <%= display_photo_of_member(member,member.name)%>
+              <%# unless member.photo_file_name.nil? %>
+              <%#= image_tag member.photo.url(:thumb),:title=>member.name %>&nbsp;<br />
+              <%# else %>
+              <%#= image_tag 'default_big.jpg',:title=>member.name %>&nbsp;<br />
+              <%# end %>
             </div>
 
         <% end %>

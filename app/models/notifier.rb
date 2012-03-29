@@ -29,5 +29,13 @@ default_url_options[:host] = "localhost:3000"
     body          :root_url => root_url
   end
 
+  def send_contact_us_msg(member,msg,user)
+    subject       "Message from a member"
+    from          user.email
+    recipients    member.email
+    sent_on       Time.now
+    body          :msg => msg,:from=>user.email,:to=>member
+  end
+
 end
 

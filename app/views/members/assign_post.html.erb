@@ -17,7 +17,8 @@ end
 %>
 <% form_tag '/members/assign_post',:method=>'post' do %>
 <p>Select Post : <%= select_tag('post_id', "<option value='no_post'>-Select .....</option><option value="">Ordinary Member</option>"  + options_from_collection_for_select(@posts, :id, :name,post_id))%></p>
-<p>Year :  <%= select_year year,:start_year => 2010,:end_year=>Date.today.year %>
+<p>Year :  <%= select_year year,:start_year => 2010,:end_year=>Date.today.year %></p>
+<p>Show in Contact us : <%= check_box_tag 'show_in_contact_us' %>
 <%= hidden_field_tag 'member_id',@member.id %><br /> <br />
 <%= submit_tag 'Assign',:name=>'assign' ,:class=>'button_new'%>
 <% end %>
