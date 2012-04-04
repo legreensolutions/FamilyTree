@@ -1,4 +1,4 @@
-<div class="button"><%= link_to 'Back',members_path %></div>
+<div class="button"><%= link_to 'All Members',members_path %></div>
 <div style="width:65%;float:right;" >
 
         <h3>Committee Members</h3>
@@ -33,6 +33,6 @@
     </div>
 </div>
 <% unless @years.nil? %>
-<div id="family_container"><%= render :partial=>'members/prev_committee_members' %></div>
+<div id="family_container"><% if current_user and current_user.is_admin? %><%= link_to 'Select another person to the post',members_path %><% end %><%= render :partial=>'members/prev_committee_members' %></div>
 <% end %>
 

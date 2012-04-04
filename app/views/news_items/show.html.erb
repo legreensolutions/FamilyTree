@@ -1,7 +1,7 @@
 <br />
-<!--div style="width:50%;text-align:center;margin-left:auto;">
-  <div style="width:400px;margin:auto;text-align:center;"-->
+
 <div class="clear"></div>
+<div class="button"><%= link_to 'All',news_items_path %></div>
 <div style="text-align:center;margin:auto;width:100%;">
         <table style="text-align:center;margin:auto;">
           <tr>
@@ -9,6 +9,8 @@
               <% @upload = @news_item.news_uploads.first %>
               <% unless @upload.nil? %>
               <div id="gallery"><%= link_to image_tag (@upload.photo.url(:small)),@upload.photo.url(:original)%></div>
+              <% else %>
+              <%= image_tag 'no_image.jpg',:size=>'100' %>
               <% end %>
             </td>
             <td class="table-left-aligned">
@@ -16,8 +18,8 @@
               <%= @news_item.news_date.strftime("%d/%m/%Y") %><br />
               <%= @news_item.description %>
               <% if current_user and current_user.is_admin %>
-              <%= link_to 'Edit', edit_news_item_path(@news_item) %> |
-              <%= link_to 'Back', news_items_path %>
+              <%= link_to image_tag ('edit.png'), edit_news_item_path(@news_item) %>
+
               <% end %>
 
             </td>

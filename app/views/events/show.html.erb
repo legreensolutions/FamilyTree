@@ -4,7 +4,7 @@
 <% @next = Event.find(:first,:conditions=>['id != ? and created_at > ?',@event.id,@event.created_at]) %>
 <%= link_to 'Next', event_path(@next.id),:class=>'button_new' if @next %>
 </div>
-<div class="button"><%= link_to 'Back',events_path %></div>
+<div class="button"><%= link_to 'All',events_path %></div>
 
 
 <div  class="family_show" style="margin-left:300px;">
@@ -21,6 +21,8 @@
       </div>
 
      </p>
+    <% else %>
+    <%= image_tag ('no_image.jpg') %>
 
     <% end %>
     </div>

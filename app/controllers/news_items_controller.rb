@@ -51,7 +51,7 @@ class NewsItemsController < ApplicationController
 
     respond_to do |format|
       if @news_item.save
-        format.html { redirect_to(@news_item, :notice => 'NewsItem was successfully created.') }
+        format.html { redirect_to(news_items_path, :notice => 'NewsItem was successfully created.') }
         format.xml  { render :xml => @news_item, :status => :created, :location => @news_item }
       else
         NO_OF_IMAGES.times {@news_item.news_uploads.build}
@@ -68,7 +68,7 @@ class NewsItemsController < ApplicationController
 
     respond_to do |format|
       if @news_item.update_attributes(params[:news_item])
-        format.html { redirect_to(@news_item, :notice => 'NewsItem was successfully updated.') }
+        format.html { redirect_to(news_items_path, :notice => 'NewsItem was successfully updated.') }
         format.xml  { head :ok }
       else
          if @news_item.news_uploads.count != NO_OF_IMAGES

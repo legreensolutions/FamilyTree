@@ -22,7 +22,7 @@ List : <%= news_items_tag_list(@news_items) %>
     <td><%unless @upload.nil? %>
           <%= image_tag @upload.photo.url(:thumb) %>
          <% else %>
-         'No Image'
+         <%= image_tag 'no_image.jpg',:size=>'100' %>
          <% end %>
     </td>
     <td>

@@ -17,7 +17,7 @@ List : <%= event_tag_list(Event.all) %>
       <%unless @upload.nil? %>
           <%= link_to (image_tag @upload.photo.url(:thumb)),event_path(event) %>
          <% else %>
-         'No Image'
+         <%= link_to image_tag ('no_image.jpg') ,event_path(event)%>
          <% end %>
     </td>
 
