@@ -19,6 +19,12 @@
     <td>Event Date</td>
     <td><%= f.date_select(:event_date, {:order => [:month, :day,:year],:start_year=>1988}) %></td>
    </tr>
+   <tr>
+  <td><%= f.label :tags %></td>
+  <td><%#= form.text_field :tags %>
+  <%= text_field_with_auto_complete :event, :tags %>
+  </td>
+</tr>
   <% f.fields_for :event_uploads do |photo_form| %>
   <tr>
     <td>Image</td>

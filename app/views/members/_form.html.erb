@@ -2,7 +2,9 @@
 <tr>
   <td><%= form.label :name %></td>
   <td><%= form.text_field :name %>
+  <%if current_user  %>
   <%= form.hidden_field :created_by,:value=>current_user.id %>
+  <% end %>
   </td>
 </tr>
 <tr>
@@ -133,7 +135,9 @@
 <tr>
   <td>Email</td>
   <td><%= user_form.text_field :email %>
+  <%if current_user  %>
   <%= user_form.hidden_field :created_by,:value=>current_user.id %>
+  <% end %>
   </td>
 </tr>
 <% end %>

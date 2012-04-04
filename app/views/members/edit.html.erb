@@ -1,5 +1,10 @@
 <br />
+
 <div class="button"><%= link_to 'Back',members_path %></div>
+<table align="center">
+<tr>
+
+<td>
 <div align="center">
 <% if session[:relation_name].blank? %>
 <h3>Editing member</h3>
@@ -24,10 +29,12 @@
   <%= f.error_messages %>
   <%= error_messages_for 'user'%>
 <%= render :partial => "members/form", :object => f %>
+<%if current_user  %>
   <p>
     <%= f.submit 'Update',:class=>'button_new' %>
 
   </p>
+<% end %>
 <% fields_for :relation do |rf| %>
 <%= rf.hidden_field :user_id,:value=>session[:member_id]%>
 <%= rf.hidden_field :relation_id,:value=>session[:relation_id]%>
@@ -35,4 +42,8 @@
 <% end %>
 <% end %>
 </div>
+</td>
+<td  valign="top"><%= display_photo_of_member(@member,@member.name,"120px;")%></td>
+</tr>
+</table>
 

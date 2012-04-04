@@ -1,8 +1,13 @@
 class EventsController < ApplicationController
+  auto_complete_for :event, :tags
   # GET /events
   # GET /events.xml
   def index
+    if params[:tag_id]
+      @events = Event.find(:all,:conditions => ["tags like ?","%#{params[:tag_id]}%"],:order=>'created_at DESC')
+    else
     @events = Event.find(:all,:order=>'created_at DESC')
+   end
 
     respond_to do |format|
       format.html # index.html.erb

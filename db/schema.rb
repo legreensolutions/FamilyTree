@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120327125040) do
+ActiveRecord::Schema.define(:version => 20120404043618) do
 
   create_table "alert_uploads", :force => true do |t|
     t.integer  "alert_id"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(:version => 20120327125040) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.string   "tags"
   end
 
   create_table "families", :force => true do |t|

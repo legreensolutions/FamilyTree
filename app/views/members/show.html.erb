@@ -90,11 +90,11 @@
         </div>  <!-- END OF BROTHERS DIV-->
         <div class="self" title=<%= @member.name %>>
         <%if @member.photo_file_name %>
-        <% if current_user %>
+        <%# if current_user %>
           <%=link_to image_tag(@member.photo(:small), :height => "70", :crop => true, :title => @member.name ), edit_member_path(@member) %>&nbsp;
-        <% else %>
-          <%= image_tag(@member.photo(:small), :height => "70", :crop => true, :title => @member.name ) %>&nbsp;
-        <% end %>
+        <%# else %>
+          <%#= image_tag(@member.photo(:small), :height => "70", :crop => true, :title => @member.name ) %>&nbsp;
+        <%# end %>
         <% else %>
         <% if current_user %>
           <%#=link_to @member.name,edit_member_path(@member) ,:title => @member.name%>
