@@ -354,20 +354,18 @@ h5 {
 }
 #news_container {
     width:180px;
-    height:150px;
+    height:auto;
     border-style:solid;
     border-width:1px;
-/*    border-color:#4587ba;*/
     border-color:#fff;
     float:right;
     padding:5px;
     text-align:left;
-    /*opacity:0.6;
-    filter:alpha(opacity=60);*/
     position:absolute;
     top:310px;
     right:5px;
     background-color:#7eafde;
+    overflow:scroll;
 }
 #news_container h2.box a img{
     padding:0px;
