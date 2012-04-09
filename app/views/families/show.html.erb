@@ -9,7 +9,7 @@
       <% else %>
       <%= image_tag 'family_no_image.jpg',:width => "350px;" -%>
       <%- end -%><br /><br />
-       <%=link_to 'Edit', edit_family_path(@family),:class=>'button_new'%>
+      <div class="button"><%=link_to 'Edit', edit_family_path(@family) %></div>
     </div>
 
 

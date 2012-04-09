@@ -940,7 +940,9 @@ height:40px;
 color:#fff;
 }
 .button a:hover {
+    background-image:url('../images/left_button_bg_hover.png');
     text-decoration:none;
+    color:#e8f6fd;
 }
 
 
@@ -992,15 +994,34 @@ clear:both;
     width:100px;
     height:40px;
     color:white;
-    background-color:#ddeef9;
+    /*background-color:#ddeef9;*/
 }
 .button_new:hover {
     background-image:url("../images/button_back_hover.png");
 }
+.button input#family_submit {
+    background-image:url("../images/button_bg.png");
+    background-repeat:no-repeat;
+    width:74px;
+    height:27px;
+    color:white;
+
+}
+.button input#family_submit:hover {
+    background-image:url("../images/button_bg_hover.png");
+}
+
 #search_text.search_box, input#user_session_email, input#user_session_password {
  border:solid #a4d7f1 1px;
 }
 input#user_session_submit.button_new {
 background-color:#e3f1fa;
     }
+/*
+.button input#family_submit {
+ background-color:#fff;
+ margin:0px;;
+ padding:0px;
+
+}*/
 
