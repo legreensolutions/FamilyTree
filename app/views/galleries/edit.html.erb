@@ -10,6 +10,6 @@
   </p>
 <% end %>
 </div>
-<%#= link_to 'Show', @gallery %>
+<%#= link_to 'Delete', {:controller => "galleries", :action => "destroy", :method => :delete, :id => @gallery.id,:confirm => 'Delete ?' }%>
 <%#= link_to 'Back', galleries_path %>
 

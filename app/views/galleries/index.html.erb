@@ -14,10 +14,18 @@ List : <%= tag_list(Gallery.all) %>
 
 
          <% @galleries.each do |gallery| %>
-            <div style="float:left;float:left;" align="center">
-               <%= link_to image_tag(gallery.photo.url(:thumb)),gallery.photo.url(:large),:title=>gallery.title   %> &nbsp;&nbsp;
-             </div>
+            <div style="float:left;float:left; padding:15px;" align="center">
+            <div>
+                <% if current_user %>
+                   <% if current_user.is_admin %>
+                   <%= button_to "Edit", edit_gallery_url (gallery.id), :method => :get %><br />
+                   <% end %>
+                <% end %>
+               <%= link_to image_tag(gallery.photo.url(:thumb)),gallery.photo.url(:large),:title=>gallery.title%>
+               <br />
 
+             </div>
+            </div>
         <% end %>
 
 

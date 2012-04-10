@@ -1,7 +1,5 @@
 <% if current_user and @user.id == current_user.id %>
-  <div class="button">
-    <%= link_to 'Change password',:controller=>'password_resets',:action=>'change_password' %>
-  </div>
+
 <% end %><br />
 <div align="center">
 <h3>Edit Account</h3>
@@ -13,4 +11,10 @@
 <% end %>
 </div>
 <br />
+  <div style="text-align:center;">
+    <%= link_to 'Click here to change password',:controller=>'password_resets',:action=>'change_password' %>
+  </div>
+  <div class="button" style="text-align:center;">
+    <%= link_to 'Change',:controller=>'password_resets',:action=>'change_password' %>
+  </div>
 

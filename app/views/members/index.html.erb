@@ -7,9 +7,9 @@
  <table align="center">
     <tr>
       <td><%- form_tag members_path, :method => :get do -%>
-        <strong>Search:</strong>
-        <%= text_field_tag :search_text,'',:value=>params[:search_text], :class => 'search_box' %>
-        <%= submit_tag "Search", :name => 'search',:class=>'button_new' %>
+
+        <div  style="float:left;"><%= text_field_tag :search_text,'',:value=>params[:search_text], :class => 'search_box' -%>&nbsp;&nbsp;&nbsp;&nbsp;  </div>
+        <div class="button" style="float:left;"><%= submit_tag "Search", :name => 'search' -%></div>
         <% end %></td>
       </tr>
   </table><br />

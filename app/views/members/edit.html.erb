@@ -31,7 +31,7 @@
 <%= render :partial => "members/form", :object => f %>
 <%if current_user  %>
   <p>
-    <%= f.submit 'Update',:class=>'button_new' %>
+    <div class='button'><%= f.submit 'Update'%></div>
 
   </p>
 <% end %>

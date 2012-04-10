@@ -999,7 +999,7 @@ clear:both;
 .button_new:hover {
     background-image:url("../images/button_back_hover.png");
 }
-.button input#family_submit {
+.button input#family_submit, .button input#member_submit, .button input, .button-to div input, #gallery_submit.button_new {
     background-image:url("../images/button_bg.png");
     background-repeat:no-repeat;
     width:74px;
@@ -1007,9 +1007,10 @@ clear:both;
     color:white;
 
 }
-.button input#family_submit:hover {
+.button input#family_submit:hover, .button input#member_submit:hover, .button input:hover, .button-to div input:hover, #gallery_submit.button_new:hover {
     background-image:url("../images/button_bg_hover.png");
 }
+
 
 #search_text.search_box, input#user_session_email, input#user_session_password {
  border:solid #a4d7f1 1px;
