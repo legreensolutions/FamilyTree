@@ -3,7 +3,12 @@
 <% end %>
 <% unless @galleries.blank? %>
 <div align="left" style="float:left;">
-List : <%= tag_list(Gallery.all) %>
+List : <%= tag_list(Gallery.all) %><br />
+  <% if current_user %>
+                   <% if current_user.is_admin %>
+                 <%=  link_to 'Edit/Delete', :controller => 'galleries', :action => 'gallery_all'%>
+                <% end %>
+                 <% end %>
 </div><br />
 <h3 align="center">Gallery</h3>
 
@@ -16,13 +21,12 @@ List : <%= tag_list(Gallery.all) %>
          <% @galleries.each do |gallery| %>
             <div style="float:left;float:left; padding:15px;" align="center">
             <div>
-                <% if current_user %>
-                   <% if current_user.is_admin %>
-                   <%= button_to "Edit", edit_gallery_url (gallery.id), :method => :get %><br />
-                   <% end %>
-                <% end %>
+
                <%= link_to image_tag(gallery.photo.url(:thumb)),gallery.photo.url(:large),:title=>gallery.title%>
                <br />
+
+                   <br />
+
 
              </div>
             </div>
@@ -33,17 +37,6 @@ List : <%= tag_list(Gallery.all) %>
     <div style="clear:both;"></div>
 
         <br /><br />
-
-
-
-
-
-
-
-
-
-
-
 
 </div>
 </div>

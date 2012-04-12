@@ -1,0 +1,41 @@
+
+<% unless @galleries.blank? %>
+
+<h3 align="center">Gallery</h3>
+
+
+
+
+<div style="width:80%;float:right;" >
+
+
+         <% @galleries.each do |gallery| %>
+            <div style="float:left;float:left; padding:15px;" align="center">
+            <div>
+
+               <%= image_tag(gallery.photo.url(:thumb))%><br />
+               <%=link_to image_tag('edit.png',:title=>'show details'), edit_gallery_path(gallery)%>
+               <%=link_to image_tag('delete.png',:title=>'Delete'),gallery, :confirm => 'Are you sure?', :method => :delete%>
+               <br />
+
+                   <br />
+
+
+             </div>
+            </div>
+        <% end %>
+
+
+
+    <div style="clear:both;"></div>
+
+
+</div>
+
+<% else %>
+<div align="center">
+No Records Found
+</div>
+<% end %>
+<br />
+
