@@ -1,61 +1,56 @@
+
+
+
+
 <div align="center">
- <% form_tag do %>
-<table>
-<tr>
+      <div style="width:600px;">
+      <% form_tag do %>
+      <div style="float:left; text-align:center;width:400px;">
+          <div align="center" style="width:380px;">
+              <% @committee_members.each do |member| %>
+                      <div style="float:left;width:90px;border:solid white 5px;margin:3px;"><%= display_photo_of_member(member,member.name,"80px;")%></div>
+                      <div style="float:left;width:250px;text-align:left;padding-left:10px;">
+                      <%= member.name %><br />
+                            <% unless member.posts.nil?
+                                  member.posts.each do |post| %>
+                                      <%= post.name%>
+                                  <% end
+                            end %><br />
 
-<td>
+                      <%= check_box_tag 'member_id[]',member.id %>
+                      </div>
+                      <div style="clear:both;"></div>
+              <% end %>
+          </div>
+          <div style="clear:both;"></div>
+          <div align="center" style="width:380px;">
+              <div style="float:left;width:90px;border:solid white 5px;">
+                <%= display_photo_of_member(@admin,"Admin","80px;")%>
+              </div>
+              <div style="float:left;width:250px;text-align:left;padding-left:10px;">
+                  Admin<br />
+                  Web Administrator <br />
+                  <%= check_box_tag 'member_id[]',@admin.id %>
+              </div>
+          </div>
+      </div>
 
+      <div style="width:100px;float:left;">
+          Message
+          <%= text_area_tag 'msg','',:size=>"40x10" %><br /><br />
+          <div class="button"><%= submit_tag 'Send',:name=>'send' %></div>
+      </div>
 
-<table align="center">
-
-         <% @committee_members.each do |member| %>
-          <tr>
-
-            <td>
-              <table>
-              <tr>
-              <td valign="top">
-              <%= display_photo_of_member(member,member.name,"80px;")%>
-              </td>
-              <td>
-              <%= member.name %><br />
-              <% unless member.posts.nil?
-                    member.posts.each do |post| %>
-                     <%= post.name%>
-                    <% end
-                  end
-              %><br />
-
-              <%= check_box_tag 'member_id[]',member.id %>
-              </td>
-              </tr>
-              </table>
-             </td>
-
-        </tr>
-        <% end %>
-
-
-</table>
-<table>
-<tr>
-  <td valign="top"><%= display_photo_of_member(@admin,@admin.name,"100px;")%></td>
-  <td><%= @admin.name %><br />
-  Web Administrator <br />
-  <%= check_box_tag 'member_id[]',@admin.id %>
-  </td>
-</tr>
-</table>
-
-</td>
-<td><%= "&nbsp;"*20%></td>
-  <td> <%= text_area_tag 'msg','',:size=>"40x10" %>
-        <p><%= submit_tag 'Send',:name=>'send' %>
-  </td>
-
-</tr>
-</table>
+      <% end %>
+      </div>
 </div>
 
-<% end %>
+
+
+<div style="clear:both;"></div>
+
+
+<br />
+<br />
+<br />
 

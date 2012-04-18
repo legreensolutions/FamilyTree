@@ -55,7 +55,7 @@ cookies[:display] = {:value => 'true',
     <div style="clear:both;"></div>
     <div id="events_container" ><%= render :partial=>'events/event_list.html.erb' %></div>
     <div id="right_menu_container"><%= link_to '&nbsp;&nbsp;&nbsp;Committee Members',:controller=>'members',:action=>'committee_members' %></div>
-    <% if current_user and current_user.is_admin %>
+    <% if current_user and current_user.is_admin = 1 %>
       <div id="right_menu_container1">   <%= link_to '&nbsp;&nbsp;&nbsp;Content Management' ,content_managements_path %></div>
       <div id="right_menu_container2">   <%= link_to '&nbsp;&nbsp;&nbsp;Edit Families' ,families_path %></div>
       <div id="right_menu_container3">   <%= link_to '&nbsp;&nbsp;&nbsp;Posts' ,posts_path %></div>

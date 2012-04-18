@@ -3,27 +3,31 @@
 <div class="button"><%= link_to 'All',families_path %></div>
 <div class="family_show">
 
-    <div style="float:left;">
-      <%- unless  @family.photo_file_name.nil? -%>
-      <%= image_tag @family.photo.url(:original), :width => "350px;" -%>
-      <% else %>
-      <%= image_tag 'family_no_image.jpg',:width => "350px;" -%>
-      <%- end -%><br /><br />
-      <div class="button"><%=link_to 'Edit', edit_family_path(@family) %></div>
-    </div>
+
+            <div style="float:left;">
+              <%- unless  @family.photo_file_name.nil? -%>
+              <%= image_tag @family.photo.url(:original), :width => "350px;" -%>
+              <% else %>
+              <%= image_tag 'family_no_image.jpg',:width => "350px;" -%>
+              <%- end -%><br /><br />
+              <div class="button"><%=link_to 'Edit', edit_family_path(@family) %></div>
+
+            </div>
 
 
 
-    <div class="family_show_description">
-      <h2><%=h @family.name %></h2>
-      <h6><%= @family.short_description %></h6>
-      <%= @family.long_description %><br /><br />
-      <% if current_user and current_user.is_admin? %>
+            <div class="family_show_description">
+              <h2><%=h @family.name %></h2>
+              <h6><%= @family.short_description %></h6>
+              <%= @family.long_description %><br /><br />
+              <% if current_user and current_user.is_admin? %>
 
-      <% end %>
-    </div>
+              <% end %>
+            </div>
 
-  </div>
 
 </div>
+
+</div>
+<div id="family_container_long"><%= render :partial=>'families/family_list' %></div>
 

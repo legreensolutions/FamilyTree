@@ -9,39 +9,42 @@ List : <%= news_items_tag_list(@news_items) %>
 </div><br />
 
 <div align="center">
-<h3>News</h3>
+  <div class="white_bordered_div">
 
-<table align="center">
-  <!--tr>
-  <th>Title</th><th>Description</th><th>Date</th><th>Image</th>
-  </tr -->
+    <h3>News</h3>
 
-<% @news_items.each do |news_item| %>
-  <tr>
-    <% @upload = news_item.news_uploads.first %>
-    <td><%unless @upload.nil? %>
-          <%= image_tag @upload.photo.url(:thumb) %>
-         <% else %>
-         <%= image_tag 'no_image.jpg',:size=>'100' %>
-         <% end %>
-    </td>
-    <td>
-      <h3><%= link_to news_item.title,news_item_path(news_item) %></h3>
-      <%= news_item.news_date.strftime("%d/%m/%Y") %><br />
-      <%= news_item.description[0..50] %><br />
-      <% if current_user and current_user.is_admin %>
-      <%= link_to image_tag('edit.png'), edit_news_item_path(news_item) %>
-      <%= link_to image_tag('delete.png'), news_item, :confirm => 'Are youh3 sure?', :method => :delete %>
-      <% end %>
-      <hr />
-    </td>
-  </tr>
-<% end %>
-</table>
+    <table align="center">
+      <!--tr>
+      <th>Title</th><th>Description</th><th>Date</th><th>Image</th>
+      </tr -->
 
-<br />
-</div>
-<% else %>
-<h4>No Records </h4>
-<% end %>
+    <% @news_items.each do |news_item| %>
+      <tr>
+        <% @upload = news_item.news_uploads.first %>
+        <td><%unless @upload.nil? %>
+              <%= image_tag @upload.photo.url(:thumb) %>
+             <% else %>
+             <%= image_tag 'no_image.jpg',:size=>'100' %>
+             <% end %>
+        </td>
+        <td>
+          <h3><%= link_to news_item.title,news_item_path(news_item) %></h3>
+          <%= news_item.news_date.strftime("%d/%m/%Y") %><br />
+          <%= news_item.description[0..50] %><br />
+          <% if current_user and current_user.is_admin %>
+          <%= link_to image_tag('edit.png'), edit_news_item_path(news_item) %>
+          <%= link_to image_tag('delete.png'), news_item, :confirm => 'Are youh3 sure?', :method => :delete %>
+          <% end %>
+          <hr />
+        </td>
+      </tr>
+    <% end %>
+    </table>
+
+    <br />
+    </div>
+  </div>
+    <% else %>
+    <h4>No Records </h4>
+    <% end %>
 
