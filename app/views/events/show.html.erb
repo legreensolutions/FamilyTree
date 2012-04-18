@@ -10,12 +10,14 @@
 <div  class="family_show" style="margin-left:300px;">
 
     <div style="float:left;">
-      <% @upload = @event.event_uploads.first%>
-    <%unless @upload.nil? %>
+      <% @uploads = @event.event_uploads%>
+    <%unless @uploads.blank? %>
       <p>
       <div id="gallery">
-          <%= link_to image_tag(@upload.photo.url(:small)),@upload.photo.url(:original)%><br />
-      </div>
+        <% @uploads.each do |upload| %>
+          <%= link_to image_tag(upload.photo.url(:thumb)),upload.photo.url(:original)%>
+        <% end %>
+     </div>
      </p>
     <% else %>
       <%= image_tag ('../images/no_image.jpg') %>
@@ -29,10 +31,14 @@
       <%= @event.event_date.strftime("%d/%m/%Y") %><br />
       <%= @event.description %>
       <hr />
-      <%unless @upload.nil? %>
+      <% if current_user and current_user.is_admin? %>
+      <% unless @upload.nil? %>
         <%= link_to_remote "[Delete this image]",
     :url => { :action => "delete_image", :id => @upload.id }  %>
     <% end %>
+
+    <% end %>
+
     </div>
 
 
