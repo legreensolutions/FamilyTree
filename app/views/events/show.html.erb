@@ -1,8 +1,8 @@
 <div align="left" style="float:left;">
 <% @prev = Event.find(:first,:conditions=>['id != ? and created_at < ?',@event.id,@event.created_at]) %>
-<%= link_to 'Prev', event_path(@prev.id),:class=>'button_new' if @prev %>
+<div class="button"><%= link_to '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Previous', event_path(@prev.id) if @prev %></div>
 <% @next = Event.find(:first,:conditions=>['id != ? and created_at > ?',@event.id,@event.created_at]) %>
-<%= link_to 'Next', event_path(@next.id),:class=>'button_new' if @next %>
+<div class="button"><%= link_to '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Next', event_path(@next.id) if @next %></div>
 </div>
 <div class="button"><%= link_to 'All',events_path %></div>
 
@@ -12,18 +12,13 @@
     <div style="float:left;">
       <% @upload = @event.event_uploads.first%>
     <%unless @upload.nil? %>
-
       <p>
       <div id="gallery">
-
           <%= link_to image_tag(@upload.photo.url(:small)),@upload.photo.url(:original)%><br />
-
       </div>
-
      </p>
     <% else %>
-    <%= image_tag ('no_image.jpg') %>
-
+      <%= image_tag ('../images/no_image.jpg') %>
     <% end %>
     </div>
 

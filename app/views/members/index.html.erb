@@ -16,77 +16,78 @@
 <% unless @members.blank? %>
 
 <div align="center">
-<%= will_paginate @members %><br />
-<table>
-<% @members.each do |member| %>
-<%  title = ""
-if !member.house_name.blank?
-    title = "#{member.house_name}, ".to_s
-  end
-  if !member.occupation.blank?
-    title +=  "#{member.occupation}, " .to_s
-  end
-  if !member.pet_name.blank?
-    title += "#{member.pet_name} ".to_s
-  end
-%>
-<tr class="underline">
-<td>
-  <%#= link_to 'Roots',:controller=>'members',:action=>'tree',:id=>member.id %>
-  <%= link_to (image_tag "roots_black.png",:title=>'Trace Root'),:controller=>'members',:action=>'tree',:id=>member.id %>
-</td>
-<td>
-<div>
-<% if member.diseased %>
- <span  style="color:white;
-    font-size:20px;
-    position:absolute;
-    margin-top:12px;
-    margin-left:10px;
-    text-align:left;opacity:0.8; filter:alpha(opacity=80);">
-    <%= image_tag 'diseased.png' %> </span>
-<% end %>
-    <%= display_photo_of_member(member,title)%>
-      <%# unless member.photo_file_name.nil? %>
-            <%#=link_to (image_tag(member.photo(:small), :height=>"30px;",:title=>title), member_path(member.id)) %>
-            <%# else %>
-             <%#=link_to (image_tag 'default_big.jpg', :height=>"30px;",:title=>title) , member_path(member.id) %>&nbsp;&nbsp;<br />
-      <%# end %>
-</div>
-</td>
+  <div class="white_bordered_div">
+            <%= will_paginate @members %><br />
+            <table>
+            <% @members.each do |member| %>
+            <%  title = ""
+            if !member.house_name.blank?
+                title = "#{member.house_name}, ".to_s
+              end
+              if !member.occupation.blank?
+                title +=  "#{member.occupation}, " .to_s
+              end
+              if !member.pet_name.blank?
+                title += "#{member.pet_name} ".to_s
+              end
+            %>
+            <tr class="underline">
+            <td>
+              <%#= link_to 'Roots',:controller=>'members',:action=>'tree',:id=>member.id %>
+              <%= link_to (image_tag "roots_black.png",:title=>'Trace Root'),:controller=>'members',:action=>'tree',:id=>member.id %>
+            </td>
+            <td>
+            <div>
+            <% if member.diseased %>
+             <span  style="color:white;
+                font-size:20px;
+                position:absolute;
+                margin-top:12px;
+                margin-left:10px;
+                text-align:left;opacity:0.8; filter:alpha(opacity=80);">
+                <%= image_tag 'diseased.png' %> </span>
+            <% end %>
+                <%= display_photo_of_member(member,title)%>
+                  <%# unless member.photo_file_name.nil? %>
+                        <%#=link_to (image_tag(member.photo(:small), :height=>"30px;",:title=>title), member_path(member.id)) %>
+                        <%# else %>
+                         <%#=link_to (image_tag 'default_big.jpg', :height=>"30px;",:title=>title) , member_path(member.id) %>&nbsp;&nbsp;<br />
+                  <%# end %>
+            </div>
+            </td>
 
-<td><%=link_to member.name ,member_path(member.id),{:title=>title}%></td>
-<!--<td><%#= member.house_name %></td>-->
-<% @posts = member.posts.find(:first,:conditions=>['year =?',Date.today.year]) %>
-<%if current_user and current_user.is_admin? %>
-<td>
+            <td><%=link_to member.name ,member_path(member.id),{:title=>title}%></td>
+            <!--<td><%#= member.house_name %></td>-->
+            <% @posts = member.posts.find(:first,:conditions=>['year =?',Date.today.year]) %>
+            <%if current_user and current_user.is_admin? %>
+            <td>
 
-<% if !@posts.nil?
- post =  @posts.name %>
- <%=link_to  @posts.name  , :controller=>'members',:action=>'assign_post',:id=>member.id%>
- <% else %>
- <%=link_to image_tag ('post.png',:title=>'assign post') , :controller=>'members',:action=>'assign_post',:id=>member.id%>
-<%end %>
+            <% if !@posts.nil?
+             post =  @posts.name %>
+             <%=link_to  @posts.name  , :controller=>'members',:action=>'assign_post',:id=>member.id%>
+             <% else %>
+             <%=link_to image_tag ('post.png',:title=>'assign post') , :controller=>'members',:action=>'assign_post',:id=>member.id%>
+            <%end %>
 
-</td>
-<% else %>
-<td>
-  <% if !@posts.blank? %>
-  <%= @posts.name %>
-  <% else %>
-    <%= ' ' %>
-  <% end %>
-</td>
-<%  end -%>
-<%if current_user  %>
-<td><%=link_to image_tag('edit.png',:title=>'show details'), edit_member_path(member)%></td>
-<td><%=link_to image_tag('delete.png',:title=>'Delete'), member, :confirm => 'Are you sure?', :method => :delete%></td>
-<% end %>
-</tr>
-<% end %>
-</table><br />
-<%= will_paginate @members %>
-
+            </td>
+            <% else %>
+            <td>
+              <% if !@posts.blank? %>
+              <%= @posts.name %>
+              <% else %>
+                <%= ' ' %>
+              <% end %>
+            </td>
+            <%  end -%>
+            <%if current_user  %>
+            <td><%=link_to image_tag('edit.png',:title=>'show details'), edit_member_path(member)%></td>
+            <td><%=link_to image_tag('delete.png',:title=>'Delete'), member, :confirm => 'Are you sure?', :method => :delete%></td>
+            <% end %>
+            </tr>
+            <% end %>
+            </table><br />
+            <%= will_paginate @members %>
+  </div><!-- End of div class "white_bordered_div" -->
  </div>
 <% else %>
   <p>No Records Found</p>

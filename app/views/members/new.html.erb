@@ -29,7 +29,7 @@
 
 <%= render :partial => "members/form", :object => f %>
   <p>
-    <%= f.submit 'Create',:class=>'button_new' %>
+    <div class="button"><%= f.submit 'Create'%></div>
   </p>
 <% fields_for :relation do |rf| %>
 <%= rf.hidden_field :user_id,:value=>session[:member_id]%>

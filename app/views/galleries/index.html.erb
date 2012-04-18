@@ -21,7 +21,7 @@ List : <%= tag_list(Gallery.all) %>
                    <%= button_to "Edit", edit_gallery_url (gallery.id), :method => :get %><br />
                    <% end %>
                 <% end %>
-               <%= link_to image_tag(gallery.photo.url(:thumb)),gallery.photo.url(:large),:title=>gallery.title%>
+               <div class="photo_frame"><%= link_to image_tag(gallery.photo.url(:thumb)),gallery.photo.url(:large),:title=>gallery.title%></div>
                <br />
 
              </div>

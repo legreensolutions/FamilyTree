@@ -3,7 +3,7 @@ class ContactUsController < ApplicationController
   def contact_us
 
      @committee_members = Member.find(:all,:include=>'posts',:conditions=>['committee_members.post_id != ? AND year = ? AND show_in_contact_us = ? ',"",Date.today.year,true],:order=>'posts.level')
-  @admin = Member.find(:first,:include=>'user',:conditions=>['users.is_admin=true'])
+  @admin = Member.find(:first,:include=>'user',:conditions=>['users.is_admin = 1'])
 
     if params[:send]
         if params[:msg].blank?

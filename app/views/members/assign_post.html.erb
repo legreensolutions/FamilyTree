@@ -1,12 +1,10 @@
 <br />
 <div class="button"><%= link_to 'All',members_path %></div>
+
 <div align="center">
-<div>
-<%= @member.name %><br />
-<% unless @member.photo_file_name.nil? %>
-  <%= link_to image_tag(@member.photo.url(:thumb)),member_path(@member.id)%>
-<% end %>
-</div>
+  <div>
+
+  </div>
 <% post_id = ""
 year = Date.today.year
 @post = @member.posts.find(:first,:conditions=>['year =?',Date.today.year])
@@ -16,11 +14,48 @@ year = CommitteeMember.find_by_member_id_and_year(@member.id,Date.today.year).ye
 end
 %>
 <% form_tag '/members/assign_post',:method=>'post' do %>
-<p>Select Post : <%= select_tag('post_id', "<option value='no_post'>-Select .....</option><option value="">Ordinary Member</option>"  + options_from_collection_for_select(@posts, :id, :name,post_id))%></p>
-<p>Year :  <%= select_year year,:start_year => 2010,:end_year=>Date.today.year %></p>
-<p>Show in Contact us : <%= check_box_tag 'show_in_contact_us' %>
-<%= hidden_field_tag 'member_id',@member.id %><br /> <br />
-<%= submit_tag 'Assign',:name=>'assign' ,:class=>'button_new'%>
+
+<div class="white_bordered_div">
+    <table>
+          <tr>
+              <td><%= @member.name.upcase %></td>
+              <td>
+                  <%unless @member.photo_file_name.nil? %>
+                  <%= link_to image_tag(@member.photo.url(:thumb)),member_path(@member.id)%>
+                  <% end %>
+              </td>
+
+
+
+
+
+
+
+          </tr>
+
+
+          <tr>
+              <td>Select Post : </td>
+              <td><%= select_tag('post_id', "<option value='no_post'>-Select .....</option><option value="">Ordinary Member</option>"  + options_from_collection_for_select(@posts, :id, :name,post_id))%></td>
+          </tr>
+
+          <tr>
+              <td>Year :</td>
+              <td><%= select_year year,:start_year => 2010,:end_year=>Date.today.year %></td>
+          </tr>
+
+          <tr>
+              <td>Show in Contact us :</td>
+              <td><%= check_box_tag 'show_in_contact_us' %><%= hidden_field_tag 'member_id',@member.id %></td>
+          </tr>
+
+          <tr>
+              <td></td>
+              <td colspan="2"><div class="button"><%= submit_tag 'Assign',:name=>'assign' %></div></td>
+          </tr>
+
+    </table>
+</div>
 <% end %>
 </div>
 

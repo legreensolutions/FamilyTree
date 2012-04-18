@@ -1,32 +1,35 @@
 <br />
 <div class="button"><%= link_to 'All',families_path %></div>
 <div align="center">
+  <div class="white_bordered_div">
 <h3>Editing family</h3>
-<table align="center">
-<% form_for @family, :html => { :multipart => true } do |f| %>
-  <%= f.error_messages %>
+        <table align="center">
+        <% form_for @family, :html => { :multipart => true } do |f| %>
+          <%= f.error_messages %>
 
-  <tr>
-    <td><%= f.label :name %>:</td>
-    <td><%= f.text_field :name %></td>
-  </tr>
-  <tr>
-    <td><%= f.label :short_description %>:</td>
-    <td><%= f.text_field :short_description %></td>
-  </tr>
-  <tr>
-    <td><%= f.label :long_description %>:</td>
-    <td><%= f.text_area :long_description,:size=>'60x15' %></td>
-  </tr>
-  <tr>
-    <td><%= f.label 'Upload Photo' %></td>
-    <td>  <%= f.file_field :photo%>
- </td>
-</tr>
- <tr><td colspan="2" align="center"><div class="button"><%= f.submit 'Update'%></div>
+          <tr>
+            <td><%= f.label :name %>:</td>
+            <td><%= f.text_field :name %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :short_description %>:</td>
+            <td><%= f.text_field :short_description %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :long_description %>:</td>
+            <td><%= f.text_area :long_description,:size=>'60x15' %></td>
+          </tr>
+          <tr>
+            <td><%= f.label 'Upload Photo' %></td>
+            <td>  <%= f.file_field :photo%>
+         </td>
+        </tr>
+         <tr><td colspan="2" align="center"><div class="button"><%= f.submit 'Update'%></div>
 
- </td></tr>
-<% end %>
-</table>
+         </td></tr>
+        <% end %>
+        </table>
+  </div>
 </div>
+<div id="family_container_long"><%= render :partial=>'families/family_list' %></div>
 
