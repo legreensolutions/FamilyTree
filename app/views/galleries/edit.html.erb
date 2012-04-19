@@ -10,6 +10,7 @@
   </p>
 <% end %>
 </div>
+<%= link_to image_tag('delete.png'), @gallery, :confirm => 'Are you sure?', :method => :delete %>
 <%#= link_to 'Delete', {:controller => "galleries", :action => "destroy", :method => :delete, :id => @gallery.id,:confirm => 'Delete ?' }%>
 <%#= link_to 'Back', galleries_path %>
 

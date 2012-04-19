@@ -944,4 +944,37 @@ background-color:#e3f1fa;
     background-color:#fff;
     border:solid #fff 1px;
 }
+.photo_frame_plus {
+    margin:2px;
+    padding:2px;
+    border:solid #fff 2px;
+}
+
+
+.full_width_div div#one div#two div.siblings div {
+ float:left;
+ padding:1px;
+ margin:1px;
+ border:solid #fff 1px;
+}
+
+.full_width_div div div div {
+ float:left;
+ padding:1px;
+ margin:1px;
+ border:solid #fff 1px;
+
+}
+.sons_div_new div {
+ float:left;
+ padding:1px;
+ margin:1px;
+ border:solid #fff 1px;
+
+}
+input.tree_button {
+    background-image:url("../images/button_tree.png");
+    background-repeat:repeat-x;
+
+}
 

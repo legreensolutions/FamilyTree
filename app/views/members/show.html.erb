@@ -16,7 +16,7 @@
             <%= hidden_field_tag 'user_id',@member.id %>
             <%= hidden_field_tag 'relation_id',PARENT%>
             <%= hidden_field_tag 'relation_name',"Father" %>
-            <%= submit_tag 'Father' %>
+            <%= submit_tag 'Father', :class => "tree_button" %>
           <% end %>
         <% else %>
           <div class="tooltip" title ="Please login to enter  details of Father.">Father</div>
@@ -38,7 +38,7 @@
             <%= hidden_field_tag 'user_id',@member.id %>
             <%= hidden_field_tag 'relation_id',PARENT %>
             <%= hidden_field_tag 'relation_name',"Mother" %>
-            <%= submit_tag 'Mother' %>
+            <%= submit_tag 'Mother', :class => "tree_button"  %>
           <% end %>
         <% else %>
           <div class="tooltip" title ="Please login to enter  details of mother.">Mother</div>
@@ -154,7 +154,7 @@
             <%= hidden_field_tag 'user_id',@member.id %>
             <%= hidden_field_tag 'relation_id',PARENT %>
             <%= hidden_field_tag 'relation_name',"Sisters" %>
-            <%= submit_tag 'Sisters' %>
+            <%= submit_tag 'Sisters', :class => "tree_button"  %>
         <% end %>
         <% else %>
           <span title="Login to enter details of sister">Sister(s)</span>
@@ -173,45 +173,32 @@
 
 <!-- CHILDREN -->
   <div class="full_width_div"> <!-- START CHILDREN OUTER DIV-->
-    <div style="text-align:center;margin-left:400px;height:85px;width:400px;"> <!-- START CHILDREN INNER DIV-->
-
-    <div style="float:left;height:80px;">   <!-- START DAUGHTER'S DIV-->
+    <div style="text-align:center;margin:auto;height:85px;width:<%= (@member.daughters.size + @member.sons.size)*30 + 150 %>px;"> <!-- START CHILDREN INNER DIV-->
+    <div style="height:80px;border:solid #c8d6de 1px;text-align:center;">   <!-- START DAUGHTER'S DIV-->
       <%  @related_members = @member.daughters %>
            <% unless @related_members.blank? %>
              <% @related_members.each do |related_member|  %>
-                <%= display_photo_of_member(related_member,related_member.name)%>
-              <%# unless related_member.photo_file_name.nil? %>
-
-              <%#=link_to image_tag (related_member.photo(:small), :height => "50", :crop => true,  :title => related_member.name, :class=>"children" ), member_path(related_member.id) %>
-              <%# else %>
-                 <%#= link_to related_member.name,member_path(related_member.id) %><br />
-              <%# end %>
-             <% end %>
-            <% end %>
+                <%= display_photo_of_member(related_member,related_member.name) -%>
+             <%- end -%>
+            <%- end -%>
         <% if current_user %>
           <% form_tag "/relations/add_relation" ,:method=>'post'  do %>
             <%= hidden_field_tag 'user_id',@member.id %>
             <%= hidden_field_tag 'relation_id',PARENT %>
             <%= hidden_field_tag 'relation_name',"Daughters" %>
-            <%= submit_tag 'Daughters' %>
+            <%= submit_tag 'Daughters', :class => "tree_button"  %>
           <% end %>
        <% else %>
           <span title="Login to enter details of Daughter(s)">Daughter(s)</span>
         <% end %>
     </div>                                  <!-- END DAUGHTER'S DIV-->
 
-    <div style="float:left;height:80px;">   <!-- START SON'S DIV-->
+    <div style="float:left;height:80px;border:solid #c8d6de 1px;text-align:center;" class="sons_div_new">   <!-- START SON'S DIV-->
 
      <%  @related_members = @member.sons %>
            <% unless @related_members.blank? %>
             <% @related_members.each do |member_rel| %>
             <%= display_photo_of_member(member_rel,member_rel.name)%>
-              <%# unless member_rel.photo_file_name.nil? %>
-
-              <%#=link_to image_tag(member_rel.photo(:small), :height => "50", :crop => true,  :title => member_rel.name ), member_path(member_rel.id) %>
-              <%# else %>
-                 <%#= link_to member_rel.name,member_path(member_rel.id) %><br />
-              <%# end %>
             <% end %>
             <% end %>
         <% if current_user %>
@@ -219,7 +206,7 @@
             <%= hidden_field_tag 'user_id',@member.id %>
             <%= hidden_field_tag 'relation_id',PARENT %>
             <%= hidden_field_tag 'relation_name',"Sons" %>
-            <%= submit_tag 'Sons' %>
+            <%= submit_tag 'Sons', :class => "tree_button"  %>
           <% end %>
        <% else %>
           <span title="Login to enter details of Son">Son (s)</span>
@@ -230,7 +217,6 @@
 
 
   </div>  <!-- END CHILDREN INNER DIV-->
-
 </div> <!-- END CHILDREN OUTER DIV-->
 <br /><br /><br /><br /><br /><br /><br /><br /><br />
 </div>

@@ -4,9 +4,9 @@
 <div style="width:80%;float:right;" >
          <% @galleries.each do |gallery| %>
             <div style="float:left;float:left; padding:15px;" align="center">
-            <div>
+            <div class="photo_frame_plus">
 
-               <%= image_tag(gallery.photo.url(:thumb))%><br />
+               <div class="photo_frame"><%= image_tag(gallery.photo.url(:thumb))%></div><br />
                <%=link_to image_tag('edit.png',:title=>'show details'), edit_gallery_path(gallery)%>
                <%=link_to image_tag('delete.png',:title=>'Delete'),gallery, :confirm => 'Are you sure?', :method => :delete%>
                <br /><br />

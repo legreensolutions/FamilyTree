@@ -9,8 +9,6 @@ class GalleriesController < ApplicationController
   else
     @galleries = Gallery.find(:all, :conditions => ["public= ? and tags like ?",true,"%#{params[:tag_id]}%"])
   end
-
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @galleries }
