@@ -28,12 +28,12 @@ class Notifier < ActionMailer::Base
     body          :root_url => root_url
   end
 
-  def send_contact_us_msg(member,msg,user)
+  def send_contact_us_msg(member,msg,from_email)
     subject       "Message from a member"
-    from          user.email
+    from          from_email
     recipients    member.email
     sent_on       Time.now
-    body          :msg => msg,:from=>user.email,:to=>member
+    body          :msg => msg,:from=>from_email,:to=>member
   end
 
 end

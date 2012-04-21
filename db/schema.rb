@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120404043618) do
+ActiveRecord::Schema.define(:version => 20120421030423) do
 
   create_table "alert_uploads", :force => true do |t|
     t.integer  "alert_id"
@@ -168,6 +168,13 @@ ActiveRecord::Schema.define(:version => 20120404043618) do
     t.integer "user_id"
     t.integer "related_user_id"
     t.integer "relation_id"
+  end
+
+  create_table "simple_captcha_data", :force => true do |t|
+    t.string   "key",        :limit => 40
+    t.string   "value",      :limit => 6
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "states", :force => true do |t|

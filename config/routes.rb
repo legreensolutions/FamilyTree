@@ -47,7 +47,7 @@ ActionController::Routing::Routes.draw do |map|
   map.register '/register/:activation_code', :controller => 'activations', :action => 'activate_account'
 
   map.resources :password_resets, :collection => {:change_password =>:get}
-
+  map.simple_captcha '/simple_captcha/:action', :controller => 'simple_captcha'
 
 # optional, this just sets the root route
   # The priority is based upon order of creation: first created -> highest priority.
