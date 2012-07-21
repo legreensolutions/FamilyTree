@@ -10,8 +10,9 @@
               <% else %>
               <%= image_tag 'family_no_image.jpg',:width => "350px;" -%>
               <%- end -%><br /><br />
-              <div class="button"><%=link_to 'Edit', edit_family_path(@family) %></div>
-
+              <% if current_user and current_user.is_admin? %>
+                <div class="button"><%=link_to 'Edit', edit_family_path(@family) %></div>
+              <% end %>
             </div>
 
 

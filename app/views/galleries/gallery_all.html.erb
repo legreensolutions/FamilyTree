@@ -1,5 +1,7 @@
 <% unless @galleries.blank? %>
-<h3 align="center">Gallery</h3>
+<h3 align="center">Gallery Edit Page</h3>
+
+<div class="button"><%= link_to "Back to View", galleries_path %></div>
 
 <div style="width:80%;float:right;" >
          <% @galleries.each do |gallery| %>

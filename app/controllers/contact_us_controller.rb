@@ -20,13 +20,15 @@ class ContactUsController < ApplicationController
           flash[:notice] += 'Captcha is not valid <br />'
         end
         if flash[:notice].blank?
-          params[:member_id].each do |member_id|
+            params[:member_id].each do |member_id|
             @member = Member.find(member_id)
             Notifier.deliver_send_contact_us_msg(@member,params[:msg],params[:email])
-             flash[:notice] = 'Message send to selected members successfully'
+            flash[:notice] = 'Message send to selected members successfully'
+            redirect_to "/"
           end
         end
     end
+
   end
 end
 

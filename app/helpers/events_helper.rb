@@ -5,7 +5,8 @@ module EventsHelper
     galleries.each do |gallery|
       unless gallery.tags.blank?
         if prev_tag.to_s != gallery.tags.to_s
-          @tag_list =  @tag_list + link_to(gallery.tags,:controller=>'events',:action=>'index',:tag_id=>gallery.tags) + ", "
+          #@tag_list =  @tag_list + link_to(gallery.tags,:controller=>'events',:action=>'index',:tag_id=>gallery.tags) + ", "
+          @tag_list =  @tag_list + link_to(gallery.tags,:controller=>'events',:action=>'index',:tag_id=>gallery.tags) + "  "
         end
         prev_tag = gallery.tags
       end

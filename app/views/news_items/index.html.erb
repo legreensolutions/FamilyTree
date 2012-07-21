@@ -4,8 +4,8 @@
 </div>
 <% end %>
 <% unless @news_items.blank? %>
-<div class="center">
-List : <%= news_items_tag_list(@news_items) %>
+<div align="left" style="float:left;", class = "tag-category">
+Category : <%= news_items_tag_list(@news_items) %> <%= link_to "All Categories", events_path %>
 </div><br />
 
 <div align="center">

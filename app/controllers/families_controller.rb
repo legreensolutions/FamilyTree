@@ -1,7 +1,7 @@
 class FamiliesController < ApplicationController
   # GET /families
   # GET /families.xml
-
+  before_filter :require_user, :only => [:edit, :update,:new,:create]
   def index
     @families = Family.all
 
