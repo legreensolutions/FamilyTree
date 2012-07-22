@@ -1,11 +1,13 @@
-<% @news = NewsItem.find(:all,:conditions=>['obsolete =?',false],:order=>'news_date desc',:limit=>5)%>
+<% @news = NewsItem.find(:all,:conditions=>['obsolete =?',false],:order=>'news_date desc',:limit=>3)%>
 <h2 class="box"><%= link_to image_tag ('news_heading_bg.png'), news_items_path %></h2>
 
 <table align="center">
 
 <% @news.each do |news| %>
   <tr>
-    <td><%= link_to news.title,news_item_path(news) %></td>
+    <td>
+      <%= link_to news.title[0..40]+"...", news_item_path(news) %>
+    </td>
 
   </tr>
 <% end %>
