@@ -1,0 +1,13 @@
+<p>
+  <b>Name:</b>
+  <%=h @interesting_link.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @interesting_link.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_interesting_link_path(@interesting_link) %> |
+<%= link_to 'Back', interesting_links_path %>

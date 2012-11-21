@@ -1,0 +1,25 @@
+<div class="button"><%= link_to 'All',interesting_links_path %></div>
+<div align="center">
+<div class="white_bordered_div">
+            <h3>Links</h3>
+
+            <table align="center">
+            <% form_for @interesting_link  do |f| %>
+              <%= f.error_messages %>
+
+             <tr>
+                <td>Link</td>
+                <td><%= f.text_field :name %></td>
+              </tr>
+              <tr>
+                <td>Description</td>
+                <td><%= f.text_field :description %></td>
+
+              <tr><td colspan="2" align="center" class="button"><%= f.submit 'Create'%></td>
+              </tr>
+            <% end %>
+            </table>
+    </div><!-- end of white_bordered_div -->
+
+</div>
+

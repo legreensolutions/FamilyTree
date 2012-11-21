@@ -1,0 +1,2 @@
+module InterestingLinksHelper
+end

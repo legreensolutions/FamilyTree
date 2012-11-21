@@ -1,0 +1,18 @@
+<% @links = InterestingLink.find(:all,:order=>'created_at desc',:limit=>3)%>
+<h2 class="box"><%= link_to image_tag ('news_heading_bg.png'), news_items_path %></h2>
+
+<table align="center">
+
+<% @links.each do |link| %>
+  <tr>
+    <td>
+      <%= link_to link.name,link.name,:target=>'_blank' %>
+    </td>
+
+  </tr>
+<% end %>
+
+</table>
+<%= link_to "...more", interesting_links_path %>
+<br />
+

@@ -23,6 +23,7 @@
               <% end %>
           </div>
           <div style="clear:both;"></div>
+          <% unless @admin.nil? %>
           <div align="center" style="width:380px;">
               <div style="float:left;width:90px;border:solid white 5px;">
                 <%= display_photo_of_member(@admin,"Admin","80px;")%>
@@ -33,6 +34,7 @@
                   <%= check_box_tag 'member_id[]',@admin.id %>
               </div>
           </div>
+          <% end %>
       </div>
 
       <div style="width:100px;float:left;border:none;">

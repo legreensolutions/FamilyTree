@@ -37,15 +37,16 @@
               <%= link_to (image_tag "roots_black.png",:title=>'Trace Root'),:controller=>'members',:action=>'tree',:id=>member.id %>
             </td>
             <td>
-            <div>
+            <div style="width:75px;border:none;">
             <% if member.diseased %>
-             <span  style="color:white;
+             <div  style="color:white;
                 font-size:20px;
                 position:absolute;
                 margin-top:12px;
-                margin-left:10px;
-                text-align:left;opacity:0.8; filter:alpha(opacity=80);">
-                <%= image_tag 'diseased.png' %> </span>
+                border:none;
+                margin-left:15px;
+                opacity:0.8; filter:alpha(opacity=80);">
+                <%= image_tag 'diseased.png' %> </div>
             <% end %>
                 <%= display_photo_of_member(member,title)%>
                   <%# unless member.photo_file_name.nil? %>
