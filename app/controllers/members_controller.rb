@@ -61,6 +61,22 @@ class MembersController < ApplicationController
 
   end
 
+  def display_details
+    if params[:id]
+      @member = Member.find(params[:id])
+      unless @member.nil?
+          respond_to do |format|
+            format.html # show.html.erb
+            format.xml  { render :xml => @member }
+          end
+      else
+        redirect_to root_url
+      end
+    else
+      redirect_to root_url
+    end
+  end
+
   # GET /members/new
   # GET /members/new.xml
   def new

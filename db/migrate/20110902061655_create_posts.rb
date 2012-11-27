@@ -2,7 +2,7 @@ class CreatePosts < ActiveRecord::Migration
   def self.up
     create_table :posts do |t|
       t.string :name
-
+      t.integer :level
       t.timestamps
     end
   end
@@ -11,3 +11,4 @@ class CreatePosts < ActiveRecord::Migration
     drop_table :posts
   end
 end
+

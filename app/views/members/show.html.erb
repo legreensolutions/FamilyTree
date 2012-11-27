@@ -93,7 +93,7 @@
             <% if current_user and current_user.id == @member.user_id %>
               <%=link_to image_tag(@member.photo(:small), :height => "70", :crop => true, :title => @member.name ), edit_member_path(@member) %>&nbsp;
             <% else %>
-              <%= link_to image_tag(@member.photo(:small), :height => "70", :crop => true, :title => @member.name ),root_url %>&nbsp;
+              <%= link_to image_tag(@member.photo(:small), :height => "70", :crop => true, :title => @member.name ),:controller=>'members',:action=>'display_details',:id=>@member.id %>&nbsp;
             <% end %>
         <% else %>
         <% if current_user and current_user.id == @member.user_id %>
@@ -101,7 +101,7 @@
           <%= link_to (image_tag('default_big.jpg', :height=>"30px;",:title=>@member.name) , edit_member_path(@member))%>
         <% else %>
           <%#= @member.name %>
-          <%= link_to image_tag('default_big.jpg', :height=>"30px;",:title=>@member.name),root_url %>
+          <%= link_to image_tag('default_big.jpg', :height=>"30px;",:title=>@member.name),:controller=>'members',:action=>'display_details',:id=>@member.id%>
         <% end %>
         <% end %>
 

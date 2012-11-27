@@ -1,7 +1,9 @@
 &nbsp;
+<div class='button'><%= link_to 'New link', new_interesting_link_path if current_user and current_user.is_admin? %></div>
+
+
 <% unless @interesting_links.blank? %>
 <div align="center">
-<div class='button'><%= link_to 'New link', new_interesting_link_path if current_user and current_user.is_admin? %></div>
 <br />
 <h3>Links</h3>
 
@@ -9,14 +11,23 @@
 <table align="center">
 
 
+  <tr>
+    <td>
+      <%= link_to image_tag('facebook.png'), "facebook.com"%>
+      <%= link_to image_tag('twitter.png'), "twitter.com"%>
+      <%= link_to image_tag('geni.png'), "geni.com"%>
+    <br />
+    </td>
+  </tr>
+
 <% @interesting_links.each do |link| %>
   <tr>
 
 
 
     <td class="table-left-aligned">
-      <h3><%=  link.name %></h3>
-      <%= link.description %><br />
+      <h3><a href='<%= "#{link.name}"%>'> <%=link.name%></a></h3>
+      <%= link.description %></a><br />
        <% if current_user and current_user.is_admin? %>
       <%= link_to image_tag('edit.png'), edit_interesting_link_path(link) %>
       <%= link_to image_tag('delete.png'), link, :confirm => 'Are you sure?', :method => :delete %>

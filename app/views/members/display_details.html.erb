@@ -1,0 +1,26 @@
+<div align="left" style="float:left;">
+<div  class="family_show" style="margin-left:300px;">
+
+    <div style="float:left;">
+
+    <%if @member.photo_file_name %>
+      <p>
+           <%=link_to image_tag(@member.photo(:thumb), :title => @member.name ), member_path(@member) %>
+     </p>
+    <% else %>
+      <%= link_to (image_tag('default_big.jpg',:title=>@member.name) , member_path(@member))%>
+    <% end %>
+    </div>
+    <div class="family_show_description" style="border:none;">
+      <h3><%= @member.name %></h3>
+      <%= @member.email %><br />
+      <%= @member.family.name if @member.family %>
+      <%= @member.house_name%><br />
+      <%= @member.place%><br />
+      <%= @member.state.name if  @member.state%><br />
+      <%= @member.country.name if  @member.country%><br />
+      <%= 'Mobile:'.to_s +  @member.mobile if  @member.mobile%>&nbsp;&nbsp;<%= 'Ph:'.to_s + @member.phone.to_s if  @member.phone  %><br />
+      <hr />
+    </div>
+</div>
+

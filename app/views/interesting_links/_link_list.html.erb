@@ -1,5 +1,5 @@
 <% @links = InterestingLink.find(:all,:order=>'created_at desc',:limit=>3)%>
-<% unless  @events.blank? %>
+<% unless  @links.blank? %>
 <h2 class="box"><%= link_to image_tag ('news_heading_bg.png'), news_items_path %></h2>
 
 <table align="center">
