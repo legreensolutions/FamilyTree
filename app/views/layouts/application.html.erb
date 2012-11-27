@@ -48,7 +48,7 @@
           <div class="login">
                           <% if current_user -%>
                               <%= link_to "Logout",logout_path -%>
-                              <div class="logged_in_user"><%=Member.find_by_user_id(current_user).name %></div>
+                              <div class="logged_in_user"><%=Member.find_by_user_id(current_user).name if Member.find_by_user_id %></div>
                           <% else -%>
                               <%= link_to "Login",login_path -%>
                           <% end -%>

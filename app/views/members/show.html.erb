@@ -90,18 +90,18 @@
         </div>  <!-- END OF BROTHERS DIV-->
         <div class="self" title=<%= @member.name %>>
         <%if @member.photo_file_name %>
-        <%# if current_user %>
-          <%=link_to image_tag(@member.photo(:small), :height => "70", :crop => true, :title => @member.name ), edit_member_path(@member) %>&nbsp;
-        <%# else %>
-          <%#= image_tag(@member.photo(:small), :height => "70", :crop => true, :title => @member.name ) %>&nbsp;
-        <%# end %>
+            <% if current_user and current_user.id == @member.user_id %>
+              <%=link_to image_tag(@member.photo(:small), :height => "70", :crop => true, :title => @member.name ), edit_member_path(@member) %>&nbsp;
+            <% else %>
+              <%= link_to image_tag(@member.photo(:small), :height => "70", :crop => true, :title => @member.name ),root_url %>&nbsp;
+            <% end %>
         <% else %>
-        <% if current_user %>
+        <% if current_user and current_user.id == @member.user_id %>
           <%#=link_to @member.name,edit_member_path(@member) ,:title => @member.name%>
           <%= link_to (image_tag('default_big.jpg', :height=>"30px;",:title=>@member.name) , edit_member_path(@member))%>
         <% else %>
           <%#= @member.name %>
-          <%= image_tag('default_big.jpg', :height=>"30px;",:title=>@member.name) %>
+          <%= link_to image_tag('default_big.jpg', :height=>"30px;",:title=>@member.name),root_url %>
         <% end %>
         <% end %>
 

@@ -5,7 +5,11 @@
 
 <div align="center">
     <div class="white_bordered_div" style="text-align:left;">
+      <% unless  @content_management.nil? %>
         <%= @content_management.description[0..@content_management.no_of_chars] %>
+      <% else %>
+      Content management Description
+      <% end %>
         <br /><br /><br />
     </div>
 </div>

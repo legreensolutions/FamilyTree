@@ -1,4 +1,5 @@
 <% @links = InterestingLink.find(:all,:order=>'created_at desc',:limit=>3)%>
+<% unless  @events.blank? %>
 <h2 class="box"><%= link_to image_tag ('news_heading_bg.png'), news_items_path %></h2>
 
 <table align="center">
@@ -14,5 +15,8 @@
 
 </table>
 <%= link_to "...more", interesting_links_path %>
+<% else %>
+No items
+<% end %>
 <br />
 
