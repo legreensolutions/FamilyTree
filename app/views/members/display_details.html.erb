@@ -19,7 +19,7 @@
       <%= @member.place%><br />
       <%= @member.state.name if  @member.state%><br />
       <%= @member.country.name if  @member.country%><br />
-      <%= 'Mobile:'.to_s +  @member.mobile if  @member.mobile%>&nbsp;&nbsp;<%= 'Ph:'.to_s + @member.phone.to_s if  @member.phone  %><br />
+      <%= 'Mobile:'.to_s +  @member.mobile.to_s if  @member.mobile%>&nbsp;&nbsp;<%= 'Ph:'.to_s + @member.phone.to_s if  @member.phone  %><br />
       <hr />
     </div>
 </div>
