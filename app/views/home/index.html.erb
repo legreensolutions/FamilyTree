@@ -61,13 +61,13 @@ cookies[:display] = {:value => 'true',
     <div id="events_container" ><%= render :partial=>'events/event_list.html.erb' %></div>
     <div id="links_container"><%= render :partial=>'interesting_links/link_list.html.erb' %></div>
     <div id="right_menu_container"><%= link_to '&nbsp;&nbsp;&nbsp;Committee Members',:controller=>'members',:action=>'committee_members' %></div>
+    <div id="right_menu_container1">   <%= link_to '&nbsp;&nbsp;&nbsp;Interesting Links' ,interesting_links_path %></div>
     <% if current_user and current_user.is_admin? %>
-      <div id="right_menu_container1">   <%= link_to '&nbsp;&nbsp;&nbsp;Content Management' ,content_managements_path %></div>
-      <div id="right_menu_container2">   <%= link_to '&nbsp;&nbsp;&nbsp;Edit Families' ,families_path %></div>
-      <div id="right_menu_container3">   <%= link_to '&nbsp;&nbsp;&nbsp;Posts' ,posts_path %></div>
-      <div id="right_menu_container4">   <%= link_to '&nbsp;&nbsp;&nbsp;Countries' ,countries_path %></div>
-      <div id="right_menu_container5">   <%= link_to '&nbsp;&nbsp;&nbsp;Disctricts' ,districts_path %></div>
-      <div id="right_menu_container6">   <%= link_to '&nbsp;&nbsp;&nbsp;Links' ,interesting_links_path %></div>
+      <div id="right_menu_container2">   <%= link_to '&nbsp;&nbsp;&nbsp;Content Management' ,content_managements_path %></div>
+      <div id="right_menu_container3">   <%= link_to '&nbsp;&nbsp;&nbsp;Edit Families' ,families_path %></div>
+      <div id="right_menu_container4">   <%= link_to '&nbsp;&nbsp;&nbsp;Posts' ,posts_path %></div>
+      <div id="right_menu_container5">   <%= link_to '&nbsp;&nbsp;&nbsp;Countries' ,countries_path %></div>
+      <div id="right_menu_container6">   <%= link_to '&nbsp;&nbsp;&nbsp;Disctricts' ,districts_path %></div>
     <% end %>
 
 

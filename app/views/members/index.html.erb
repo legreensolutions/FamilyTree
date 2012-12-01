@@ -31,10 +31,11 @@
                 title += "#{member.pet_name} ".to_s
               end
             %>
+
             <tr class="underline">
             <td>
               <%#= link_to 'Roots',:controller=>'members',:action=>'tree',:id=>member.id %>
-              <%= link_to (image_tag "roots_black.png",:title=>'Trace Root'),:controller=>'members',:action=>'tree',:id=>member.id %>
+              <%= link_to (image_tag "roots_black.png",:title=>'Click here to find the roots'),:controller=>'members',:action=>'tree',:id=>member.id %>
             </td>
             <td>
             <div style="width:75px;border:none;">
@@ -56,6 +57,8 @@
                   <%# end %>
             </div>
             </td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+
 
             <td><%=link_to member.name ,member_path(member.id),{:title=>title}%></td>
             <!--<td><%#= member.house_name %></td>-->
@@ -67,7 +70,7 @@
              post =  @posts.name %>
              <%=link_to  @posts.name  , :controller=>'members',:action=>'assign_post',:id=>member.id%>
              <% else %>
-             <%=link_to image_tag ('post.png',:title=>'assign post') , :controller=>'members',:action=>'assign_post',:id=>member.id%>
+             <%=link_to image_tag ('post.png',:title=>'Specify post  in the Mannekattil Family Association') , :controller=>'members',:action=>'assign_post',:id=>member.id%>
             <%end %>
 
             </td>
@@ -81,10 +84,11 @@
             </td>
             <%  end -%>
             <%if current_user  %>
-            <td><%=link_to image_tag('edit.png',:title=>'show details'), edit_member_path(member)%></td>
-            <td><%=link_to image_tag('delete.png',:title=>'Delete'), member, :confirm => 'Are you sure?', :method => :delete%></td>
+            <td><%=link_to image_tag('edit.png',:title=>'Show details of member'), edit_member_path(member)%></td>
+            <td><%=link_to image_tag('delete.png',:title=>'Delete the member..!'), member, :confirm => 'Are you sure?', :method => :delete%></td>
             <% end %>
             </tr>
+            <tr class="lines"><td colspan="8">________________________________________</td></tr>
             <% end %>
             </table><br />
             <%= will_paginate @members %>

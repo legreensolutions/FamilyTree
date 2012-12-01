@@ -4,9 +4,10 @@
 <div class="clear"></div>
 
 <div align="center">
+    <div class='button'><%= link_to 'Write Guidelines', content_managements_path if current_user and current_user.is_admin %></div>
     <div class="white_bordered_div" style="text-align:left;">
       <% unless  @content_management.nil? %>
-        <%= @content_management.description[0..@content_management.no_of_chars] %>
+        <%= @content_management.description %>
       <% else %>
       Content management Description
       <% end %>

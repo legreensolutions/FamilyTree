@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(:version => 20121120035830) do
     t.string   "page",           :null => false
     t.string   "identification", :null => false
     t.integer  "no_of_chars",    :null => false
-    t.text     "description",    :null => false
+    t.string   "description",    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -109,11 +109,11 @@ ActiveRecord::Schema.define(:version => 20121120035830) do
   end
 
   create_table "members", :force => true do |t|
-    t.string   "name",                                               :null => false
+    t.string   "name",                                  :null => false
     t.string   "email"
     t.string   "pet_name"
-    t.integer  "phone",              :limit => 8
-    t.integer  "mobile",             :limit => 8
+    t.integer  "phone"
+    t.integer  "mobile"
     t.integer  "family_id"
     t.string   "house_name"
     t.string   "house_number"
@@ -123,12 +123,12 @@ ActiveRecord::Schema.define(:version => 20121120035830) do
     t.integer  "district_id"
     t.integer  "state_id"
     t.integer  "country_id"
-    t.boolean  "demoted",                         :default => false
-    t.boolean  "lock",                            :default => false
+    t.boolean  "demoted",            :default => false
+    t.boolean  "lock",               :default => false
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
-    t.integer  "created_by",                      :default => 1
+    t.integer  "created_by",         :default => 1
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -141,7 +141,7 @@ ActiveRecord::Schema.define(:version => 20121120035830) do
     t.string   "occupation"
     t.string   "position"
     t.string   "official_address"
-    t.boolean  "diseased",                        :default => false
+    t.boolean  "diseased",           :default => false
   end
 
   create_table "news_items", :force => true do |t|
@@ -166,7 +166,7 @@ ActiveRecord::Schema.define(:version => 20121120035830) do
 
   create_table "posts", :force => true do |t|
     t.string   "name"
-    t.integer  "level",      :null => false
+    t.integer  "level"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

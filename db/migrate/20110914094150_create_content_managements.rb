@@ -8,9 +8,9 @@ class CreateContentManagements < ActiveRecord::Migration
       t.timestamps
     end
    ContentManagement.create!(:page => "HOME", :identification => "HOME", :no_of_chars => 100, :description => "HOME")
-            ContentManagement.create!(:page => "COMMITTEE", :identification => "COMMITTEE", :no_of_chars => 100, :description => "COMMITTEE")
-            ContentManagement.create!(:page => "CONTACT US", :identification => "CONTACT US", :no_of_chars => 100, :description => "CONTACT US")
-            ContentManagement.create!(:page => "GUIDELINES", :identification => "GUIDELINES", :no_of_chars =>100 , :description => "GUIDELINES")
+            ContentManagement.create!(:page => "COMMITTEE", :identification => "DESCRIPTION", :no_of_chars => 100, :description => "COMMITTEE")
+            ContentManagement.create!(:page => "CONTACT US", :identification => "DESCRIPTION", :no_of_chars => 100, :description => "CONTACT US")
+            ContentManagement.create!(:page => "GUIDELINES", :identification => "DESCRIPTION", :no_of_chars =>100 , :description => "GUIDELINES")
   end
 
   def self.down

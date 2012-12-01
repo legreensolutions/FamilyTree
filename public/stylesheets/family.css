@@ -142,7 +142,8 @@ h5 {
     margin:auto;
     padding:auto;
     font-weight:normal;
-
+    width:200px;
+    text-align:left;
 }
 .login {
     margin-top:15px;
@@ -1109,5 +1110,8 @@ input.tree_button {
 }
 #family_container a:hover {
  text-decoration:none;
+}
+div.white_bordered_div table tbody tr.lines {
+    border-bottom:solid #000 1px;
 }
 
