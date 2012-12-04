@@ -98,5 +98,16 @@ class EventsController < ApplicationController
     @upload.destroy
 
   end
+
+  def download_image
+     @upload = EventUpload.find_by_id(params[:id])
+
+    #send_file @upload.photo.url(:original), :type=>"application/zip"
+    @filename ="#{@upload.photo.url(:original)}"
+    send_file(@filename, :type => 'attachment')
+
+
+  end
+
 end
 

@@ -20,7 +20,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :news_items,:as=>'news'
 
-  map.resources :events
+  map.resources :events,:collection => {:download_image => :get}
 
   map.resources :members,:collection => {:display_details=>:get}
 
@@ -41,6 +41,7 @@ ActionController::Routing::Routes.draw do |map|
  # map.root :controller => "user_sessions", :action => "new"
  map.root :controller=>'home',:action=>'index'
   map.contact_us 'contactus',:controller=>'home',:action=>'contact_us'
+#  map.download_image 'download_image/:file_name', :controller => 'events', :action=>'download_image'
   map.guidelines 'guidelines',:controller=>'home',:action=>'guidelines'
   map.contact_us 'contact-us',:controller=>'contact_us',:action=>'contact_us'
   map.resources :users
