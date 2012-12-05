@@ -103,9 +103,10 @@ class EventsController < ApplicationController
      @upload = EventUpload.find_by_id(params[:id])
 
     #send_file @upload.photo.url(:original), :type=>"application/zip"
-    @filename ="#{@upload.photo.url(:original)}"
-    send_file(@filename, :type => 'attachment')
-
+    if @upload
+      @filename ="#{RAILS_ROOT}/public#{@upload.photo.url(:original)}"
+      send_file(@filename, :type => 'attachment')
+    end
 
   end
 

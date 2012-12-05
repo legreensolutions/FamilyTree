@@ -13,18 +13,17 @@
       <% @uploads = @event.event_uploads%>
     <%unless @uploads.blank? %>
       <p>
-       <% @uploads.each do |upload| %>
-      <div id="gallery">
 
-          <%= link_to image_tag(upload.photo.url(:thumb)),upload.photo.url(:original)%>
-          <%#= link_to "Download", download_image_path(upload.photo.url(:original)) %>
 
-     </div>
+        <div id="gallery">
+            <% @uploads.each do |upload| %>
+            <%= link_to image_tag(upload.photo.url(:thumb)),upload.photo.url(:small), :class=>"slide"%>
 
-     <%#= link_to "Download", :url => {:controller => 'events', :action => "download_image", :id => upload.id }  %>
-     <%= link_to "#{RAILS_ROOT}/public#{upload.photo.url(:original)}", "#{upload.photo.url(:original)}"  %>
-     <% end %>
-     </p>
+            <%= link_to image_tag("../images/Download.png"), "download_image/#{upload.id}"  %>
+            <% end %>
+        </div>
+      </p>
+
     <% else %>
       <%= image_tag ('../images/no_image.jpg') %>
     <% end %>
