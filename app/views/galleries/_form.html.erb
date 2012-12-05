@@ -19,6 +19,10 @@
   <td><%#= form.text_field :tags %>
   <%= text_field_with_auto_complete :gallery, :tags %>
   </td>
+  <td><% Gallery.find(:all).each do |g|%>
+              <%= g.tags %> -
+      <%end%>
+  </td>
 </tr>
 <tr>
   <td><%= form.label 'Upload Image' %></td>

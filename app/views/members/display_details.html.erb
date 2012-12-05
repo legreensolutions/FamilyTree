@@ -5,7 +5,19 @@
 
     <%if @member.photo_file_name %>
       <p>
-           <%=link_to image_tag(@member.photo(:thumb), :title => @member.name ), member_path(@member) %>
+           <%=link_to image_tag(@member.photo(:small), :title => @member.name ), member_path(@member) %>
+
+
+            <% if @member.diseased %>
+             <div  style="color:white;
+                border:none;
+                opacity:0.8; filter:alpha(opacity=80); float:left;">
+                <%= image_tag 'diseased_big.png' %><span style="color:#000">Expired</span> </div>
+            <% end %>
+
+
+
+
      </p>
     <% else %>
       <%= link_to (image_tag('default_big.jpg',:title=>@member.name) , member_path(@member))%>
@@ -14,9 +26,10 @@
     <div class="family_show_description" style="border:none;">
       <h3><%= @member.name %></h3>
       <%= @member.email %><br />
-      <%= @member.family.name if @member.family %>
-      <%= @member.house_name%><br />
-      <%= @member.place%><br />
+      <%= @member.post.name unless @member.post_id.nil? %><br />
+      <%= @member.family.name if @member.family %>,
+      "<%= @member.house_name if @member.house_name %>"<br />
+      <%= @member.place if @member.place %><br />
       <%= @member.state.name if  @member.state%><br />
       <%= @member.country.name if  @member.country%><br />
       <%= 'Mobile:'.to_s +  @member.mobile.to_s if  @member.mobile%>&nbsp;&nbsp;<%= 'Ph:'.to_s + @member.phone.to_s if  @member.phone  %><br />
