@@ -19,7 +19,7 @@
   <td><%#= form.text_field :tags %>
   <%= text_field_with_auto_complete :gallery, :tags %>
   </td>
-  <td><% Gallery.find(:all).each do |g|%>
+  <td><% Gallery.find(:all, :select => 'DISTINCT tags').each do |g|%>
               <%= g.tags %> -
       <%end%>
   </td>
