@@ -1,0 +1,35 @@
+<br /><% session[:relation_id] = params[:relation_id]
+session[:member_id] = params[:user_id]
+session[:relation_name] = params[:relation_name]%>
+<% @members = Member.find(:all,:conditions=>['id != ?',session[:member_id]],:order=>'name ASC') %>
+<div align="center" >
+    <%= select_tag(:search, raw("<option value='0'>-Select a Member</option>" + options_from_collection_for_select(@members, :id, :name)), :data_remote => true) %>
+    <%#= observe_field('search', :update => :div_to_be_updated, :url => {:controller => 'relations', :action=> 'find' }, :with => "'member_id=' + escape(value)") %>
+
+
+    <h3>Add <%= params[:relation_name]%> of <%= Member.find_by_id(session[:member_id]).name %> </h3>
+
+    <%= form_for @member, :html => { :multipart => true } do |f| %>
+                <%= fields_for :relation do |rf| %>
+
+                      <%= rf.hidden_field :user_id,:value=>session[:member_id] %>
+                      <%= rf.hidden_field :relation_id,:value=>session[:relation_id]%>
+                      <%= hidden_field_tag 'relation_name',session[:relation_name]%>
+
+                <% end %>
+
+                <div id="div_to_be_updated">
+
+                          <%= f.error_messages %>
+                          <%= error_messages_for 'user'%>
+
+                          <%= render :partial => "members/form", :object => f %>
+
+                          <p><%= f.submit 'Create' %></p>
+
+
+                </div>
+
+    <% end %>
+</div>
+

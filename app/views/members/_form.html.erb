@@ -15,27 +15,29 @@
 <tr>
   <td><%= form.label :gender_id %></td>
   <% unless session[:relation_name].blank?
-  checked_m = false
-  checked_f = false%>
-  <% if  session[:relation_name] == 'Father' or session[:relation_name] == 'Brothers' or session[:relation_name] == 'Sons'
-    checked_m = true
-   elsif session[:relation_name] == 'Mother' or session[:relation_name] == 'Daughters' or session[:relation_name] == 'Sisters'
-     checked_f = true
-     else
-      if Member.find_by_id(session[:member_id]).gender_id == MALE
-        checked_f = true
-      else
-        checked_m = true
-      end
-   end %>
-  <td><%= form.radio_button :gender_id,MALE,:checked=>checked_m %>Male
-  <%= form.radio_button :gender_id,FEMALE,:checked=>checked_f %>Female
-  </td>
+            checked_m = false
+            checked_f = false%>
+            <% if  session[:relation_name] == 'Father' or session[:relation_name] == 'Brothers' or session[:relation_name] == 'Sons'
+               checked_m = true
+               elsif session[:relation_name] == 'Mother' or session[:relation_name] == 'Daughters' or session[:relation_name] == 'Sisters'
+                checked_f = true
+               else       #Spouce
+                    if Member.find_by_id(session[:member_id]).gender_id == FEMALE
+                      checked_f = true
+                    else
+                      checked_m = true
+                    end
+               end %>
+            <td><%= form.radio_button :gender_id,MALE,:checked=>checked_m %>Male
+            <%= form.radio_button :gender_id,FEMALE,:checked=>checked_f %>Female
+            </td>
   <% else %>
+
     <td>
     <%= form.radio_button :gender_id,MALE %>Male
     <%= form.radio_button :gender_id,FEMALE %>Female
-  </td>
+    </td>
+
   <% end %>
 
 </tr>
@@ -128,7 +130,7 @@
 </tr>
 
 <% if  @member.user_id.nil? %>
-<% fields_for :user do |user_form|%>
+<%= fields_for :user do |user_form|%>
 <tr>
   <td>Enable Signing In</td>
   <td><%= check_box_tag 'enable_sign_in',1,false,:onclick=>'display_user_details();' %></td>

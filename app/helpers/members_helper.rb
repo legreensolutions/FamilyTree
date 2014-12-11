@@ -62,9 +62,9 @@ end
   def display_photo_of_member(member,title="",height="30px;")
     unless member.nil?
       if member.has_photo?
-        content_tag(:div,link_to (image_tag(member.photo(:small), :height=>height,:title=>title), member_path(member.id)))
+        content_tag(:div,link_to(image_tag(member.photo(:small), :height=>height,:title=>title), member_path(member.id)))
       else
-        content_tag(:div,link_to (image_tag('default_big.jpg', :height=>height,:title=>title) , member_path(member.id)))
+        content_tag(:div,link_to(image_tag('default_big.jpg', :height=>height,:title=>title) , member_path(member.id)))
       end
     end
   end

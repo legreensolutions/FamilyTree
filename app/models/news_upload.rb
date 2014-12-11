@@ -5,7 +5,9 @@ class NewsUpload < ActiveRecord::Base
                       :thumb => ["100x100", :jpg],
                       :small => ["300x300", :jpg],
                     },
-                    :default_style => :small
+                    :default_style => :small,
+      :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
+      :url => "/system/:attachment/:id/:style/:filename"
 
 end
 

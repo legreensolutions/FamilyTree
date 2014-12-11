@@ -4,7 +4,7 @@
   <div class="white_bordered_div">
 <h3>Editing family</h3>
         <table align="center">
-        <% form_for @family, :html => { :multipart => true } do |f| %>
+        <%= form_for @family, :html => { :multipart => true } do |f| %>
           <%= f.error_messages %>
 
           <tr>

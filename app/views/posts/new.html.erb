@@ -1,7 +1,7 @@
 <div class="button"><%= link_to 'Back', posts_path%></div>
 <h3>New post</h3>
 
-<% form_for(@post) do |f| %>
+<%= form_for(@post) do |f| %>
   <%= f.error_messages %>
 
   <p>

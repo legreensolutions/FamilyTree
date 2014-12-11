@@ -28,15 +28,6 @@ ActiveRecord::Schema.define(:version => 20121120035830) do
     t.datetime "updated_at"
   end
 
-  create_table "committee_members", :force => true do |t|
-    t.integer  "member_id"
-    t.integer  "post_id"
-    t.integer  "year"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "show_in_contact_us", :default => false
-  end
-
   create_table "content_managements", :force => true do |t|
     t.string   "page",           :null => false
     t.string   "identification", :null => false
@@ -74,7 +65,6 @@ ActiveRecord::Schema.define(:version => 20121120035830) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.string   "tags"
   end
 
   create_table "families", :force => true do |t|
@@ -175,13 +165,6 @@ ActiveRecord::Schema.define(:version => 20121120035830) do
     t.integer "user_id"
     t.integer "related_user_id"
     t.integer "relation_id"
-  end
-
-  create_table "simple_captcha_data", :force => true do |t|
-    t.string   "key",        :limit => 40
-    t.string   "value",      :limit => 6
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "states", :force => true do |t|

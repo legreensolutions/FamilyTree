@@ -1,58 +1,74 @@
-ActionController::Routing::Routes.draw do |map|
-  map.resources :interesting_links
+Familynew::Application.routes.draw do
+  resources :interesting_links
+  resources :content_managements
+
+  resources :posts
+  match 'members/assign_post', :to => "members#assign_post"
+#  map.connect 'members/committee_members', :controller => :members, :action => :committee_members
+  match 'members/committee_members', :to => 'members#committee_members'
+  match 'home/detailed_content', :to => 'home#detailed_content'
+  match 'tree', :to => 'members#tree'
+  match 'family_tree', :to => 'members#family_tree'
+
+  resources :relations, :collection => {:add_relation=>:get,:find=>:get}
+  match "relations/add_relation", :to => 'relations#add_relation' 
+  match "relations/find", :to => 'relations#find' 
+
+  match 'galleries/gallery_all', :to => 'galleries#gallery_all'
+  resources :galleries
 
 
-  map.resources :content_managements
+  resources :families
+  
+  resources :alerts
 
-  map.resources :posts
-  map.connect 'members/committee_members', :controller => :members, :action => :committee_members
-  map.tree 'tree', :controller => 'members', :action => 'tree'
-  map.family_tree 'family_tree', :controller => 'members', :action => 'family_tree'
+  resources :news_items, :as=>'news_items'
 
-  map.resources :relations, :collection => {:add_relation=>:get,:find=>:get}
-  map.connect 'galleries/gallery_all', :controller => 'galleries', :action => 'gallery_all'
-  map.resources :galleries
+  resources :events
 
+  resources :events do
+    get :autocomplete_event_tags, :on => :collection
+  end
 
-  map.resources :families
-
-  map.resources :alerts
-
-  map.resources :news_items,:as=>'news'
-
-  map.resources :events,:collection => {:download_image => :get}
-
-  map.resources :members,:collection => {:display_details=>:get}
-
-  map.resources :districts
-
-  map.resources :states
-
-  map.resources :states
-
-  map.resources :countries
-
-  map.resources :countries
-
-  map.resources :countries
+  resources :galleries do 
+    get :autocomplete_gallery_tags, :on => :collection
+  end
 
 
-  map.resource :user_session
+  resources :members,:collection => {:display_details=>:get}
+
+  resources :districts
+
+  resources :states
+
+  resources :states
+
+  resources :countries
+
+  resources :countries
+
+  resources :countries
+
+
+  resource :user_session
  # map.root :controller => "user_sessions", :action => "new"
- map.root :controller=>'home',:action=>'index'
-  map.contact_us 'contactus',:controller=>'home',:action=>'contact_us'
-#  map.download_image 'download_image/:file_name', :controller => 'events', :action=>'download_image'
-  map.guidelines 'guidelines',:controller=>'home',:action=>'guidelines'
-  map.contact_us 'contact-us',:controller=>'contact_us',:action=>'contact_us'
-  map.resources :users
-  map.resource :account, :controller => "users"
+  root :to =>'home#index'
+  match 'contactus',:to =>'home#contact_us'
+  match 'guidelines',:to =>'home#guidelines'
+  match 'contact-us',:to=>'contact_us#contact_us'
+  resources :users
+  resource :account, :controller => "users"
 
-   map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
-  map.login 'login', :controller => 'user_sessions', :action => 'new'
-  map.register '/register/:activation_code', :controller => 'activations', :action => 'activate_account'
+  #match 'logout', :to => 'user_sessions#destroy'
+  #match 'login', :to => 'user_sessions#new'
 
-  map.resources :password_resets, :collection => {:change_password =>:get}
-  map.simple_captcha '/simple_captcha/:action', :controller => 'simple_captcha'
+  match 'login' => "user_sessions#new",      :as => :login
+  match 'logout' => "user_sessions#destroy", :as => :logout
+
+  match '/register/:activation_code', :to => 'activations#activate_account'
+
+  resources :password_resets, :collection => {:change_password =>:get}
+                                                match '/simple_captcha/:action', :controller => 'simple_captcha'
 
 # optional, this just sets the root route
   # The priority is based upon order of creation: first created -> highest priority.
@@ -94,7 +110,8 @@ ActionController::Routing::Routes.draw do |map|
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing or commenting them out if you're using named routes and resources.
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
-end
+  match ':controller/:action/:id'
+  match ':controller/:action/:id.:format'
 
+
+end

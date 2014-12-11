@@ -1,16 +1,26 @@
+<h2>Edit</h2>
+Relation Name = <%= params[:relation_name] %><br />
+Relation ID =   <%= params[:relation_id] %><br />
+ID of Relative =   <%= params[:member_id] %><br />
+AffectedMember =   <%= params[:user_id] %><br />
+Session[relation] = <%=session[:relation_name]%><br />
 
-<% form_for @member, :html => { :multipart => true } do |f| %>
+
+
+<br /><br />
+<%= form_for @member, :html => { :multipart => true } do |f| %>
   <%= f.error_messages %>
   <%= error_messages_for 'user'%>
-<%= render :partial => "members/form", :object => f %>
+  <%= render :partial => "members/form", :object => f %>
 
-  <% fields_for :relation do |rf| %>
-<%= rf.hidden_field :user_id,:value=>session[:member_id]%>
-<%= rf.hidden_field :relation_id,:value=>session[:relation_id]%>
-<%= hidden_field_tag 'relation_name',session[:relation_name]%>
- <p>
-    <%= f.submit 'Update' %>
-  </p>
+      <%= fields_for :relation do |rf| %>
+            <%= rf.hidden_field :user_id,:value=>params[:user_id]%>
+            <%= rf.hidden_field :relation_id,:value=>params[:relation_id]%>
+            <%= hidden_field_tag 'relation_name',params[:relation_name]%>
+            <p>
+            <%= f.submit 'Update' %>
+            </p>
+      <% end %>
 <% end %>
-<% end %>
+
 

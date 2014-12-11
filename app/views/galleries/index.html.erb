@@ -13,7 +13,7 @@
 
 <% unless @galleries.blank? %>
 <div align="left" style="float:left;", class = "tag-category">
-Category : <%= tag_list(Gallery.all) %> <%= link_to "All Categories", galleries_path %>
+Category : <%=raw tag_list(Gallery.all) %> <%= link_to "All Categories", galleries_path %>
 </div><br />
 <h3 align="center">Gallery</h3>
 
@@ -25,12 +25,23 @@ Category : <%= tag_list(Gallery.all) %> <%= link_to "All Categories", galleries_
 
          <% @galleries.each do |gallery| %>
             <div style="float:left;float:left; padding:15px;" align="center">
-               <div class="photo_frame"><%=gallery.title%><br /><%= link_to image_tag(gallery.photo.url(:thumb)),gallery.photo.url(:large),:title=>gallery.title%></div>
+
+               <div class="photo_frame"><%=gallery.title%><br />
+
+
+                    <a href= <%= gallery.photo.url(:large) %> data-lightbox="roadtrip" > <%= image_tag(gallery.photo.url(:thumb)) %>   </a>
+                    
+
+              </div>
+
+
+
+
             </div>
 
         <% end %>
 
-
+      
     <br /><br />
     <div style="clear:both;"></div>
 

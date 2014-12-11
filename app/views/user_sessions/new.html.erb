@@ -1,9 +1,20 @@
 &nbsp;<div align="center">
 <h3>Login</h3>
 
-<% form_for @user_session, :url => user_session_path do |f| %>
+<%= form_for @user_session, :url => user_session_path do |f| %>
 
-  <%= f.error_messages %>
+  <% if @user_session.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@user_session.errors.count, "error") %> prohibited:</h2>
+    <ul>
+      <% @user_session.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+    
   <table align="center">
       <tr>
           <td><%= f.label :email %></td>
@@ -14,7 +25,7 @@
           <td><%= f.password_field :password %></td>
       </tr>
       <tr>
-      <td colspan="2"><%= f.submit "Login",:class=>'button_new' %>&nbsp;&nbsp;<%= link_to 'Forgot Password?',:controller=>'password_resets',:action=>'new'%></td>
+      <td colspan="2"><%= f.submit "Login",:class=>'button_new' %>&nbsp;&nbsp;<%= link_to 'Forgot Password?','password_resets#new'%></td>
       </tr>
   </table>
 

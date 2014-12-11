@@ -1,6 +1,6 @@
 <% @events = Event.find(:all,:order=>'event_date desc',:limit=>5)%>
 <% unless  @events.blank? %>
-<h2 class="box"><%= link_to image_tag ('events_heading_bg.png'), events_path %></h2>
+<h2 class="box"><%= link_to image_tag('events_heading_bg.png'), events_path %></h2>
 
 <table align="center">
 

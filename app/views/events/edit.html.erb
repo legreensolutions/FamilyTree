@@ -2,7 +2,7 @@
 <div align="center">
 <h3>Editing event</h3>
 <table align="center">
-<% form_for @event, :html => { :multipart => true } do |f| %>
+<%= form_for @event, :html => { :multipart => true } do |f| %>
   <%= f.error_messages %>
 
   <tr>
@@ -20,10 +20,10 @@
     <tr>
   <td><%= f.label :tags %></td>
   <td><%#= form.text_field :tags %>
-  <%= text_field_with_auto_complete :event, :tags %>
+  <%= f.autocomplete_field :tags, autocomplete_event_tags_events_path %>
   </td>
 </tr>
-  <% f.fields_for :event_uploads do |photo_form| %>
+  <%= f.fields_for :event_uploads do |photo_form| %>
   <tr>
     <td>Image1</td>
     <td><%= photo_form.file_field :photo %></td>

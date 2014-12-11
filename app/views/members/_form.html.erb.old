@@ -1,0 +1,148 @@
+<div class="bordered_input_boxes">
+<table align="center">
+<tr>
+  <td><%= form.label :name %></td>
+  <td><%= form.text_field :name %>
+  <%if current_user  %>
+  <%= form.hidden_field :created_by,:value=>current_user.id %>
+  <% end %>
+  </td>
+</tr>
+<tr>
+  <td><%= form.label :email %></td>
+  <td><%= form.text_field :email %></td>
+</tr>
+<tr>
+  <td><%= form.label :gender_id %></td>
+  <% unless session[:relation_name].blank?
+  checked_m = false
+  checked_f = false%>
+  <% if  session[:relation_name] == 'Father' or session[:relation_name] == 'Brothers' or session[:relation_name] == 'Sons'
+    checked_m = true
+   elsif session[:relation_name] == 'Mother' or session[:relation_name] == 'Daughters' or session[:relation_name] == 'Sisters'
+     checked_f = true
+     else
+      if Member.find_by_id(session[:member_id]).gender_id == MALE
+        checked_f = true
+      else
+        checked_m = true
+      end
+   end %>
+  <td><%= form.radio_button :gender_id,MALE,:checked=>checked_m %>Male
+  <%= form.radio_button :gender_id,FEMALE,:checked=>checked_f %>Female
+  </td>
+  <% else %>
+    <td>
+    <%= form.radio_button :gender_id,MALE %>Male
+    <%= form.radio_button :gender_id,FEMALE %>Female
+  </td>
+  <% end %>
+
+</tr>
+<tr>
+  <td><%= form.label 'Family' %></td>
+  <td><%= form.select("family_id", Family.all.collect {|family| [ family.name, family.id ] }, {:include_blank => 'Select...'})%></td>
+</tr>
+<tr>
+  <td><%= form.label 'Origin Family' %></td>
+  <td><%= form.select("origin_family_id", Family.all.collect {|family| [ family.name, family.id ] }, {:include_blank => 'Select...'})%></td>
+</tr>
+<tr>
+  <td><%= form.label :house_name %></td>
+  <td><%= form.text_field :house_name %></td>
+</tr>
+<tr>
+  <td><%= form.label :house_number %></td>
+  <td><%= form.text_field :house_number %></td>
+</tr>
+<tr>
+  <td><%= form.label :street %></td>
+  <td><%= form.text_field :street %></td>
+</tr>
+<tr>
+  <td><%= form.label :place %></td>
+  <td><%= form.text_field :place %></td>
+</tr>
+<tr>
+  <td><%= form.label :pin %></td>
+  <td><%= form.text_field :pin %></td>
+</tr>
+<tr>
+  <td><%= form.label :phone %></td>
+  <td><%= form.text_field :phone %></td>
+</tr>
+<tr>
+  <td><%= form.label :mobile %></td>
+  <td><%= form.text_field :mobile %></td>
+</tr>
+<tr>
+  <td><%= form.label 'District' %></td>
+  <td><%= form.select("district_id", District.all.collect {|p| [ p.name, p.id ] }, {:include_blank => 'Select...'})%></td>
+</tr>
+<tr>
+  <td><%= form.label 'State' %></td>
+  <td><%= form.select("state_id", State.all.collect {|p| [ p.name, p.id ] }, {:include_blank => 'Select...'})%></td>
+  <tr>
+  <td><%= form.label 'Country' %></td>
+  <td><%= form.select("country_id", Country.all.collect {|p| [ p.name, p.id ] }, {:include_blank => 'Select...'})%></td>
+</tr>
+<tr>
+  <td><%= form.label 'Upload Photo' %></td>
+  <td>  <%= form.file_field :photo%>
+ </td>
+</tr>
+<tr>
+  <td><%= form.label 'Date of Birth' %></td>
+  <td>  <%= form.date_select :dob,:start_year=>Time.now.year - 111,:end_year=>Time.now.year %>
+ </td>
+</tr>
+<tr>
+  <td><%= form.label 'Date of Marriage' %></td>
+  <td>  <%= form.date_select :marriage_date,:start_year=>Time.now.year - 111,:end_year=>Time.now.year%>
+ </td>
+</tr>
+<tr>
+  <td><%= form.label 'Parish' %></td>
+  <td>  <%= form.text_field :parish%>
+ </td>
+</tr>
+<tr>
+  <td><%= form.label 'Occupation' %></td>
+  <td>  <%= form.text_field :occupation%>
+ </td>
+</tr>
+<tr>
+  <td><%= form.label 'Position' %></td>
+  <td>  <%= form.text_field :position%>
+ </td>
+</tr>
+<tr>
+  <td><%= form.label 'Official Address' %></td>
+  <td>  <%= form.text_field :official_address%>
+ </td>
+</tr>
+<tr>
+  <td><%= form.label 'Diseased' %></td>
+  <td>  <%= form.check_box :diseased %>
+ </td>
+</tr>
+
+<% if  @member.user_id.nil? %>
+<%= fields_for :user do |user_form|%>
+<tr>
+  <td>Enable Signing In</td>
+  <td><%= check_box_tag 'enable_sign_in',1,false,:onclick=>'display_user_details();' %></td>
+</tr>
+<tr>
+  <td>Email</td>
+  <td><%= user_form.text_field :email %>
+  <%if current_user  %>
+  <%= user_form.hidden_field :created_by,:value=>current_user.id %>
+  <% end %>
+  </td>
+</tr>
+<% end %>
+<% end %>
+</table>
+</div>
+

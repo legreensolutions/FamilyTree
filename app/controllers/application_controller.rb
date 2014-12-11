@@ -1,14 +1,13 @@
-# Filters added to this controller apply to all controllers in the application.
-# Likewise, all the methods added will be available for all controllers.
-
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
-  protect_from_forgery # See ActionController::RequestForgeryProtection for details
+  protect_from_forgery
+
+
 
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
 
-  filter_parameter_logging :password, :password_confirmation
+  #filter_parameter_logging :password, :password_confirmation
   helper_method :current_user_session, :current_user
 
 before_filter  :instantiate_controller_and_action_names
@@ -42,7 +41,7 @@ include SimpleCaptcha::ControllerHelpers
       end
     end
      def store_location
-      session[:return_to] = request.request_uri
+      session[:return_to] = request.fullpath
     end
 
     def redirect_back_or_default(default)
@@ -58,5 +57,5 @@ include SimpleCaptcha::ControllerHelpers
   end
 
 
-end
 
+end

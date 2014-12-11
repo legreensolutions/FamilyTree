@@ -34,6 +34,6 @@
 </div>
 
 <% unless @years.nil? %>
-<div id="family_container"><%= render :partial=>'members/prev_committee_members' %><br /><br /><% if current_user and current_user.is_admin? %><div class="button"><%= link_to ' &nbsp;&nbsp;&nbsp;Change',members_path %></div><% end %></div>
+<div id="family_container"><%= render :partial=>'members/prev_committee_members' %><br /><br /><% if current_user and current_user.is_admin? %><div class="button"><%= link_to 'Change',members_path %></div><% end %></div>
 <% end %>
 

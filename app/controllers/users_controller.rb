@@ -36,11 +36,15 @@ require 'digest/sha1'
   end
 
   def edit
-    @user = User.find(params[:id])
+    # sujith
+    # @user = User.find(params[:id])
+    @user = current_user
   end
 
   def update
-    @user = User.find(params[:id]) # makes our views "cleaner" and more consistent
+    #@user = User.find(params[:id]) # makes our views "cleaner" and more consistent
+    @user = current_user # makes our views "cleaner" and more consistent
+
     if @user.update_attributes(params[:user])
       flash[:notice] = "Account updated!"
       redirect_to user_path(@user.id)

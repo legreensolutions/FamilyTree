@@ -1,9 +1,9 @@
-&nbsp;
+ 
 <div align="center">
 <div class='button'><%= link_to 'New event', new_event_path if current_user %></div>
 <% unless @events.blank? %>
 <div align="left" style="float:left;", class = "tag-category">
-Categories : <%= event_tag_list(Event.all) %> <%= link_to "All Categories", events_path %>
+Categories : <%=raw event_tag_list(Event.all) %> <%= link_to "All Categories", events_path %>
 </div><br />
 <h3>Events</h3>
 
@@ -16,13 +16,13 @@ Categories : <%= event_tag_list(Event.all) %> <%= link_to "All Categories", even
     <% @upload = event.event_uploads.first %>
     <td>
       <%unless @upload.nil? %>
-          <%= link_to (image_tag @upload.photo.url(:thumb)),event_path(event) %>
+          <%= link_to((image_tag @upload.photo.url(:thumb)),event_path(event)) %>
          <% else %>
-         <%= link_to image_tag ('no_image.jpg') ,event_path(event)%>
+         <%= link_to(image_tag('no_image.jpg') ,event_path(event))%>
          <% end %>
     </td>
 
-    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td> </td>
 
     <td class="table-left-aligned">
       <h3><%= link_to event.title,event_path(event) %></h3>

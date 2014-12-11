@@ -1,0 +1,15 @@
+<% form_for @member, :html => { :multipart => true } do |f| %>
+  <%= f.error_messages %>
+  <%= error_messages_for 'user'%>
+<%= render :partial => "members/form", :object => f %>
+<% fields_for :relation do |rf| %>
+<%= rf.hidden_field :user_id,:value=>session[:member_id]%>
+<%= rf.hidden_field :relation_id,:value=>session[:relation_id]%>
+<%= hidden_field_tag 'relation_name',session[:relation_name]%>
+<% end %>
+  <p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+

@@ -1,5 +1,12 @@
 # Sample localization file for English. Add more files in this directory for other locales.
-# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
   hello: "Hello world"
+  will_paginate:
+    previous_label: "&lt;"
+    next_label: "&gt;"
+    page_entries_info:
+      multi_page: "%{model}(s) %{from} - %{to} of %{count}"
+      multi_page_html: "%{model}(s) <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{count}</b>"
+

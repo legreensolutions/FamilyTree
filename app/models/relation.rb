@@ -1,5 +1,5 @@
 class Relation < ActiveRecord::Base
-
+attr_accessible  :user_id, :related_user_id, :relation_id
  belongs_to :child_member, :class_name => "Member", :foreign_key => "user_id"
  belongs_to :parent_member, :class_name => "Member", :foreign_key => "related_user_id"
 
@@ -8,8 +8,8 @@ class Relation < ActiveRecord::Base
 #user_id => my id
  def self.add_parent_relationship(my_self,user_id,related_user_id)
      Relation.create(:user_id=>user_id,:related_user_id=>related_user_id,:relation_id=>PARENT) if Relation.find_by_user_id_and_relation_id(related_user_id,PARENT).blank?
-
-    #my_parents
+     
+   #my_parents
    #@relations = Relation.find(:all,:conditions=>['user_id = ? and relation_id = ?',user_id,PARENT])
    @relations = my_self.child_member_relations.find(:all,:conditions=>['relation_id = ?',PARENT])
 
@@ -20,15 +20,15 @@ class Relation < ActiveRecord::Base
     my_parents = []
     my_siblings = []
     unless @relations.blank?
-      @relations.each do |relation|
+        @relations.each do |relation|
         my_parents << relation.related_user_id
-         #my_siblings
-       @my_siblings = Relation.find(:all,:conditions=>['related_user_id = ? and relation_id = ? and user_id != ?',relation.related_user_id,PARENT,user_id]) unless relation.blank?
-         unless @my_siblings.blank?
+        #my_siblings
+        @my_siblings = Relation.find(:all,:conditions=>['related_user_id = ? and relation_id = ? and user_id != ?',relation.related_user_id,PARENT,user_id]) unless relation.blank?
+        unless @my_siblings.blank?
             @my_siblings.each do |sibling|
               my_siblings << sibling.user_id
             end
-          end
+        end
       end
     end
 
@@ -46,7 +46,7 @@ class Relation < ActiveRecord::Base
        Relation.create(:user_id=>my_parents[1],:related_user_id=>my_parents[0],:relation_id=>SPOUSE) if Relation.find_by_user_id_and_related_user_id_and_relation_id(my_parents[1],my_parents[0],SPOUSE).blank?
     end
 
-  end
+end
 
 
 
@@ -55,10 +55,11 @@ def  self.add_spouse_relationship(my_self,user_id,related_user_id)
     Relation.create(:user_id=>related_user_id,:related_user_id=>user_id,:relation_id=>SPOUSE) if Relation.find_by_user_id_and_relation_id_and_related_user_id(related_user_id,SPOUSE,user_id).blank?
        #my_children
        @my_children = my_self.parent_member_relations.find(:all,:conditions=>['relation_id = ?',PARENT])
+       logger.debug ".............xxx Going to find children"
        unless @my_children.blank?
          @my_children.each do |children|
-           Relation.create(:user_id=>children.user_id,:related_user_id=>related_user_id,:relation_id=>PARENT) if
-           Relation.find_by_user_id_and_related_user_id_and_relation_id(children.user_id,related_user_id,PARENT).blank?
+           logger.debug "Adding Children ............xxx "
+           Relation.create(:user_id=>children.user_id,:related_user_id=>related_user_id,:relation_id=>PARENT) if Relation.find_by_user_id_and_related_user_id_and_relation_id(children.user_id,related_user_id,PARENT).blank?
          end
        end
         Relation.create(:user_id=>user_id,:related_user_id=>related_user_id,:relation_id=>SPOUSE) if Relation.find_by_user_id_and_relation_id_and_related_user_id(user_id,SPOUSE,related_user_id).blank?

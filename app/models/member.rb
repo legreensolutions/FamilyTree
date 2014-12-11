@@ -1,4 +1,7 @@
 class Member < ActiveRecord::Base
+
+attr_accessible :name, :created_by, :email, :gender_id, :family_id, :origin_family_id, :house_name, :house_number, :street, :place, :pin, :phone, :mobile, :district_id, :state_id, :country_id, :photo, :dob, :marriage_date, :marriage_date, :parish, :occupation, :position, :official_address, :diseased
+
   belongs_to :user,:dependent=>:destroy
   belongs_to :family
   belongs_to :country
@@ -15,11 +18,21 @@ class Member < ActiveRecord::Base
   has_many :child_member_relations, :class_name => "Relation", :foreign_key => "user_id"
   has_many :parent_member_relations, :class_name => "Relation", :foreign_key => "related_user_id"
 
+  # sujith
+      has_one :mother_relation, :class_name => "Relation", :foreign_key => "user_id", :conditions => ["(relation_id = ? and gender_id = ?)", '1', FEMALE]
+      has_one :father_relation, :class_name => "Relation", :foreign_key => "user_id", :conditions => ["(relation_id = ? and gender_id = ?)", '1', MALE]
+
+
   has_many :child_members, :through => :parent_member_relations
   has_many :parent_members, :through => :child_member_relations
 
-  has_one :father, :through => :child_member_relations, :source => :parent_member, :conditions => ["(relation_id = ? and gender_id = ?)", '1', MALE]
-  has_one :mother, :through => :child_member_relations, :source => :parent_member, :conditions => ["(relation_id = ? and gender_id = ?)", '1', FEMALE]
+  #has_one :father, :through => :child_member_relations, :source => :parent_member, :conditions => ["(relation_id = ? and gender_id = ?)", '1', MALE]
+  #has_one :mother, :through => :child_member_relations, :source => :parent_member, :conditions => ["(relation_id = ? and gender_id = ?)", '1', FEMALE]
+  #sujith
+      has_one :father, :through => :father_relation, :source => :parent_member, :conditions => ["(relation_id = ? and gender_id = ?)", '1', MALE]
+      has_one :mother, :through => :mother_relation, :source => :parent_member, :conditions => ["(relation_id = ? and gender_id = ?)", '1', FEMALE]
+
+
 
   has_many :sons, :through => :parent_member_relations, :source => :child_member, :conditions => ["(relation_id = ? and gender_id = ?)", '1', MALE]
   has_many :daughters, :through => :parent_member_relations, :source => :child_member, :conditions => ["(relation_id = ? and gender_id = ?)", '1', FEMALE]
@@ -27,11 +40,19 @@ class Member < ActiveRecord::Base
 
 
 
+
+
+
+
   #paperclip image upload
   has_attached_file :photo,
     :styles => {
-      :thumb=> "100x100#",
-      :small  => "150x150>" }
+    :thumb=> "100x100#",
+    :small  => "150x150>" },
+    :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
+    :url => "/system/:attachment/:id/:style/:filename"
+
+  self.per_page = 50
 
 
    def find_relation(relation)

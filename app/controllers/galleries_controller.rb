@@ -1,5 +1,5 @@
 class GalleriesController < ApplicationController
-  auto_complete_for :gallery, :tags
+  autocomplete :gallery, :tags
   # GET /galleries
   # GET /galleries.xml
   def index

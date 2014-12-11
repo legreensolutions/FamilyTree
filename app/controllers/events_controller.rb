@@ -1,5 +1,9 @@
 class EventsController < ApplicationController
-  auto_complete_for :event, :tags
+  
+
+  # sujith 
+  # auto_complete_for :event, :tags
+  autocomplete :event, :tags
   # GET /events
   # GET /events.xml
   def index

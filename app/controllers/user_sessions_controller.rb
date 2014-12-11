@@ -4,6 +4,16 @@ class UserSessionsController < ApplicationController
 
   def new
     @user_session = UserSession.new
+
+
+  # sujith start
+  respond_to do |format|
+    format.html # new.html.erb
+    format.xml { render :xml => @user_session }
+  end
+  # sujith end
+
+
   end
 
   def create
@@ -17,7 +27,8 @@ class UserSessionsController < ApplicationController
   end
 
   def destroy
-    current_user_session.destroy
+    @user_session = UserSession.find
+    @user_session.destroy
     flash[:notice] = "Logout successful!"
     redirect_to root_url
   end

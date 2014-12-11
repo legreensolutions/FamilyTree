@@ -9,33 +9,43 @@ class MembersController < ApplicationController
   def index
 
      if params[:search]
-     #   @members = initialize_grid(Member,
-      #  :conditions=>['members.name LIKE ? OR email LIKE ? OR families.name LIKE ? OR house_name LIKE ? ',"%#{params[:search_text]}%","%#{params[:search_text]}%","%#{params[:search_text]}%","%#{params[:search_text]}%"],
-       # :include => [:posts,:family],
+          #   @members = initialize_grid(Member,
+          #  :conditions=>['members.name LIKE ? OR email LIKE ? OR families.name LIKE ? OR house_name LIKE ? ',"%#{params[:search_text]}%","%#{params[:search_text]}%","%#{params[:search_text]}%","%#{params[:search_text]}%"],
+          # :include => [:posts,:family],
+          #:order => "members.name",
+          #:per_page => 50)
+          @members = Member.paginate(
+          :conditions=>['members.name LIKE ? OR email LIKE ? OR families.name LIKE ? OR house_name LIKE ? ',"%#{params[:search_text]}%","%#{params[:search_text]}%","%#{params[:search_text]}%","%#{params[:search_text]}%"],
+          :include => [:posts,:family],
+          :order => "members.id",
+          :page => params[:page],
+          :per_page => 50,
+          :order=>'members.name'
+          )
+
+          #  @members = Member.find(:all,:include => [:family],:conditions=>['members.name LIKE ? OR email LIKE ? OR families.name LIKE ? OR house_name LIKE ? ',"%#{params[:search_text]}%","%#{params[:search_text]}%","%#{params[:search_text]}%","%#{params[:search_text]}%"],:order => "members.id DESC")
+    else
+        # @members = initialize_grid(Member,
+        #:include => [:posts,:family],
         #:order => "members.name",
         #:per_page => 50)
+
+
+        #@members = Member.paginate(
+        #:include => :posts,
+        #:order => "members.id",
+        #:page => params[:page],
+        #:per_page => 50,
+        #:order=>'members.name')
+
+
         @members = Member.paginate(
-        :conditions=>['members.name LIKE ? OR email LIKE ? OR families.name LIKE ? OR house_name LIKE ? ',"%#{params[:search_text]}%","%#{params[:search_text]}%","%#{params[:search_text]}%","%#{params[:search_text]}%"],
-        :include => [:posts,:family],
+        :include => :posts,
         :order => "members.id",
         :page => params[:page],
-        :per_page => 50,
-        :order=>'members.name'
-        )
+        :order=>'members.name')
 
-     #  @members = Member.find(:all,:include => [:family],:conditions=>['members.name LIKE ? OR email LIKE ? OR families.name LIKE ? OR house_name LIKE ? ',"%#{params[:search_text]}%","%#{params[:search_text]}%","%#{params[:search_text]}%","%#{params[:search_text]}%"],:order => "members.id DESC")
-    else
-     # @members = initialize_grid(Member,
-    #:include => [:posts,:family],
-    #:order => "members.name",
-    #:per_page => 50)
-    @members = Member.paginate(
-    :include => :posts,
-    :order => "members.id",
-    :page => params[:page],
-        :per_page => 50,
-        :order=>'members.name'
-   )
+
     end
 
     respond_to do |format|
@@ -53,9 +63,7 @@ class MembersController < ApplicationController
     @member = Member.find(params[:id])
 
     respond_to do |format|
-
       format.html # show.html.erb
-
       format.xml  { render :xml => @member }
     end
 
@@ -104,7 +112,7 @@ class MembersController < ApplicationController
 
      if @member.save
        #relation ship saving
-         unless params[:relation][:user_id].blank?
+        unless params[:relation][:user_id].blank?
              create_relation(params[:relation][:user_id],@member.id)
         end
 
@@ -177,26 +185,27 @@ class MembersController < ApplicationController
         end
       end
 
-
       if @member.update_attributes(params[:member])
-        unless params[:relation][:user_id].blank?
-          create_relation(params[:relation][:user_id],@member.id)
-        end
-           unless params[:relation][:user_id].blank?
-          #  format.html { redirect_to(session[:return_url], :notice => 'Member was successfully updated.') }
-          format.html{redirect_to(member_path(params[:relation][:user_id]), :notice => 'Relation created.')}
+      #
+            unless params[:relation][:user_id].blank?
+              create_relation(params[:relation][:user_id],@member.id)
+            end
 
-          else
-          format.html { redirect_to(members_path, :notice => 'Member was successfully updated.') }
-          format.xml  { head :ok }
+            unless params[:relation][:user_id].blank?
+              #  format.html { redirect_to(session[:return_url], :notice => 'Member was successfully updated.') }
+              format.html{redirect_to(member_path(params[:relation][:user_id]), :notice => 'Relation created.')}
 
-          end
+            else
+              format.html { redirect_to(members_path, :notice => 'Member was successfully updated.') }
+              format.xml  { head :ok }
 
+            end
+      #
       else
-
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @member.errors, :status => :unprocessable_entity }
-
+      #
+          format.html { render :action => "edit" }
+          format.xml  { render :xml => @member.errors, :status => :unprocessable_entity }
+      #
       end
     end
 
@@ -204,7 +213,7 @@ class MembersController < ApplicationController
 
   # DELETE /members/1
   # DELETE /members/1.xml
-  def destroy
+def destroy
     @member = Member.find(params[:id])
     if @member.parent_member_relations.find(:all,:conditions=>['relation_id = ?',PARENT]).blank?
       unless @member.user.nil?
@@ -224,10 +233,11 @@ class MembersController < ApplicationController
         format.html { redirect_to(members_url) }
         format.xml  { head :ok }
       end
-  else
-    flash[:notice] = "You cannot delete this member without deleting this member's children"
-    redirect_to(members_url)
-  end
+      
+    else
+      flash[:notice] = "You cannot delete this member without deleting this member's children"
+      redirect_to(members_url)
+    end
 end
 
   def tree
@@ -291,7 +301,7 @@ private
        Relation.add_parent_relationship(@me,user_id,related_user_id)
     end
 
-  #add relationship children
+    #add relationship children
      if (session[:relation_name] == 'Sons' || session[:relation_name] == 'Daughters')
       Relation.add_children_relationship(user_id,related_user_id)
      end

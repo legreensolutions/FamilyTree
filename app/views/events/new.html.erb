@@ -5,7 +5,7 @@
             <h3>Events</h3>
 
             <table align="center">
-            <% form_for @event, :html => { :multipart => true }  do |f| %>
+            <%= form_for @event, :html => { :multipart => true }  do |f| %>
               <%= f.error_messages %>
 
              <tr>
@@ -21,12 +21,12 @@
                 <td><%= f.date_select(:event_date, {:order => [:month, :day,:year],:start_year=>1988}) %></td>
                </tr>
                <tr>
-              <td><%= f.label :tags %></td>
-              <td><%#= form.text_field :tags %>
-              <%= text_field_with_auto_complete :event, :tags %>
-              </td>
-            </tr>
-              <% f.fields_for :event_uploads do |photo_form| %>
+                <td><%= f.label :tags %></td>
+                <td>
+                      <%= f.autocomplete_field :tags, autocomplete_event_tags_events_path %>
+                </td>
+              </tr>
+              <%= f.fields_for :event_uploads do |photo_form| %>
               <tr>
                 <td>Image</td>
                 <td><%= photo_form.file_field :photo %></td>
@@ -34,14 +34,13 @@
               <% end %>
               <tr>
                 <td colspan="2" align="center">
-                <%= f.hidden_field :user_id,:value=>current_user.id %>
-                <%= f.submit 'Create',:class=>'button_new' %>&nbsp;&nbsp;
-
+                  <%= f.hidden_field :user_id,:value=>current_user.id %>
+                  <%= f.submit 'Create',:class=>'button_new' %>&nbsp;&nbsp;
                 </td>
               </tr>
             <% end %>
             </table>
-    </div><!-- end of white_bordered_div -->
+    </div>  
 
 </div>
 

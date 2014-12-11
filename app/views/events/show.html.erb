@@ -1,8 +1,8 @@
 <div align="left" style="float:left;">
 <% @prev = Event.find(:first,:conditions=>['id != ? and created_at < ?',@event.id,@event.created_at]) %>
-<div class="button"><%= link_to '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Previous', event_path(@prev.id) if @prev %></div>
+<div class="button"><%= link_to 'Previous', event_path(@prev.id) if @prev %></div>
 <% @next = Event.find(:first,:conditions=>['id != ? and created_at > ?',@event.id,@event.created_at]) %>
-<div class="button"><%= link_to '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Next', event_path(@next.id) if @next %></div>
+<div class="button"><%= link_to 'Next', event_path(@next.id) if @next %></div>
 </div>
 <div class="button"><%= link_to 'All',events_path %></div>
 
@@ -13,17 +13,17 @@
       <% @uploads = @event.event_uploads%>
     <%unless @uploads.blank? %>
       <p>
+      <div id="gallery">
+       <% @uploads.each do |upload| %>
+
+          <%= link_to image_tag(upload.photo.url(:thumb)),upload.photo.url(:small)%>
+          <%#= link_to "Download", download_image_path(upload.photo.url(:original)) %>
+          <%#= link_to image_tag("../images/Download.png"), "download_image/#{upload.id}"  %>
+     <% end %>
+     </div>
 
 
-        <div id="gallery">
-            <% @uploads.each do |upload| %>
-            <%= link_to image_tag(upload.photo.url(:thumb)),upload.photo.url(:small), :class=>"slide"%>
-
-            <%= link_to image_tag("../images/Download.png"), "download_image/#{upload.id}"  %>
-            <% end %>
-        </div>
-      </p>
-
+     </p>
     <% else %>
       <%= image_tag ('../images/no_image.jpg') %>
     <% end %>

@@ -1,7 +1,7 @@
 <div class='button'><%= link_to 'All', countries_path %>
 <h3>New country</h3>
 
-<% form_for(@country) do |f| %>
+<%= form_for(@country) do |f| %>
   <%= flash[:notice]%>
 
   <p>

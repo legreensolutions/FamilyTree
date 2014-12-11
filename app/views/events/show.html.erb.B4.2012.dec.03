@@ -1,0 +1,46 @@
+<div align="left" style="float:left;">
+<% @prev = Event.find(:first,:conditions=>['id != ? and created_at < ?',@event.id,@event.created_at]) %>
+<div class="button"><%= link_to '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Previous', event_path(@prev.id) if @prev %></div>
+<% @next = Event.find(:first,:conditions=>['id != ? and created_at > ?',@event.id,@event.created_at]) %>
+<div class="button"><%= link_to '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Next', event_path(@next.id) if @next %></div>
+</div>
+<div class="button"><%= link_to 'All',events_path %></div>
+
+
+<div  class="family_show" style="margin-left:300px;">
+
+    <div style="float:left;">
+      <% @uploads = @event.event_uploads%>
+    <%unless @uploads.blank? %>
+      <p>
+      <div id="gallery">
+        <% @uploads.each do |upload| %>
+          <%= link_to image_tag(upload.photo.url(:thumb)),upload.photo.url(:original)%>
+        <% end %>
+     </div>
+     </p>
+    <% else %>
+      <%= image_tag ('../images/no_image.jpg') %>
+    <% end %>
+    </div>
+
+
+
+    <div class="family_show_description">
+      <h2><%= @event.title %></h2>
+      <%= @event.event_date.strftime("%d/%m/%Y") %><br />
+      <%= @event.description %>
+      <hr />
+      <% if current_user and current_user.is_admin? %>
+      <% unless @upload.nil? %>
+        <%= link_to_remote "[Delete this image]",
+    :url => { :action => "delete_image", :id => @upload.id }  %>
+    <% end %>
+
+    <% end %>
+
+    </div>
+
+
+</div>
+

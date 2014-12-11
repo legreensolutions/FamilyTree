@@ -19,7 +19,7 @@
               <%= @news_item.news_date.strftime("%d/%m/%Y") %><br />
               <%= @news_item.description %>
               <% if current_user and current_user.is_admin %>
-              <%= link_to image_tag ('edit.png'), edit_news_item_path(@news_item) %>
+              <%= link_to image_tag('edit.png'), edit_news_item_path(@news_item) %>
 
               <% end %>
 

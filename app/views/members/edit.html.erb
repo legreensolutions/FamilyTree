@@ -6,7 +6,7 @@
 
 <td>
 <div align="center">
-<% if session[:relation_name].blank? %>
+<% if params[:relation].blank? %>
 <h3>Editing member</h3>
 <% else %>
   <% if params[:relation_name] %>
@@ -25,7 +25,7 @@
   end %>
 <h3>Add <%= params[:relation_name]%> of <%= Member.find_by_id(session[:member_id]).name %> </h3>
 <% end end %>
-<% form_for @member, :html => { :multipart => true } do |f| %>
+<%= form_for @member, :html => { :multipart => true } do |f| %>
   <%= f.error_messages %>
   <%= error_messages_for 'user'%>
 <%= render :partial => "members/form", :object => f %>
@@ -35,7 +35,7 @@
 
   </p>
 <% end %>
-<% fields_for :relation do |rf| %>
+<%= fields_for :relation do |rf| %>
 <%= rf.hidden_field :user_id,:value=>session[:member_id]%>
 <%= rf.hidden_field :relation_id,:value=>session[:relation_id]%>
 <%= hidden_field_tag 'relation_name',session[:relation_name]%>
