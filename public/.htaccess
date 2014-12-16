@@ -1,0 +1,6 @@
+Options -MultiViews
+PassengerResolveSymlinksInDocumentRoot on
+#Change to your environment
+RailsEnv development
+RailsBaseURI /
+SetEnv GEM_HOME /home7/mannekat/ruby/gems
