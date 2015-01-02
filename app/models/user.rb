@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  attr_accessible :email, :created_by
   ACTIVE = 1
   has_one :member,:dependent=>:destroy
 
