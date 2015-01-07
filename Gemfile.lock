@@ -22,6 +22,10 @@ GEM
       activesupport (= 3.2.13)
       arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
+    activerecord-mysql-adapter (0.0.1)
+      activerecord (>= 3.2.9)
+      activesupport (>= 3.2.9)
+      mysql (>= 2.9.0)
     activeresource (3.2.13)
       activemodel (= 3.2.13)
       activesupport (= 3.2.13)
@@ -44,6 +48,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    daemon_controller (1.2.0)
     dynamic_form (1.1.4)
     erubis (2.7.0)
     execjs (2.0.2)
@@ -61,12 +66,17 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.25.1)
     multi_json (1.8.2)
+    mysql (2.9.1)
     mysql2 (0.3.14)
     paperclip (3.5.2)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.3)
       mime-types
+    passenger (4.0.56)
+      daemon_controller (>= 1.2.0)
+      rack
+      rake (>= 0.8.1)
     polyglot (0.3.3)
     rack (1.4.5)
     rack-cache (1.2)
@@ -124,14 +134,16 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord-mysql-adapter
   arel
-  authlogic
+  authlogic (= 3.3.0)
   coffee-rails (~> 3.2.1)
   dynamic_form
   galetahub-simple_captcha
   jquery-rails
   mysql2
   paperclip (~> 3.0)
+  passenger
   rails (= 3.2.13)
   rails3-jquery-autocomplete
   sass-rails (~> 3.2.3)

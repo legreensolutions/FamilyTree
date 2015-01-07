@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :created_by
-  ACTIVE = 1
+ ACTIVE = 1
   has_one :member,:dependent=>:destroy
-
+  attr_accessible :email, :created_by
+ 
   #authlogic validations
   acts_as_authentic do |c|
     validates_presence_of :email
@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
  	# Activation email sending
  	def deliver_activation_instructions!
     reset_perishable_token!
-    Notifier.deliver_activation_instructions(self)
+    Notifier.activation_instructions(self)
   end
 
 	#Confirmation of account activation email

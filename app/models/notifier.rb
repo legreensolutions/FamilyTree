@@ -10,13 +10,26 @@ class Notifier < ActionMailer::Base
  	end
 
 
-	def activation_instructions(user)
-    subject       "Activation Instructions"
-    from          "mail@mannekattil.com"
-    recipients    user.email
-    sent_on       Time.now
-    body          :account_activation_url => register_url(user.perishable_token),
-                  :user=>user
+	def activation_instructions(user)   
+#    subject       "Activation Instructions"
+#    from          "mail@mannekattil.com"
+#    recipients    user.email
+#    sent_on       Time.now
+#    body          :account_activation_url => register_url(user.perishable_token),
+#                  :user=>user
+#
+    @user = user
+
+    @subject = "Activation Instructions"
+    @from = "mail@mannekattil.com"
+    @recipients = user.email
+    @sent_on = Time.now
+    @body = "testing ............... " #, :user=>user
+
+    logger.debug "start 123"
+    mail(:to => user.email, :subject => "Activation Instructions .... Welcome to My Awesome Site")
+    logger.debug "End 123"
+
 
   end
 

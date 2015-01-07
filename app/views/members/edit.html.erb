@@ -10,21 +10,22 @@
 <h3>Editing member</h3>
 <% else %>
   <% if params[:relation_name] %>
-  <% case params[:relation_name].upcase
-  when 'FATHER'
-     relation = 'Father'
-  when 'MOTHER'
-    relation = 'Mother'
-  when 'SIBLING'
-    relation = 'Sibling'
-  when 'CHILDREN'
-    relation = 'Children'
-  when 'SPOUSE'
-    relation = 'Spouse'
-
-  end %>
-<h3>Add <%= params[:relation_name]%> of <%= Member.find_by_id(session[:member_id]).name %> </h3>
-<% end end %>
+          <% case params[:relation_name].upcase
+                when 'FATHER'
+                   relation = 'Father'
+                when 'MOTHER'
+                  relation = 'Mother'
+                when 'SIBLING'
+                  relation = 'Sibling'
+                when 'CHILDREN'
+                  relation = 'Children'
+                when 'SPOUSE'
+                  relation = 'Spouse'
+            end %>
+    <% if Member.find_by_id(session[:member_id])%>
+      <h3>Add <%= params[:relation_name]%> of <%= Member.find_by_id(session[:member_id]).name %> </h3>
+    
+  <% end end end %>
 <%= form_for @member, :html => { :multipart => true } do |f| %>
   <%= f.error_messages %>
   <%= error_messages_for 'user'%>
