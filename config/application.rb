@@ -58,7 +58,13 @@ module Familynew
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
-    config.action_mailer.delivery_method = :sendmail
+#    ------------------------- start
+#    config.action_mailer.delivery_method = :sendmail  ##########sujith commented for google cloud
+    config.action_mailer.delivery_method = :smtp
+#   ---------------------------- end
+
+
+
     config.time_zone = 'UTC'
 
   end
