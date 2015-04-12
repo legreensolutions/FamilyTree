@@ -2,10 +2,6 @@ class PasswordResetsController < ApplicationController
 	before_filter :load_user_using_perishable_token, :only => [:edit, :update]
 	before_filter :require_user, :only => [:change_password]
 
-  def index
-    render new
-  end
-
   def new
  		render
  	end
