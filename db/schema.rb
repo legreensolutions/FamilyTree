@@ -1,10 +1,12 @@
-# This file is auto-generated from the current state of the database. Instead of editing this file, 
-# please use the migrations feature of Active Record to incrementally modify your database, and
-# then regenerate this schema definition.
+# encoding: UTF-8
+# This file is auto-generated from the current state of the database. Instead
+# of editing this file, please use the migrations feature of Active Record to
+# incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your database schema. If you need
-# to create the application database on another system, you should be using db:schema:load, not running
-# all the migrations from scratch. The latter is a flawed and unsustainable approach (the more migrations
+# Note that this schema.rb definition is the authoritative source for your
+# database schema. If you need to create the application database on another
+# system, you should be using db:schema:load, not running all the migrations
+# from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended to check this file into your version control system.
@@ -15,8 +17,8 @@ ActiveRecord::Schema.define(:version => 20121120035830) do
     t.integer  "alert_id"
     t.string   "photo_file_name"
     t.integer  "photo_file_size"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "alerts", :force => true do |t|
@@ -24,8 +26,8 @@ ActiveRecord::Schema.define(:version => 20121120035830) do
     t.text     "description"
     t.date     "alert_date"
     t.boolean  "obsolete",    :default => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
   create_table "content_managements", :force => true do |t|
@@ -33,28 +35,28 @@ ActiveRecord::Schema.define(:version => 20121120035830) do
     t.string   "identification", :null => false
     t.integer  "no_of_chars",    :null => false
     t.string   "description",    :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "countries", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "districts", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "event_uploads", :force => true do |t|
     t.integer  "event_id"
     t.string   "photo_file_name"
     t.integer  "photo_file_size"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "events", :force => true do |t|
@@ -62,15 +64,15 @@ ActiveRecord::Schema.define(:version => 20121120035830) do
     t.text     "description"
     t.date     "event_date"
     t.boolean  "obsolete",    :default => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.integer  "user_id"
   end
 
   create_table "families", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.string   "short_description"
     t.string   "long_description"
     t.string   "photo_file_name"
@@ -86,16 +88,16 @@ ActiveRecord::Schema.define(:version => 20121120035830) do
     t.integer  "photo_file_size"
     t.boolean  "public",             :default => true
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
     t.string   "tags"
   end
 
   create_table "interesting_links", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "members", :force => true do |t|
@@ -120,8 +122,8 @@ ActiveRecord::Schema.define(:version => 20121120035830) do
     t.integer  "photo_file_size"
     t.integer  "created_by",         :default => 1
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.integer  "gender_id"
     t.integer  "post_id"
     t.integer  "origin_family_id"
@@ -139,8 +141,8 @@ ActiveRecord::Schema.define(:version => 20121120035830) do
     t.text     "description"
     t.date     "news_date"
     t.boolean  "obsolete",             :default => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
     t.integer  "user_id"
     t.string   "tags"
     t.boolean  "display_on_home_page", :default => false
@@ -150,15 +152,15 @@ ActiveRecord::Schema.define(:version => 20121120035830) do
     t.integer  "news_item_id"
     t.string   "photo_file_name"
     t.integer  "photo_file_size"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "posts", :force => true do |t|
     t.string   "name"
     t.integer  "level"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "relations", :force => true do |t|
@@ -169,8 +171,8 @@ ActiveRecord::Schema.define(:version => 20121120035830) do
 
   create_table "states", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -183,8 +185,8 @@ ActiveRecord::Schema.define(:version => 20121120035830) do
     t.integer  "active",              :default => 0
     t.integer  "is_admin",            :default => 2
     t.integer  "created_by"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
   end
 
 end

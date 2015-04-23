@@ -1,7 +1,11 @@
 class User < ActiveRecord::Base
  ACTIVE = 1
   has_one :member,:dependent=>:destroy
-  attr_accessible :email, :created_by
+  attr_accessible :email, :created_by, :password, :password_confirmation, :is_admin
+
+  # sujith - these attributes added by Sujith
+  # attr_accessible :password, :password_confirmation, :is_admin
+  
  
   #authlogic validations
   acts_as_authentic do |c|

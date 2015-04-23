@@ -1,6 +1,8 @@
 class Member < ActiveRecord::Base
 
-attr_accessible :name, :created_by, :email, :gender_id, :family_id, :origin_family_id, :house_name, :house_number, :street, :place, :pin, :phone, :mobile, :district_id, :state_id, :country_id, :photo, :dob, :marriage_date, :marriage_date, :parish, :occupation, :position, :official_address, :diseased
+attr_accessible :name, :created_by, :email, :gender_id, :family_id, :origin_family_id, :house_name, :house_number, :street, :place, :pin, :phone, :mobile, :district_id, :state_id, :country_id, :photo, :dob, :marriage_date, :marriage_date, :parish, :occupation, :position, :official_address, :diseased, :user_id
+# sujith - these attributes added by Sujith
+#:user_id
 
   belongs_to :user,:dependent=>:destroy
   belongs_to :family
