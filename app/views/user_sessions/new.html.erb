@@ -25,7 +25,7 @@
           <td><%= f.password_field :password %></td>
       </tr>
       <tr>
-      <td colspan="2"><%= f.submit "Login",:class=>'button_new' %>&nbsp;&nbsp;<%= link_to 'Forgot Password?','password_resets#new'%></td>
+      <td colspan="2"><%= f.submit "Login",:class=>'button_new' %>&nbsp;&nbsp;<%= link_to 'Forgot Password?',new_password_reset_path%></td>
       </tr>
   </table>
 
