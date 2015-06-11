@@ -33,7 +33,8 @@ class User < ActiveRecord::Base
    # password reset and send mail with a link to reset password
    def deliver_password_reset_instructions!
  		reset_perishable_token!
- 		Notifier.deliver_password_reset_instructions(self)
+ 		#Notifier.deliver_password_reset_instructions(self)     #commented by Sujith
+ 		UserMailer.password_reset_instructions(self).deliver
  		end
 
  	# Activation email sending
