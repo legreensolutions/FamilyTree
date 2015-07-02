@@ -20,50 +20,52 @@ class UserMailer < ActionMailer::Base
 	def activation_instructions(user)   
 
       @user = user
-      mail(:to => user.email, :subject => "Activation Instructions sent", :from => "mail@mannekattil.com")  
+      #@name = user.member.name
+      @account_activation_url = register_url(user.perishable_token)
+      @password = user.password
+      @email = user.email
+
+      mail :to => user.email, :subject => "Activation Instructions sent", :from => "mannekattil@mannekattil.com"
   
-  
-  
-  
-  
+
+
 #    subject       "Activation Instructions"
 #    from          "mail@mannekattil.com"
 #    recipients    user.email
 #    sent_on       Time.now
 #    body          :account_activation_url => register_url(user.perishable_token),
 #                  :user=>user
-#
-
-=begin
-    @user = user
-
-    @subject = "Activation Instructions"
-    @from = "mail@mannekattil.com"
-    @recipients = user.email
-    @sent_on = Time.now
-    @body = "testing ............... " #, :user=>user
-
-    logger.debug "start 123"
-    mail(:to => user.email, :subject => "Activation Instructions sent")
-    logger.debug "End 123"
-=end
 
   end
 
   def activation_confirmation(user)
-    subject       "Activation Complete"
-    from          "mail@mannekattil.com"
-    recipients    user.email
-    sent_on       Time.now
-    body          :root_url => root_url
+      @name = user.member.name
+      @root_url = root_url
+      @user = user
+      mail :to => user.email, :subject => "Activation Complete", :from => "mannekattil@mannekattil.com"
+
+
+#    subject       "Activation Complete"
+#    from          "mail@mannekattil.com"
+#    recipients    user.email
+#    sent_on       Time.now
+#    body          :root_url => root_url
+
   end
 
   def send_contact_us_msg(member,msg,from_email)
-    subject       "Message from a member"
-    from          from_email
-    recipients    member.email
-    sent_on       Time.now
-    body          :msg => msg,:from=>from_email,:to=>member
+    
+    @to = member.email
+    @from = from_email
+    @message = msg
+
+    mail :to => member.email, :subject => "Message from a member", :from => from_email
+
+#    subject       "Message from a member"
+#    from          from_email
+#    recipients    member.email
+#    sent_on       Time.now
+#    body          :msg => msg,:from=>from_email,:to=>member
   end
 
 end

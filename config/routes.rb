@@ -65,7 +65,7 @@ Familynew::Application.routes.draw do
   match 'login' => "user_sessions#new",      :as => :login
   match 'logout' => "user_sessions#destroy", :as => :logout
 
-  match '/register/:activation_code', :to => 'activations#activate_account'
+  match '/register/:activation_code', :to => 'activations#activate_account', :as => :register
 
   resources :password_resets, :collection => {:change_password =>:get}
                                                 match '/simple_captcha/:action', :controller => 'simple_captcha'

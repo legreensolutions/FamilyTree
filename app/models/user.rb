@@ -40,13 +40,13 @@ class User < ActiveRecord::Base
  	# Activation email sending
  	def deliver_activation_instructions!
     reset_perishable_token!
-    Notifier.activation_instructions(self)
+    UserMailer.activation_instructions(self).deliver
   end
 
 	#Confirmation of account activation email
   def deliver_activation_confirmation!
     reset_perishable_token!
-    Notifier.deliver_activation_confirmation(self)
+    UserMailer.activation_confirmation(self).deliver
   end
 
   def is_admin?
