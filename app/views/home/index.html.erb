@@ -58,20 +58,20 @@ cookies[:display] = {:value => 'true',
 
     <!--div id="news_container"><%= render :partial=>'news_items/news_list.html.erb' %></div-->
     <div style="clear:both;"></div>
-    <div id="events_container" ><%= render :partial=>'events/event_list.html.erb' %></div>
-    <div id="links_container"><%= render :partial=>'interesting_links/link_list.html.erb' %></div>
-    <div id="right_menu_container"><%= link_to 'Committee Members',:controller=>'members',:action=>'committee_members' %></div>
-    <div id="right_menu_container1">   <%= link_to 'Interesting Links' ,interesting_links_path %></div>
+    <div id="events_container" title="Events of significance to Mannekattil Family" ><%= render :partial=>'events/event_list.html.erb' %></div>
+    <div id="links_container" title="Some interesting Links" ><%= render :partial=>'interesting_links/link_list.html.erb' %></div>
+    <div id="right_menu_container" title="Office Bearers of Mannekattil Family" ><%= link_to 'Committee Members',:controller=>'members',:action=>'committee_members' %></div>
+    <div id="right_menu_container1" title="Events of significance to Mannekattil Family" >   <%= link_to 'Interesting Links' ,interesting_links_path %></div>
     <% if (current_user and current_user.is_admin?)%>
-      <div id="right_menu_container2">   <%= link_to 'Content Management' ,content_managements_path %></div>
-      <div id="right_menu_container3">   <%= link_to 'Edit Families' ,families_path %></div>
-      <div id="right_menu_container4">   <%= link_to 'Posts' ,posts_path %></div>
-      <div id="right_menu_container5">   <%= link_to 'Countries' ,countries_path %></div>
-      <div id="right_menu_container6">   <%= link_to 'Disctricts' ,districts_path %></div>
+      <div id="right_menu_container2" title="Edit text content of pages like Home, Guidelines etc" >   <%= link_to 'Content Management' ,content_managements_path %></div>
+      <div id="right_menu_container3" title="Families under Mannekattil Family Umbrella" >   <%= link_to 'Edit Families' ,families_path %></div>
+      <div id="right_menu_container4" title="Edit the titles of Office Bearers." >   <%= link_to 'Posts' ,posts_path %></div>
+      <div id="right_menu_container5" title="Edit Database - Countries" >   <%= link_to 'Countries' ,countries_path %></div>
+      <div id="right_menu_container6" title="Edit Database - Districts" >   <%= link_to 'Districts' ,districts_path %></div>
     <% end %>
 
 
-    <div id="family_container" style="overflow:auto;"><%= render :partial=>'families/family_list.html.erb' %></div>
+    <div id="family_container" style="overflow:auto;" title="Click here to edit Family details" ><%= render :partial=>'families/family_list.html.erb' %></div>
 
 
 

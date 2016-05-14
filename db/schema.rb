@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(:version => 20121120035830) do
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
     t.integer  "user_id"
+    t.string   "tags"
   end
 
   create_table "families", :force => true do |t|

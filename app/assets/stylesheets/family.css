@@ -48,7 +48,7 @@ h1 {
 
 h5 {
     font-family:Serif, Arial;
-    font-size:16px;
+    font-size:10px;
     font-weight:bold;
     text-align:right;
 /*    color:blue;*/
@@ -102,10 +102,6 @@ h5 {
     text-align:center;
     float:left;
     outline:0px;
-
-
-
-
 }
 
 #menu div.mnu a:hover {
@@ -150,23 +146,29 @@ h5 {
     width:200px;
     text-align:left;
 }
+
 .login {
-    margin-top:15px;
+
+    margin-top:0px;
     color:#fff;
     text-decoration:none;
     outline:0px;
+    margin:auto;
+    margin-left:auto;
+    margin-right:auto;
     text-align:center;
     position:absolute;
     top:0px;
-    left:300px;
     width:113px;
     height:23px;
-    margin:auto;
     padding:0px;
     background-image:url('login_bg.png');
     background-repeat:no-repeat;
     font-weight:bold;
+
 }
+
+
 .login:hover {
     background-image:url('login_hover_bg.png');
     background-repeat:no-repeat;
@@ -1181,16 +1183,14 @@ div.white_bordered_div table tbody tr.lines {
   text-align:center;
 }
 
-
 #headingstyle {
    background-image:url('heading.png');
-   background-repeat:no-repeat;
+   background-repeat:no-repeat; 
    top:10px;
-   left:825px;
+   left:775px;
    width:500px;
    height:200px;
    position:absolute;
    z-index:0;
-
-  
 }
+
